@@ -1,0 +1,12 @@
+E:\HSJXProject\DXA_HSJX\Common\bin\Debug\Common.dll
+E:\HSJXProject\DXA_HSJX\Common\bin\Debug\Common.pdb
+E:\HSJXProject\DXA_HSJX\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+E:\HSJXProject\DXA_HSJX\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+E:\HSJXProject\DXA_HSJX\Common\obj\Debug\Common.dll
+E:\HSJXProject\DXA_HSJX\Common\obj\Debug\Common.pdb
+E:\HSJXProject\DXA_HSJX - 副本 (2)\Common\bin\Debug\Common.dll
+E:\HSJXProject\DXA_HSJX - 副本 (2)\Common\bin\Debug\Common.pdb
+E:\HSJXProject\DXA_HSJX - 副本 (2)\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+E:\HSJXProject\DXA_HSJX - 副本 (2)\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+E:\HSJXProject\DXA_HSJX - 副本 (2)\Common\obj\Debug\Common.dll
+E:\HSJXProject\DXA_HSJX - 副本 (2)\Common\obj\Debug\Common.pdb

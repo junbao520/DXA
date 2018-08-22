@@ -1,0 +1,482 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CG.Builder</name>
+    </assembly>
+    <members>
+        <member name="T:CG.Builder.BuilderBase">
+            <summary>
+            This class is a base implementation of <see cref="T:CG.Builder.IBuilder"/>. The 
+            purpose of the class is to provide a handy-dandy base for deriving 
+            concrete builder classes from.
+            </summary>
+            <example>
+            This example shows how to derive a concrete class from <see cref="T:CG.Builder.BuilderBase"/>
+            <code>
+            // Note that you'll need to devise your own 'MyProduct' class.
+            class TestBuilder : BuilderBase
+            {
+                public TestBuild() {}
+                
+                public TestBuild(IBuilderProduct parentProduct) 
+                    : base(parentProduct) { }
+                
+                public TestBuild(params IBuilderProvider[] externalProviders) 
+                    : base(externalProviders) { }
+            
+                public IMyProduct Build()
+                {
+                    return OnBuild&lt;MyProduct&gt;();
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="F:CG.Builder.BuilderBase._externalProviders">
+            <summary>
+            This field contains a collection of external providers.
+            </summary>
+        </member>
+        <member name="P:CG.Builder.BuilderBase.Setups">
+            <summary>
+            This property contains a list of injected builder setups.
+            </summary>
+        </member>
+        <member name="M:CG.Builder.BuilderBase.#ctor">
+            <summary>
+            This constructor creates a new instance of the <see cref="T:CG.Builder.BuilderBase"/>
+            class.
+            </summary>
+        </member>
+        <member name="M:CG.Builder.BuilderBase.#ctor(CG.Builder.IBuilderProduct)">
+            <summary>
+            This constructor creates a new instance of the <see cref="T:CG.Builder.BuilderBase"/>
+            class that is embedded inside an existing parent product. 
+            </summary>
+            <param name="parentProduct">A parent product reference.</param>
+            <exception cref="T:System.ArgumentException">Thrown if the <paramref name="parentProduct"/>
+            argument is null.</exception>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if
+            the <paramref name="parentProduct"/> parameter is NULL</exception>
+        </member>
+        <member name="M:CG.Builder.BuilderBase.#ctor(CG.Builder.IBuilderProvider[])">
+            <summary>
+            This constructor creates a new instance of the <see cref="T:CG.Builder.BuilderBase"/>
+            class that uses a collection of external providers.
+            </summary>
+            <param name="externalProviders">A collection of external providers.</param>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if
+            the <paramref name="externalProviders"/> parameter is NULL</exception>
+        </member>
+        <member name="M:CG.Builder.BuilderBase.Build``1">
+            <summary>
+            This method builds a product instance and returns it.
+            </summary>
+            <typeparam name="TProduct">The type of product to build.</typeparam>
+            <returns>A reference to the newly created product.</returns>
+            <exception cref="T:CG.Builder.BuilderException">This exception is thrown if anything
+            goes wrong during the build process.</exception>
+        </member>
+        <member name="M:CG.Builder.BuilderBase.OnBuild``1">
+            <summary>
+            This method is called when the builder is creating a new product.
+            </summary>
+            <typeparam name="TProduct">The type of product to build.</typeparam>
+            <returns>A reference to the newly created product.</returns>
+            <exception cref="T:CG.Builder.BuilderException">This exception is thrown if anything
+            goes wrong during the build process.</exception>
+        </member>
+        <member name="T:CG.Builder.BuilderException">
+            <summary>
+            This class represents a builder related exception.
+            </summary>
+        </member>
+        <member name="M:CG.Builder.BuilderException.#ctor">
+            <summary>
+            This constructor creates a new instance of the <see cref="T:CG.Builder.BuilderException"/>
+            class.
+            </summary>
+        </member>
+        <member name="M:CG.Builder.BuilderException.#ctor(System.String,System.Exception)">
+            <summary>
+            This constructor creates a new instance of the <see cref="T:CG.Builder.BuilderException"/>
+            class.
+            </summary>
+            <param name="message">The message to use for the exception.</param>
+            <param name="innerException">An optional inner exception reference.</param>
+        </member>
+        <member name="M:CG.Builder.BuilderException.#ctor(System.String)">
+            <summary>
+            This constructor creates a new instance of the <see cref="T:CG.Builder.BuilderException"/>
+            class.
+            </summary>
+            <param name="message">The message to use for the exception.</param>
+        </member>
+        <member name="M:CG.Builder.BuilderException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This constructor creates a new instance of the <see cref="T:CG.Builder.BuilderException"/>
+            class.
+            </summary>
+            <param name="info">The serialization info to use for the exception.</param>
+            <param name="context">The streaming context to use for the exception.</param>
+        </member>
+        <member name="T:CG.Builder.GuardExtensions">
+            <summary>
+            This class contains extension methods related to the <see cref="T:CG.Validation.Guard"/>
+            type.
+            </summary>
+        </member>
+        <member name="M:CG.Builder.GuardExtensions.ThrowIfCircularReference(CG.Validation.Guard,CG.Builder.IBuilderProvider,System.String)">
+            <summary>
+            This method throws an exception if the provider's child collection 
+            contains a circular reference.
+            </summary>
+            <param name="guard">The guard to use for the operation.</param>
+            <param name="argValue">The argument value to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <exception cref="T:System.ArgumentException">Thrown if the <paramref name="argValue"/>
+            argument contains a circular reference.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if the <paramref name="guard"/>
+            or <paramref name="argValue"/> or <paramref name="argName"/> 
+            argument are null.</exception>
+        </member>
+        <member name="M:CG.Builder.GuardExtensions.ThrowIfMissingProperties``1(CG.Validation.Guard,``0,System.String)">
+            <summary>
+            This method checks an <see cref="T:CG.Builder.IBuilderSetup"/> setup object for 
+            any properties that are missing, or NULL. The purpose of the method
+            is to verify that no setup properties are missing by checking all
+            the properties with nullable return types for NULL values. Note
+            that only nullable return types are checked, non-nullable return
+            types are ignored. 
+            </summary>
+            <typeparam name="TSetup">The type of associated setup.</typeparam>
+            <param name="guard">The <see cref="T:CG.Validation.Guard"/> to use for the operation.</param>
+            <param name="argValue">The argument value to be testeed.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The <see cref="T:CG.Validation.Guard"/> instance.</returns>
+        </member>
+        <member name="T:CG.Builder.IBuilder">
+            <summary>
+            This interface represents a builder, which is a design approach that 
+            separates the construction of complex objects from their representations. 
+            </summary>
+        </member>
+        <member name="P:CG.Builder.IBuilder.Setups">
+            <summary>
+            This property contains list of injected builder setups.
+            </summary>
+        </member>
+        <member name="M:CG.Builder.IBuilder.Build``1">
+            <summary>
+            This method builds a product instance and returns it.
+            </summary>
+            <typeparam name="TProduct">The type of product to build.</typeparam>
+            <returns>A reference to the newly created product.</returns>
+            <exception cref="T:CG.Builder.BuilderException">This exception is thrown if
+            anything goes wrong during the build process.</exception>
+        </member>
+        <member name="T:CG.Builder.NamespaceDoc">
+            <summary>
+            This namespace defines a reusable implementation of the "builder" pattern.
+            </summary>
+        </member>
+        <member name="T:CG.Builder.Product.BuilderProductBase">
+            <summary>
+            This class is a base implementation of <see cref="T:CG.Builder.IBuilderProduct"/>. 
+            The purpose of the class is to provide a handy-dandy base for deriving 
+            concrete builder product classes from.
+            </summary>
+            <example>
+            This example shows how to derive a concrete class from <see cref="T:CG.Builder.Product.BuilderProductBase"/>
+            <code>
+            class TestProduct : BuilderProductBase
+            {
+                // TODO : put your code here.
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:CG.Builder.Product.BuilderProductBase.Providers">
+            <summary>
+            This property contains a list of injected builder providers.
+            </summary>
+        </member>
+        <member name="M:CG.Builder.Product.BuilderProductBase.Initialize(CG.Builder.IBuilder)">
+            <summary>
+            This method is called by the builder to initialize the product.
+            </summary>
+            <param name="builder">The builder to use for the operation.</param>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="builder"/>
+            parameter is NULL.</exception>
+        </member>
+        <member name="M:CG.Builder.Product.BuilderProductBase.OnInitialize(CG.Builder.IBuilder)">
+            <summary>
+            This method is called by the builder in order to initialize the product.
+            </summary>
+            <param name="builder">The builder to use for the operation.</param>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="builder"/>
+            parameter is NULL.</exception>
+        </member>
+        <member name="M:CG.Builder.Product.BuilderProductBase.Dispose(System.Boolean)">
+            <summary>
+            This method is called when the product is disposed of.
+            </summary>
+            <param name="disposing">True to dispose of managed resources; False otherwise.</param>
+        </member>
+        <member name="T:CG.Builder.Product.IBuilderProductExtensions">
+            <summary>
+            This class contains extension methods related to the <see cref="T:CG.Builder.IBuilderProduct"/>
+            type.
+            </summary>
+        </member>
+        <member name="M:CG.Builder.Product.IBuilderProductExtensions.FindProviders``1(CG.Builder.IBuilderProduct)">
+            <summary>
+            This method performs a limited search of the specified products's 
+            provider tree for all the providers that match the <typeparamref name="TProvider"/>
+            type. 
+            </summary>
+            <typeparam name="TProvider">The setup type to use for the operation.</typeparam>
+            <param name="product">The product to use as a starting point for 
+            the operation.</param>
+            <returns>A sequence of <typeparamref name="TProvider"/> references.</returns>
+        </member>
+        <member name="M:CG.Builder.Product.IBuilderProductExtensions.FindProvider``1(CG.Builder.IBuilderProduct)">
+            <summary>
+            This method performs a limited search of the specified product's 
+            provider tree for the first provider that matches the <typeparamref name="TProvider"/>
+            type. 
+            </summary>
+            <typeparam name="TProvider">The provider type to use for the operation.</typeparam>
+            <param name="product">The product to use as a starting point for 
+            the operation.</param>
+            <returns>A <typeparamref name="TProvider"/> reference, if one if found,
+            or NULL otherwise.</returns>
+        </member>
+        <member name="T:CG.Builder.Product.NamespaceDoc">
+            <summary>
+            This namespace defines products that support the <see cref="N:CG.Builder"/>
+            namespace. A product is an object that is created by a builder and 
+            injected with providers at build time.
+            </summary>
+        </member>
+        <member name="T:CG.Builder.IBuilderProduct">
+            <summary>
+            This interface represents a builder product, which is an object 
+            created by a builder whenever the <see cref="M:CG.Builder.IBuilder.Build``1"/> 
+            method is called.
+            </summary>
+        </member>
+        <member name="P:CG.Builder.IBuilderProduct.Providers">
+            <summary>
+            This property contains a list of injected builder providers.
+            </summary>
+        </member>
+        <member name="M:CG.Builder.IBuilderProduct.Initialize(CG.Builder.IBuilder)">
+            <summary>
+            This method is called by the builder to initialize the product.
+            </summary>
+            <param name="builder">The builder to use for the operation.</param>
+        </member>
+        <member name="T:CG.Builder.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:CG.Builder.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:CG.Builder.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:CG.Builder.Properties.Resources.BuilderSetupBase_NoBuildP">
+            <summary>
+              Looks up a localized string similar to The &apos;{0}&apos; setup failed to build a provider of type: &apos;{1}&apos; See any inner exception(s) for more details..
+            </summary>
+        </member>
+        <member name="P:CG.Builder.Properties.Resources.GuardExtensions_ThrowIfCircularReference">
+            <summary>
+              Looks up a localized string similar to The argument contains a circular reference!.
+            </summary>
+        </member>
+        <member name="P:CG.Builder.Properties.Resources.GuardExtensions_ThrowIfMissingProperties">
+            <summary>
+              Looks up a localized string similar to The &apos;{0}&apos; property of the &apos;{1}&apos; argument was missing (or NULL)!.
+            </summary>
+        </member>
+        <member name="T:CG.Builder.Provider.BuilderProviderBase">
+            <summary>
+            This class is a base implementation of <see cref="T:CG.Builder.IBuilderProvider"/> The 
+            purpose of the class is to provide a handy-dandy base for deriving 
+            concrete builder provider classes from.
+            </summary>
+            <example>
+            This example shows how to derive a concrete class from <see cref="T:CG.Builder.Provider.BuilderProviderBase"/>
+            <code>
+            class TestProvider : BuilderProviderBase
+            {
+                // TODO : put your code here.
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:CG.Builder.Provider.BuilderProviderBase.Setup">
+            <summary>
+            This property contains a reference to the setup that corresponds 
+            with this provider.
+            </summary>
+        </member>
+        <member name="P:CG.Builder.Provider.BuilderProviderBase.Children">
+            <summary>
+            This property contains a collection of child providers.
+            </summary>
+        </member>
+        <member name="M:CG.Builder.Provider.BuilderProviderBase.Dispose(System.Boolean)">
+            <summary>
+            This method is called when the object is disposed.
+            </summary>
+            <param name="disposing">True to dispose of managed resources; 
+            false otherwise.</param>
+        </member>
+        <member name="T:CG.Builder.Provider.IBuilderProviderExtensions">
+            <summary>
+            This class contains extension methods related to the <see cref="T:CG.Builder.IBuilderProvider"/>
+            type.
+            </summary>
+        </member>
+        <member name="M:CG.Builder.Provider.IBuilderProviderExtensions.FindSetups``1(CG.Builder.IBuilderProvider)">
+            <summary>
+            This method performs a limited search of the specified provider's 
+            tree for all associated setups that match the <typeparamref name="TSetup"/>
+            type. 
+            </summary>
+            <typeparam name="TSetup">The setup type to use for the operation.</typeparam>
+            <param name="provider">The provider to use as a starting point for 
+            the operation.</param>
+            <returns>A sequence of <typeparamref name="TSetup"/> references.</returns>
+        </member>
+        <member name="M:CG.Builder.Provider.IBuilderProviderExtensions.FindSetup``1(CG.Builder.IBuilderProvider)">
+            <summary>
+            This method performs a limited search of the specified provider's 
+            tree for the first associated setup that matches the <typeparamref name="TSetup"/>
+            type. 
+            </summary>
+            <typeparam name="TSetup">The setup type to use for the operation.</typeparam>
+            <param name="provider">The provider to use as a starting point for 
+            the operation.</param>
+            <returns>A <typeparamref name="TSetup"/> reference, if one if found,
+            or NULL otherwise.</returns>
+        </member>
+        <member name="T:CG.Builder.Provider.NamespaceDoc">
+            <summary>
+            This namespace defines providers that support the <see cref="N:CG.Builder"/>
+            namespace. A provider is an object that supplies resources at runtime.
+            </summary>
+        </member>
+        <member name="T:CG.Builder.IBuilderProvider">
+            <summary>
+            This interface represents a builder provider, which is an object 
+            that supplies access to resources at runtime.
+            </summary>
+        </member>
+        <member name="P:CG.Builder.IBuilderProvider.Setup">
+            <summary>
+            This property contains a setup reference.
+            </summary>
+        </member>
+        <member name="P:CG.Builder.IBuilderProvider.Children">
+            <summary>
+            This property contains a collection of child providers.
+            </summary>
+        </member>
+        <member name="T:CG.Builder.Setup.BuilderSetupBase`1">
+            <summary>
+            This class is a base implementation of <see cref="T:CG.Builder.IBuilderSetup"/> The 
+            purpose of the class is to provide a handy-dandy base for deriving 
+            concrete builder setup classes from.
+            </summary>
+            <typeparam name="TProvider">The concrete provider type associated with the setup.</typeparam>
+            <example>
+            This example shows how to derive a concrete class from <see cref="T:CG.Builder.Setup.BuilderSetupBase`1"/>
+            <code>
+            // Note that you'll need to come up with your own MyProvider.
+            class TestProvider : BuilderSetupBase&lt;MyProvider&gt;
+            {
+                // TODO : put your code here.
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:CG.Builder.Setup.BuilderSetupBase`1.Children">
+            <summary>
+            This property contains a collection of child setups.
+            </summary>
+        </member>
+        <member name="M:CG.Builder.Setup.BuilderSetupBase`1.Build(CG.Builder.IBuilder)">
+            <summary>
+            This method builds a provider at runtime.
+            </summary>
+            <param name="builder">The builder to use for the operation.</param>
+            <returns>A provider instance.</returns>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="builder"/>
+            parameter is NULL.</exception>
+            <exception cref="T:CG.Builder.BuilderException">This exception is thrown if anything goes
+            wrong during the build process.</exception>
+        </member>
+        <member name="M:CG.Builder.Setup.BuilderSetupBase`1.OnBuild(CG.Builder.IBuilder)">
+            <summary>
+            This method builds a provider instance and returns it.
+            </summary>
+            <param name="builder">The builder to use for the operation.</param>
+            <returns>A reference to the newly created provider.</returns>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="builder"/>
+            parameter is NULL.</exception>
+            <exception cref="T:CG.Builder.BuilderException">This exception is thrown if anything goes
+            wrong during the build process.</exception>
+        </member>
+        <member name="T:CG.Builder.Setup.IBuilderSetupExtensions">
+            <summary>
+            This class contains extension methods related to the <see cref="T:CG.Builder.IBuilderSetup"/>
+            type.
+            </summary>
+        </member>
+        <member name="M:CG.Builder.Setup.IBuilderSetupExtensions.DumpProperties``1(``0)">
+            <summary>
+            This method returns the public configuration propertes for an <see cref="T:CG.Builder.IBuilderSetup"/>
+            object as a single string.
+            </summary>
+            <typeparam name="TSetup">The type of the steup object.</typeparam>
+            <param name="setup">The setup reference to use for the operation.</param>
+            <returns>A string representation of the setup object.</returns>
+        </member>
+        <member name="T:CG.Builder.Setup.NamespaceDoc">
+            <summary>
+            This namespace defines setups that support the <see cref="N:CG.Builder"/>
+            namespace. A setup is an object that contains configuration details 
+            needed to create a provider at runtime.
+            </summary>
+        </member>
+        <member name="T:CG.Builder.IBuilderSetup">
+            <summary>
+            This interface represents a builder setup, which is an object that 
+            contains configuration details needed to create a provider at runtime.
+            </summary>
+        </member>
+        <member name="M:CG.Builder.IBuilderSetup.Build(CG.Builder.IBuilder)">
+            <summary>
+            This method builds a provider at runtime.
+            </summary>
+            <param name="builder">The builder to use for the operation.</param>
+            <returns>A provider instance.</returns>
+        </member>
+        <member name="P:CG.Builder.IBuilderSetup.Children">
+            <summary>
+            This property contains a collection of child setups.
+            </summary>
+        </member>
+    </members>
+</doc>

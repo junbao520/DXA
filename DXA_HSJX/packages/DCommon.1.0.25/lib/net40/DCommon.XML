@@ -1,0 +1,1571 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DCommon</name>
+    </assembly>
+    <members>
+        <member name="T:DCommon.Caching.SimpleAcquireContext">
+            <summary>
+            Simple implementation of "IAcquireContext" given a lamdba
+            </summary>
+        </member>
+        <member name="T:DCommon.Caching.DefaultCacheHolder">
+            <summary>
+            Provides the default implementation for a cache holder.
+            The cache holder is responsible for actually storing the references to cached entities.
+            </summary>
+        </member>
+        <member name="M:DCommon.Caching.DefaultCacheHolder.GetCache``2">
+            <summary>
+            Gets a Cache entry from the cache. If none is found, an empty one is created and returned.
+            </summary>
+            <typeparam name="TKey">The type of the key within the component.</typeparam>
+            <typeparam name="TResult">The type of the result.</typeparam>
+            <returns>An entry from the cache, or a new, empty one, if none is found.</returns>
+        </member>
+        <member name="T:DCommon.Caching.DefaultCacheManager">
+            <summary>
+            Provides the default implementation for a cache manager. 
+            The cache manager provides an abstraction over the cache holder allowing it to be easily swaped and isolating it within a component context.
+            </summary>
+        </member>
+        <member name="M:DCommon.Caching.DefaultCacheManager.#ctor(DCommon.Caching.ICacheHolder)">
+            <summary>
+            Constructs a new cache manager for a given component type and with a specific cache holder implementation.
+            </summary>
+            <param name="component">The component to which the cache applies (context).</param>
+            <param name="cacheHolder">The cache holder that contains the entities cached.</param>
+        </member>
+        <member name="M:DCommon.Caching.DefaultCacheManager.GetCache``2">
+            <summary>
+            Gets a cache entry from the cache holder.
+            </summary>
+            <typeparam name="TKey">The type of the key to be used to fetch the cache entry.</typeparam>
+            <typeparam name="TResult">The type of the entry to be obtained from the cache.</typeparam>
+            <returns>The entry from the cache.</returns>
+        </member>
+        <member name="T:DCommon.Caching.ICacheSet">
+            <summary>
+            Cache set interface
+            </summary>
+        </member>
+        <member name="M:DCommon.Caching.ICacheSet.Get``1(System.String)">
+            <summary>
+            Gets or sets the value associated with the specified key.
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <param name="key">The key of the value to get.</param>
+            <returns>The value associated with the specified key.</returns>
+        </member>
+        <member name="M:DCommon.Caching.ICacheSet.Set(System.String,System.Object,System.Int32)">
+            <summary>
+            Adds the specified key and object to the cache.
+            </summary>
+            <param name="key">key</param>
+            <param name="data">Data</param>
+            <param name="cacheTime">Cache time</param>
+        </member>
+        <member name="M:DCommon.Caching.ICacheSet.IsSet(System.String)">
+            <summary>
+            Gets a value indicating whether the value associated with the specified key is cached
+            </summary>
+            <param name="key">key</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:DCommon.Caching.ICacheSet.Remove(System.String)">
+            <summary>
+            Removes the value with the specified key from the cache
+            </summary>
+            <param name="key">/key</param>
+        </member>
+        <member name="M:DCommon.Caching.ICacheSet.RemoveByPattern(System.String)">
+            <summary>
+            Removes items by pattern
+            </summary>
+            <param name="pattern">pattern</param>
+        </member>
+        <member name="M:DCommon.Caching.ICacheSet.Clear">
+            <summary>
+            Clear all cache data
+            </summary>
+        </member>
+        <member name="T:DCommon.Caching.MemoryCacheSet">
+            <summary>
+            Represents a MemoryCacheCache
+            </summary>
+        </member>
+        <member name="M:DCommon.Caching.MemoryCacheSet.Get``1(System.String)">
+            <summary>
+            Gets or sets the value associated with the specified key.
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <param name="key">The key of the value to get.</param>
+            <returns>The value associated with the specified key.</returns>
+        </member>
+        <member name="M:DCommon.Caching.MemoryCacheSet.Set(System.String,System.Object,System.Int32)">
+            <summary>
+            Adds the specified key and object to the cache.
+            </summary>
+            <param name="key">key</param>
+            <param name="data">Data</param>
+            <param name="cacheTime">Cache time</param>
+        </member>
+        <member name="M:DCommon.Caching.MemoryCacheSet.IsSet(System.String)">
+            <summary>
+            Gets a value indicating whether the value associated with the specified key is cached
+            </summary>
+            <param name="key">key</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:DCommon.Caching.MemoryCacheSet.Remove(System.String)">
+            <summary>
+            Removes the value with the specified key from the cache
+            </summary>
+            <param name="key">/key</param>
+        </member>
+        <member name="M:DCommon.Caching.MemoryCacheSet.RemoveByPattern(System.String)">
+            <summary>
+            Removes items by pattern
+            </summary>
+            <param name="pattern">pattern</param>
+        </member>
+        <member name="M:DCommon.Caching.MemoryCacheSet.Clear">
+            <summary>
+            Clear all cache data
+            </summary>
+        </member>
+        <member name="T:DCommon.Collections.Pagination.CustomPagination`1">
+            <summary>
+            Implementation of IPagination that wraps a pre-paged data source. 
+            </summary>
+        </member>
+        <member name="T:DCommon.Collections.Pagination.IPagination`1">
+            <summary>
+            Generic form of <see cref="T:DCommon.Collections.Pagination.IPagination"/>
+            </summary>
+            <typeparam name="T">Type of object being paged</typeparam>
+        </member>
+        <member name="T:DCommon.Collections.Pagination.IPagination">
+            <summary>
+            A collection of objects that has been split into pages.
+            </summary>
+        </member>
+        <member name="P:DCommon.Collections.Pagination.IPagination.PageNumber">
+            <summary>
+            The current page number
+            Index from 0.
+            </summary>
+        </member>
+        <member name="P:DCommon.Collections.Pagination.IPagination.PageSize">
+            <summary>
+            The number of items in each page.
+            </summary>
+        </member>
+        <member name="P:DCommon.Collections.Pagination.IPagination.TotalItems">
+            <summary>
+            The total number of items.
+            </summary>
+        </member>
+        <member name="P:DCommon.Collections.Pagination.IPagination.TotalPages">
+            <summary>
+            The total number of pages.
+            </summary>
+        </member>
+        <member name="P:DCommon.Collections.Pagination.IPagination.FirstItem">
+            <summary>
+            The index of the first item in the page.
+            </summary>
+        </member>
+        <member name="P:DCommon.Collections.Pagination.IPagination.LastItem">
+            <summary>
+            The index of the last item in the page.
+            </summary>
+        </member>
+        <member name="P:DCommon.Collections.Pagination.IPagination.HasPreviousPage">
+            <summary>
+            Whether there are pages before the current page.
+            </summary>
+        </member>
+        <member name="P:DCommon.Collections.Pagination.IPagination.HasNextPage">
+            <summary>
+            Whether there are pages after the current page.
+            </summary>
+        </member>
+        <member name="M:DCommon.Collections.Pagination.CustomPagination`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Creates a new instance of CustomPagination
+            </summary>
+            <param name="dataSource">A pre-paged slice of data</param>
+            <param name="pageNumber">The current page number, Index from 0.</param>
+            <param name="pageSize">The number of items per page</param>
+            <param name="totalItems">The total number of items in the overall datasource</param>
+        </member>
+        <member name="P:DCommon.Collections.Pagination.CustomPagination`1.PageNumber">
+            <summary>
+            Index from 0.
+            </summary>
+        </member>
+        <member name="T:DCommon.Collections.Pagination.PagingQueryEventArgs">
+            <summary>
+            Event arguments passed to the Delegate
+            </summary>
+        </member>
+        <member name="P:DCommon.Collections.Pagination.PagingQueryEventArgs.PageNumber">
+            <summary>
+            Page number requested
+            Index from 0.
+            </summary>
+        </member>
+        <member name="P:DCommon.Collections.Pagination.PagingQueryEventArgs.PageSize">
+            <summary>
+            Page size requested
+            </summary>
+        </member>
+        <member name="P:DCommon.Collections.Pagination.PagingQueryEventArgs.AdditionalArgs">
+            <summary>
+            Any additional arguments passed to the method that executes the query
+            </summary>
+        </member>
+        <member name="P:DCommon.Collections.Pagination.PagingQueryEventArgs.TotalItems">
+            <summary>
+            Return value of total items matching the query
+            </summary>
+        </member>
+        <member name="T:DCommon.Collections.Pagination.DoQueryDelegate`1">
+            <summary>
+            Delegate method invoked to
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sender"></param>
+            <param name="e">Event arguments passed to the method</param>
+            <returns>The page of data based on the parameters</returns>
+        </member>
+        <member name="T:DCommon.Collections.Pagination.DelegatePagination`1">
+            <summary>
+            Executes an delegate method in order to created a paged set of objects.
+            The query is not executed until the DelegatePagination is enumerated or one of its properties is invoked.
+            </summary>
+            <typeparam name="T">Type of objects in the collection.</typeparam>
+        </member>
+        <member name="M:DCommon.Collections.Pagination.DelegatePagination`1.#ctor(DCommon.Collections.Pagination.DoQueryDelegate{`0},System.Int32,System.Int32,System.Object)">
+            <summary>
+            Creates a new instance of the <see cref="T:DCommon.Collections.Pagination.DelegatePagination`1"/> class.
+            </summary>
+            <param name="method">The method invoked to fetch data.</param>
+            <param name="pageNumber">The current page number.</param>
+            <param name="pageSize">Number of items per page.</param>
+            <param name="additionalArgs">Additional data passed in the AdditionalArgs</param>
+        </member>
+        <member name="M:DCommon.Collections.Pagination.DelegatePagination`1.OnDoQuery(DCommon.Collections.Pagination.PagingQueryEventArgs)">
+            <summary>
+            Raises the event to execute the query.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="E:DCommon.Collections.Pagination.DelegatePagination`1.DoQuery">
+            <summary>
+            Event raised when query is performed.
+            </summary>
+        </member>
+        <member name="P:DCommon.Collections.Pagination.DelegatePagination`1.PageNumber">
+            <summary>
+            Index from 0.
+            </summary>
+        </member>
+        <member name="T:DCommon.Collections.Pagination.LazyPagination`1">
+            <summary>
+            Executes an IQueryable in order to created a paged set of objects.
+            The query is not executed until the LazyPagination is enumerated or one of its properties is invoked.
+            The results of the query are cached.
+            </summary>
+            <typeparam name="T">Type of objects in the collection.</typeparam>
+        </member>
+        <member name="F:DCommon.Collections.Pagination.LazyPagination`1.DefaultPageSize">
+            <summary>
+            Default page size.
+            </summary>
+        </member>
+        <member name="M:DCommon.Collections.Pagination.LazyPagination`1.#ctor(System.Linq.IQueryable{`0},System.Int32,System.Int32)">
+            <summary>
+            Creates a new instance of the <see cref="T:DCommon.Collections.Pagination.LazyPagination`1"/> class.
+            </summary>
+            <param name="query">The query to page.</param>
+            <param name="pageNumber">The current page number.</param>
+            <param name="pageSize">Number of items per page.</param>
+        </member>
+        <member name="M:DCommon.Collections.Pagination.LazyPagination`1.TryExecuteQuery">
+            <summary>
+            Executes the query if it has not already been executed.
+            </summary>
+        </member>
+        <member name="M:DCommon.Collections.Pagination.LazyPagination`1.ExecuteQuery">
+            <summary>
+            Calls Queryable.Skip/Take to perform the pagination.
+            </summary>
+            <returns>The paged set of results.</returns>
+        </member>
+        <member name="P:DCommon.Collections.Pagination.LazyPagination`1.Query">
+            <summary>
+            The query to execute.
+            </summary>
+        </member>
+        <member name="P:DCommon.Collections.Pagination.LazyPagination`1.PageNumber">
+            <summary>
+            Index from 0.
+            </summary>
+        </member>
+        <member name="T:DCommon.Collections.Pagination.PaginationHelper">
+            <summary>
+            Extension methods for creating paged lists.
+            </summary>
+        </member>
+        <member name="M:DCommon.Collections.Pagination.PaginationHelper.AsPagination``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Converts the specified IEnumerable into an IPagination using the default page size and returns the specified page number.
+            </summary>
+            <typeparam name="T">Type of object in the collection</typeparam>
+            <param name="source">Source enumerable to convert to the paged list.</param>
+            <param name="pageNumber">The page number to return.</param>
+            <returns>An IPagination of T</returns>
+        </member>
+        <member name="M:DCommon.Collections.Pagination.PaginationHelper.AsPagination``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+            <summary>
+            Converts the speciied IEnumerable into an IPagination using the specified page size and returns the specified page. 
+            </summary>
+            <typeparam name="T">Type of object in the collection</typeparam>
+            <param name="source">Source enumerable to convert to the paged list.</param>
+            <param name="pageNumber">The page number to return.</param>
+            <param name="pageSize">Number of objects per page.</param>
+            <returns>An IPagination of T</returns>
+        </member>
+        <member name="P:DCommon.Configuration.ShellSettingElement.ShellName">
+            <summary>
+            The name the shell
+            </summary>
+        </member>
+        <member name="P:DCommon.Configuration.ShellSettingElement.EncryptionAlgorithm">
+            <summary>
+            The encryption algorithm used for encryption services
+            </summary>
+        </member>
+        <member name="P:DCommon.Configuration.ShellSettingElement.EncryptionKey">
+            <summary>
+            The encryption key used for encryption services
+            </summary>
+        </member>
+        <member name="P:DCommon.Configuration.ShellSettingElement.HashAlgorithm">
+            <summary>
+            The hash algorithm used for encryption services
+            </summary>
+        </member>
+        <member name="P:DCommon.Configuration.ShellSettingElement.HashKey">
+            <summary>
+            The hash key used for encryption services
+            </summary>
+        </member>
+        <member name="T:DCommon.Data.BaseEntity`1">
+            <summary>
+            Base class for entities
+            </summary>
+        </member>
+        <member name="P:DCommon.Data.BaseEntity`1.Id">
+            <summary>
+            Gets or sets the entity identifier
+            </summary>
+        </member>
+        <member name="T:DCommon.Data.Impl.TransactionScopeHelper">
+            <summary>
+            Helper class to create <see cref="T:System.Transactions.TransactionScope"/> instances.
+            </summary>
+        </member>
+        <member name="M:DCommon.Data.Impl.TransactionScopeHelper.CreateScope(System.Transactions.IsolationLevel,DCommon.Data.TransactionMode)">
+            <summary>
+            </summary>
+            <param name="isolationLevel"></param>
+            <param name="txMode"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:DCommon.Data.Impl.UnitOfWorkTransaction.Dispose">
+            <summary>
+            Disposes off the <see cref="T:DCommon.Data.UnitOfWorkScope"/> insance.
+            </summary>
+        </member>
+        <member name="M:DCommon.Data.Impl.UnitOfWorkTransaction.Dispose(System.Boolean)">
+            <summary>
+            Disposes off the managed and un-managed resources used.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="P:DCommon.Data.Impl.UnitOfWorkTransaction.TransactionId">
+            <summary>
+             Gets the unique transaction id of the <see cref="T:DCommon.Data.Impl.UnitOfWorkTransaction"/> instance.
+            </summary>
+             <value>A <see cref="T:System.Guid"/> representing the unique id of the <see cref="T:DCommon.Data.Impl.UnitOfWorkTransaction"/> instance.</value>
+        </member>
+        <member name="M:DCommon.Data.ISessionResolver.GetSessionKeyFor``1">
+            <summary>
+            Gets the unique key for a type. 
+            </summary>
+            <typeparam name="T">The type for which the ObjectContext key should be retrieved.</typeparam>
+            <returns>A <see cref="T:System.Guid"/> representing the unique object context key.</returns>
+        </member>
+        <member name="T:DCommon.Data.UnitOfWorkSettings">
+            <summary>
+             Contains settings for DCommon unit of work.
+            </summary>
+        </member>
+        <member name="P:DCommon.Data.UnitOfWorkSettings.DefaultIsolation">
+            <summary>
+            Gets the default <see cref="T:System.Transactions.IsolationLevel"/>.
+            </summary>
+        </member>
+        <member name="P:DCommon.Data.UnitOfWorkSettings.AutoCompleteScope">
+            <summary>
+            Gets a boolean value indicating weather to auto complete
+            <see cref="T:DCommon.Data.UnitOfWorkScope"/> instances.
+            </summary>
+        </member>
+        <member name="T:DCommon.Data.IUnitOfWorkScope">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DCommon.Data.IUnitOfWorkScope.Commit">
+            <summary>
+             Commits the current running transaction in the scope.
+            </summary>
+        </member>
+        <member name="P:DCommon.Data.IUnitOfWorkScope.ScopeId">
+            <summary>
+            Gets the unique Id of the <see cref="T:DCommon.Data.UnitOfWorkScope"/>.
+            </summary>
+            <value>A <see cref="T:System.Guid"/> representing the unique Id of the scope.</value>
+        </member>
+        <member name="P:DCommon.Data.IUnitOfWorkScope.UnitOfWork">
+            <summary>
+            Gets the current <see cref="T:DCommon.Data.IUnitOfWork"/>.
+            </summary>
+        </member>
+        <member name="T:DCommon.Data.TransactionMode">
+            <summary>
+            Defines the transaction mode when creating a new <see cref="T:DCommon.Data.UnitOfWorkScope"/> instance.
+            </summary>
+        </member>
+        <member name="F:DCommon.Data.TransactionMode.Default">
+            <summary>
+            Specifies that the <see cref="T:DCommon.Data.UnitOfWorkScope"/> should be created using default
+            transaction mode.
+            </summary>
+            <remarks>
+            The default transaction mode instructs the <see cref="T:DCommon.Data.UnitOfWorkScope"/> to enlist in
+            a parent <see cref="T:DCommon.Data.UnitOfWorkScope"/>'s transaction, or if one doesnt exist, then
+            creates a new transaction.
+            </remarks>
+        </member>
+        <member name="F:DCommon.Data.TransactionMode.New">
+            <summary>
+            Specifies that the scope should not participate in a parent <see cref="T:DCommon.Data.UnitOfWorkScope"/>'s transaction,
+            if one exists, and should start it's own transaction.
+            </summary>
+        </member>
+        <member name="F:DCommon.Data.TransactionMode.Supress">
+            <summary>
+            Specifies that the <see cref="T:DCommon.Data.UnitOfWorkScope"/> should not participate in a parent scope's transaction,
+            and should not start a transaction of its own.
+            </summary>
+            <remarks>
+            If a scope is created using the Supress option, any child scopes created with the default 
+            transaction mode, i.e. <see cref="F:DCommon.Data.TransactionMode.Default"/> will also not participate in any transaction, although
+            it will share the same parent <see cref="T:DCommon.Data.IUnitOfWork"/> instance.
+            </remarks>
+        </member>
+        <member name="T:DCommon.Data.UnitOfWorkScope">
+            <summary>
+            Helper class that allows starting and using a unit of work like:
+            <![CDATA[
+                using (UnitOfWorkScope scope = new UnitOfWorkScope()) {
+                    //Do some stuff here.
+                    scope.Commit();
+                }
+            
+            ]]>
+            </summary>
+        </member>
+        <member name="M:DCommon.Data.UnitOfWorkScope.#ctor">
+            <summary>
+            Default Constuctor.
+            Creates a new <see cref="T:DCommon.Data.UnitOfWorkScope"/> with the <see cref="F:System.Data.IsolationLevel.Serializable"/> 
+            transaction isolation level.
+            </summary>
+        </member>
+        <member name="M:DCommon.Data.UnitOfWorkScope.Commit">
+            <summary>
+             Commits the current running transaction in the scope.
+            </summary>
+        </member>
+        <member name="M:DCommon.Data.UnitOfWorkScope.Dispose">
+            <summary>
+            Disposes off the <see cref="T:DCommon.Data.UnitOfWorkScope"/> insance.
+            </summary>
+        </member>
+        <member name="M:DCommon.Data.UnitOfWorkScope.Dispose(System.Boolean)">
+            <summary>
+            Disposes off the managed and un-managed resources used.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="P:DCommon.Data.UnitOfWorkScope.ScopeId">
+            <summary>
+            Gets the unique Id of the <see cref="T:DCommon.Data.UnitOfWorkScope"/>.
+            </summary>
+            <value>A <see cref="T:System.Guid"/> representing the unique Id of the scope.</value>
+        </member>
+        <member name="P:DCommon.Data.UnitOfWorkScope.UnitOfWork">
+            <summary>
+            Gets the current <see cref="T:DCommon.Data.IUnitOfWork"/> that the scope participates in.
+            </summary>
+        </member>
+        <member name="T:DCommon.Environment.Configuration.ShellSetting">
+            <summary>
+            Represents the minimalistic set of fields stored for each tenant. This 
+            model is obtained from the IShellSettingsManager, which by default reads this
+            from the App_Data settings.txt files.
+            </summary>
+        </member>
+        <member name="P:DCommon.Environment.Configuration.ShellSetting.Name">
+            <summary>
+            The name pf the tenant
+            </summary>
+        </member>
+        <member name="P:DCommon.Environment.Configuration.ShellSetting.DataProvider">
+            <summary>
+            The database provider
+            </summary>
+        </member>
+        <member name="P:DCommon.Environment.Configuration.ShellSetting.DataConnectionString">
+            <summary>
+            The database connection string
+            </summary>
+        </member>
+        <member name="P:DCommon.Environment.Configuration.ShellSetting.EncryptionAlgorithm">
+            <summary>
+            The encryption algorithm used for encryption services
+            </summary>
+        </member>
+        <member name="P:DCommon.Environment.Configuration.ShellSetting.EncryptionKey">
+            <summary>
+            The encryption key used for encryption services
+            </summary>
+        </member>
+        <member name="P:DCommon.Environment.Configuration.ShellSetting.HashAlgorithm">
+            <summary>
+            The hash algorithm used for encryption services
+            </summary>
+        </member>
+        <member name="P:DCommon.Environment.Configuration.ShellSetting.HashKey">
+            <summary>
+            The hash key used for encryption services
+            </summary>
+        </member>
+        <member name="P:DCommon.Environment.Configuration.ShellSetting.ShellPath">
+            <summary>
+            The path for the app.
+            </summary>
+        </member>
+        <member name="T:DCommon.Events.EntityDeleted`1">
+            <summary>
+            A container for passing entities that have been deleted. This is not used for entities that are deleted logicaly via a bit column.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:DCommon.Events.EntityInserted`1">
+            <summary>
+            A container for entities that have been inserted.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:DCommon.Events.EntityUpdated`1">
+            <summary>
+            A container for entities that are updated.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:DCommon.DictionaryExtensions.Add``1(System.Collections.Generic.IDictionary{System.String,``0},System.Func{System.Object,``0}[])">
+            <summary>Extension Method to initialize an <see cref="T:System.Collections.Generic.Dictionary`2"/></summary>
+            <param name="dict"></param>
+            <param name="hash">The key / value pairs to add to the dictionary.</param>
+            <returns>The the dictionary.</returns>
+        </member>
+        <member name="M:DCommon.DictionaryExtensions.Add(System.Collections.IDictionary,System.Func{System.Object,System.Object}[])">
+            <summary>Extension Method to initialize an <see cref="T:System.Collections.IDictionary"/></summary>
+            <param name="dict"></param>
+            <param name="hash">The key / value pairs to add to the dictionary.</param>
+            <returns>The the dictionary.</returns>
+        </member>
+        <member name="M:DCommon.DictionaryExtensions.AnonymousObjectToCaseSensitiveDictionary(System.Object)">
+            <summary>
+            Takes an anonymous object and converts it to a <see cref="T:System.Collections.Generic.Dictionary`2"/>
+            </summary>
+            <param name="objectToConvert">The object to convert</param>
+            <returns>A generic dictionary</returns>
+        </member>
+        <member name="M:DCommon.DictionaryExtensions.ToHtmlAttributes(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Converts a dictionary into a string of HTML attributes
+            </summary>
+            <param name="attributes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DCommon.ExpressionExtensions">
+            <summary>
+            Defines extension method for <see cref="T:System.Linq.Expressions.Expression"/>
+            </summary>
+        </member>
+        <member name="M:DCommon.ExpressionExtensions.Compose``1(System.Linq.Expressions.Expression{``0},System.Linq.Expressions.Expression{``0},System.Func{System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression})">
+            <summary>
+            Merges two expressions together.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="first"></param>
+            <param name="second"></param>
+            <param name="merge"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DCommon.ExpressionExtensions.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Creates an 'and' expression.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="first"></param>
+            <param name="second"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DCommon.ExpressionExtensions.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Creates an 'or' expression.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="first"></param>
+            <param name="second"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DCommon.ExpressionExtensions.ParameterRebinder">
+            <inheritdoc />
+        </member>
+        <member name="M:DCommon.ExpressionExtensions.ParameterRebinder.ReplaceParameters(System.Collections.Generic.Dictionary{System.Linq.Expressions.ParameterExpression,System.Linq.Expressions.ParameterExpression},System.Linq.Expressions.Expression)">
+            <summary>
+            replaces the parameter expressions.
+            </summary>
+            <param name="map"></param>
+            <param name="exp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DCommon.ExpressionExtensions.ParameterRebinder.VisitParameter(System.Linq.Expressions.ParameterExpression)">
+            <inheritdoc />
+        </member>
+        <member name="T:DCommon.MemberInfoExtensions">
+            <summary>
+            Defines extension methods for <see cref="T:System.Reflection.MemberInfo"/>.
+            </summary>
+        </member>
+        <member name="M:DCommon.MemberInfoExtensions.GetAttributeOf``1(System.Reflection.MemberInfo)">
+            <summary>
+            Gets the attribute from the <see cref="T:System.Reflection.MemberInfo"/>.
+            </summary>
+            <typeparam name="TAttribute"></typeparam>
+            <param name="memberInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DCommon.StringExtensions">
+            <summary>
+            Contains various extension methods for the string type.
+            </summary>
+        </member>
+        <member name="M:DCommon.StringExtensions.FormatWith(System.String,System.Object[])">
+            <summary>
+            Formats the string with the given parameters using an invariant <see cref="T:System.Globalization.CultureInfo"/>
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DCommon.TypeExtensions">
+            <summary>
+            Contains various extension methods for types.
+            </summary>
+        </member>
+        <member name="M:DCommon.TypeExtensions.IsEnumerable(System.Type)">
+            <summary>
+            Determines if the given type implements <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DCommon.TypeExtensions.GetTypesThatClose(System.Type,System.Type)">
+            <summary>Returns the first concrete interface supported by the candidate type that
+            closes the provided open generic service type.</summary>
+            <param name="this">The type that is being checked for the interface.</param>
+            <param name="openGeneric">The open generic type to locate.</param>
+            <returns>The type of the interface.</returns>
+        </member>
+        <member name="M:DCommon.TypeExtensions.FindAssignableTypesThatClose(System.Type,System.Type)">
+            <summary>
+            Looks for an interface on the candidate type that closes the provided open generic interface type.
+            </summary>
+            <param name="candidateType">The type that is being checked for the interface.</param>
+            <param name="openGenericServiceType">The open generic service type to locate.</param>
+            <returns>True if a closed implementation was found; otherwise false.</returns>
+        </member>
+        <member name="T:DCommon.FileSystems.IAppDataFolder">
+            <summary>
+            Abstraction of App_Data folder. All virtual paths passed in or returned are relative to "~/App_Data". 
+            Expected to work on physical filesystem, but decouples core system from web hosting apis
+            </summary>
+        </member>
+        <member name="M:DCommon.FileSystems.Desktop.AppDataFolder.Combine(System.String[])">
+            <summary>
+            Combine a set of virtual paths into a virtual path relative to "~/App_Data"
+            </summary>
+        </member>
+        <member name="T:DCommon.FileSystems.IAppDataFolderRoot">
+            <summary>
+            Abstraction over the root location of "~/App_Data", mainly to enable
+            unit testing of AppDataFolder.
+            </summary>
+        </member>
+        <member name="P:DCommon.FileSystems.IAppDataFolderRoot.RootPath">
+            <summary>
+            Virtual path of root ("~/App_Data")
+            </summary>
+        </member>
+        <member name="P:DCommon.FileSystems.IAppDataFolderRoot.RootFolder">
+            <summary>
+            Physical path of root (typically: MapPath(RootPath))
+            </summary>
+        </member>
+        <member name="P:DCommon.FileSystems.Desktop.AppDataFolderRoot.RootPath">
+            <summary>
+            DCommon
+            </summary>
+        </member>
+        <member name="P:DCommon.FileSystems.Desktop.AppDataFolderRoot.RootFolder">
+            <summary>
+            Physical path of root (typically: MapPath(RootPath))
+            </summary>
+        </member>
+        <member name="T:DCommon.FileSystems.IVirtualPathMonitor">
+            <summary>
+            Enable monitoring changes over virtual path
+            </summary>
+        </member>
+        <member name="M:DCommon.FileSystems.WebSite.AppDataFolder.CombineToPhysicalPath(System.String[])">
+            <summary>
+            Combine a set of virtual paths relative to "~/App_Data" into an absolute physical path
+            starting with "_basePath".
+            </summary>
+        </member>
+        <member name="M:DCommon.FileSystems.WebSite.AppDataFolder.Combine(System.String[])">
+            <summary>
+            Combine a set of virtual paths into a virtual path relative to "~/App_Data"
+            </summary>
+        </member>
+        <member name="M:DCommon.FileSystems.WebSite.DefaultVirtualPathProvider.IsMalformedVirtualPath(System.String)">
+            <summary>
+            We want to reject path that contains ".." going outside of the application root.
+            ToAppRelative does that already, but we want to do the same while avoiding exceptions.
+            
+            Note: This method doesn't detect all cases of malformed paths, it merely checks
+                  for *some* cases of malformed paths, so this is not a replacement for full virtual path
+                  verification through VirtualPathUtilty methods.
+                  In other words, !IsMalformed does *not* imply "IsWellformed".
+            </summary>
+        </member>
+        <member name="T:DCommon.Search.SortExtensions">
+            <summary>
+            Extension methods for sorting.
+            </summary>
+        </member>
+        <member name="M:DCommon.Search.SortExtensions.OrderBy``1(System.Collections.Generic.IEnumerable{``0},System.String,System.ComponentModel.ListSortDirection)">
+            <summary>
+            Orders a datasource by a property with the specified name in the specified direction
+            </summary>
+            <param name="datasource">The datasource to order</param>
+            <param name="propertyName">The name of the property to order by</param>
+            <param name="direction">The direction</param>
+        </member>
+        <member name="M:DCommon.Search.SortExtensions.OrderBy``1(System.Linq.IQueryable{``0},System.String,System.ComponentModel.ListSortDirection)">
+            <summary>
+            Orders a datasource by a property with the specified name in the specified direction
+            </summary>
+            <param name="datasource">The datasource to order</param>
+            <param name="propertyName">The name of the property to order by</param>
+            <param name="direction">The direction</param>
+        </member>
+        <member name="P:DCommon.Search.FilterDescriptor.Member">
+            <summary>
+            Gets or sets the member name which will be used for filtering.
+            </summary>
+            <filterValue>The member that will be used for filtering.</filterValue>
+        </member>
+        <member name="P:DCommon.Search.FilterDescriptor.Operator">
+            <summary>
+            Gets or sets the filter operator.
+            </summary>
+            <filterValue>The filter operator.</filterValue>
+        </member>
+        <member name="P:DCommon.Search.FilterDescriptor.Value">
+            <summary>
+            Gets or sets the target filter value.
+            </summary>
+            <filterValue>The filter value.</filterValue>
+        </member>
+        <member name="F:DCommon.Search.FilterLogicalOperator.And">
+            <summary>
+            Combines filters with logical AND.
+            </summary>
+        </member>
+        <member name="F:DCommon.Search.FilterLogicalOperator.Or">
+            <summary>
+            Combines filters with logical OR.
+            </summary>
+        </member>
+        <member name="T:DCommon.Search.FilterOperator">
+            <summary>
+            { op: "eq", text: "is equal to" },
+            { op: "ne", text: "is not equal to" },
+            { op: "lt", text: "is less than" },
+            { op: "le", text: "is less or equal to" },
+            { op: "gt", text: "is greater than" },
+            { op: "ge", text: "is greater or equal to" },
+            { op: "in", text: "is in" },
+            { op: "ni", text: "is not in" },
+            { op: "bw", text: "begins with" },
+            { op: "bn", text: "does not begin with" },
+            { op: "ew", text: "ends with" },
+            { op: "en", text: "does not end with" },
+            { op: "cn", text: "contains" },
+            { op: "nc", text: "does not contain" }
+            </summary>
+        </member>
+        <member name="F:DCommon.Search.FilterOperator.IsLessThan">
+            <summary>
+            Left operand must be smaller than the right one.
+            </summary>
+        </member>
+        <member name="F:DCommon.Search.FilterOperator.IsLessThanOrEqualTo">
+            <summary>
+            Left operand must be smaller than or equal to the right one.
+            </summary>
+        </member>
+        <member name="F:DCommon.Search.FilterOperator.IsEqualTo">
+            <summary>
+            Left operand must be equal to the right one.
+            </summary>
+        </member>
+        <member name="F:DCommon.Search.FilterOperator.IsNotEqualTo">
+            <summary>
+            Left operand must be different from the right one.
+            </summary>
+        </member>
+        <member name="F:DCommon.Search.FilterOperator.IsGreaterThanOrEqualTo">
+            <summary>
+            Left operand must be larger than the right one.
+            </summary>
+        </member>
+        <member name="F:DCommon.Search.FilterOperator.IsGreaterThan">
+            <summary>
+            Left operand must be larger than or equal to the right one.
+            </summary>
+        </member>
+        <member name="F:DCommon.Search.FilterOperator.StartsWith">
+            <summary>
+            Left operand must start with the right one.
+            </summary>
+        </member>
+        <member name="F:DCommon.Search.FilterOperator.NotStartsWith">
+            <summary>
+            Left operand must not start with the right one.
+            </summary>
+        </member>
+        <member name="F:DCommon.Search.FilterOperator.EndsWith">
+            <summary>
+            Left operand must end with the right one.
+            </summary>
+        </member>
+        <member name="F:DCommon.Search.FilterOperator.NotEndsWith">
+            <summary>
+            Left operand must not end with the right one.
+            </summary>
+        </member>
+        <member name="F:DCommon.Search.FilterOperator.Contains">
+            <summary>
+            Left operand must contain the right one.
+            </summary>
+        </member>
+        <member name="F:DCommon.Search.FilterOperator.NotContains">
+            <summary>
+            Left operand must not contain the right one.
+            </summary>
+        </member>
+        <member name="F:DCommon.Search.FilterOperator.IsIn">
+            <summary>
+            Left operand must be contained in the right one.
+            </summary>
+        </member>
+        <member name="F:DCommon.Search.FilterOperator.IsNotIn">
+            <summary>
+            Left operand must be not contained in the right one.
+            </summary>
+        </member>
+        <member name="M:DCommon.Search.SearchRequest.ParseOperator(System.String)">
+            <summary>
+            { op: "eq", text: "is equal to" },
+            { op: "ne", text: "is not equal to" },
+            { op: "lt", text: "is less than" },
+            { op: "le", text: "is less or equal to" },
+            { op: "gt", text: "is greater than" },
+            { op: "ge", text: "is greater or equal to" },
+            { op: "in", text: "is in" },
+            { op: "ni", text: "is not in" },
+            { op: "bw", text: "begins with" },
+            { op: "bn", text: "does not begin with" },
+            { op: "ew", text: "ends with" },
+            { op: "en", text: "does not end with" },
+            { op: "cn", text: "contains" },
+            { op: "nc", text: "does not contain" }
+            </summary>
+            <param name="op"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DCommon.Search.SearchRequest.ParseLogicalOperator(System.String)">
+            <summary>
+            or and
+            </summary>
+            <param name="op"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DCommon.Security.IAuthenticationService.ValidateUser(System.String,System.String)">
+            <summary>
+            Validate user
+            </summary>
+            <param name="username">Username</param>
+            <param name="password">Password</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:DCommon.Security.IAuthenticationService.LogIn(System.String,System.String)">
+            <summary>
+            User Login system
+            </summary>
+            <param name="username">Username</param>
+            <param name="password">Password</param>
+            <returns></returns>
+        </member>
+        <member name="M:DCommon.Security.IAuthenticationService.GetAuthenticatedUser">
+            <summary>
+            Get authenticated user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DCommon.Security.IAuthenticationService.LogOut">
+            <summary>
+            Current user login out system
+            </summary>
+        </member>
+        <member name="T:DCommon.Security.IEncryptionService">
+            <summary>
+            Provides encryption services adapted to securing tenant level information
+            </summary>
+        </member>
+        <member name="M:DCommon.Security.IEncryptionService.Decode(System.Byte[])">
+            <summary>
+            Decodes data that has been encrypted.
+            </summary>
+            <param name="encodedData">The encrypted data to decrypt.</param>
+            <returns>A Byte[] array that represents the decrypted data.</returns>
+        </member>
+        <member name="M:DCommon.Security.IEncryptionService.Encode(System.Byte[])">
+            <summary>
+            Encrypts data.
+            </summary>
+            <param name="data">The data to encrypt.</param>
+            <returns>The encrypted value.</returns>
+        </member>
+        <member name="M:DCommon.Security.IEncryptionService.Hash(System.Byte[])">
+            <summary>
+            Hash data.
+            </summary>
+            <param name="data">The data to encrypt.</param>
+            <returns>The hashed value.</returns>
+        </member>
+        <member name="M:DCommon.Security.IFormsAuthenticationService`1.LogIn(System.String,System.String)">
+            <summary>
+            User Login system
+            </summary>
+            <param name="username">Username</param>
+            <param name="password">Password</param>
+            <returns></returns>
+        </member>
+        <member name="M:DCommon.Security.Providers.DefaultEncryptionService.Hash(System.Byte[])">
+            <summary>
+            Hash data.
+            </summary>
+            <param name="data">The data to encrypt.</param>
+            <returns>The hashed value.</returns>
+        </member>
+        <member name="T:DCommon.Services.IClock">
+            <summary>
+            Provides the current Utc <see cref="T:System.DateTime"/>, and time related method for cache management.
+            This service should be used whenever the current date and time are needed, instead of <seealso cref="T:System.DateTime"/> directly.
+            It also makes implementations more testable, as time can be mocked.
+            </summary>
+        </member>
+        <member name="M:DCommon.Services.IClock.When(System.TimeSpan)">
+            <summary>
+            Provides a <see cref="T:DCommon.Caching.IVolatileToken"/> instance which can be used to cache some information for a 
+            specific duration.
+            </summary>
+            <param name="duration">The duration that the token must be valid.</param>
+            <example>
+            This sample shows how to use the <see cref="M:DCommon.Services.IClock.When(System.TimeSpan)"/> method by returning the result of
+            a method named LoadVotes(), which is computed every 10 minutes only.
+            <code>
+            _cacheManager.Get("votes",
+                ctx =&gt; {
+                    ctx.Monitor(_clock.When(TimeSpan.FromMinutes(10)));
+                    return LoadVotes();
+            });
+            </code>
+            </example>
+        </member>
+        <member name="M:DCommon.Services.IClock.WhenUtc(System.DateTime)">
+            <summary>
+            Provides a <see cref="T:DCommon.Caching.IVolatileToken"/> instance which can be used to cache some 
+            until a specific date and time.
+            </summary>
+            <param name="absoluteUtc">The date and time that the token must be valid until.</param>
+            <example>
+            This sample shows how to use the <see cref="M:DCommon.Services.IClock.WhenUtc(System.DateTime)"/> method by returning the result of
+            a method named LoadVotes(), which is computed once, and no more until the end of the year.
+            <code>
+            var endOfYear = _clock.UtcNow;
+            endOfYear.Month = 12;
+            endOfYear.Day = 31;
+            
+            _cacheManager.Get("votes",
+                ctx =&gt; {
+                    ctx.Monitor(_clock.WhenUtc(endOfYear));
+                    return LoadVotes();
+            });
+            </code>
+            </example>
+        </member>
+        <member name="P:DCommon.Services.IClock.UtcNow">
+            <summary>
+            Gets the current <see cref="T:System.DateTime"/> of the system, expressed in Utc
+            </summary>
+        </member>
+        <member name="T:DCommon.Data.IUnitOfWork">
+            <summary>
+            A unit of work contract that that encapsulates the Unit of Work pattern.
+            </summary>
+        </member>
+        <member name="M:DCommon.Data.IUnitOfWork.Flush">
+            <summary>
+            Flushes the changes made in the unit of work to the data store.
+            </summary>
+        </member>
+        <member name="T:DCommon.Data.IUnitOfWorkFactory">
+            <summary>
+            Factory interface that the <see cref="T:DCommon.Data.UnitOfWorkScope"/> uses to create instances of
+            <see cref="T:DCommon.Data.IUnitOfWork"/>
+            </summary>
+        </member>
+        <member name="M:DCommon.Data.IUnitOfWorkFactory.Create">
+            <summary>
+            Creates a new instance of <see cref="T:DCommon.Data.IUnitOfWork"/>.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DCommon.Utility.Check.Require(System.Boolean,System.String)">
+            <summary>
+            Precondition check - should run regardless of preprocessor directives.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.Check.Require(System.Boolean,System.String,System.Exception)">
+            <summary>
+            Precondition check - should run regardless of preprocessor directives.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.Check.Require(System.Boolean)">
+            <summary>
+            Precondition check - should run regardless of preprocessor directives.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.Check.Ensure(System.Boolean,System.String)">
+            <summary>
+            Postcondition check.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.Check.Ensure(System.Boolean,System.String,System.Exception)">
+            <summary>
+            Postcondition check.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.Check.Ensure(System.Boolean)">
+            <summary>
+            Postcondition check.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.Check.Invariant(System.Boolean,System.String)">
+            <summary>
+            Invariant check.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.Check.Invariant(System.Boolean,System.String,System.Exception)">
+            <summary>
+            Invariant check.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.Check.Invariant(System.Boolean)">
+            <summary>
+            Invariant check.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.Check.Assert(System.Boolean,System.String)">
+            <summary>
+            Assertion check.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.Check.Assert(System.Boolean,System.String,System.Exception)">
+            <summary>
+            Assertion check.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.Check.Assert(System.Boolean)">
+            <summary>
+            Assertion check.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.Check.IsNotNull(System.Object,System.String)">
+            <summary>
+            Makes sure the parameter is not null.
+            </summary>
+            <param name="value"></param>
+            <param name="name"></param>
+        </member>
+        <member name="M:DCommon.Utility.Check.IsOfType(System.Object,System.Type,System.String)">
+            <summary>
+            Checks if <paramref name="argument"/> is of type <paramref name="baseType"/>.
+            </summary>
+            <param name="argument"></param>
+            <param name="baseType"></param>
+            <param name="argumentName"></param>
+        </member>
+        <member name="M:DCommon.Utility.Check.ElementCountInRange``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32,System.String)">
+            <summary>
+            Checks if the count of the <see cref="T:System.Collections.Generic.IEnumerable`1"/> is in the specified range.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="enumerable"></param>
+            <param name="min"></param>
+            <param name="max"></param>
+            <param name="argumentName"></param>
+        </member>
+        <member name="M:DCommon.Utility.Check.IsNotNullOrEmpty(System.String,System.String)">
+            <summary>
+            Checks ifthe string is null or empty.
+            </summary>
+            <param name="argument"></param>
+            <param name="argumentName"></param>
+        </member>
+        <member name="P:DCommon.Utility.Check.UseAssertions">
+            <summary>
+            Set this if you wish to use Trace Assert statements 
+            instead of exception handling. 
+            (The Check class uses exception handling by default.)
+            </summary>
+        </member>
+        <member name="P:DCommon.Utility.Check.UseExceptions">
+            <summary>
+            Is exception handling being used?
+            </summary>
+        </member>
+        <member name="T:DCommon.Utility.DesignByContractException">
+            <summary>
+            Exception raised when a contract is broken.
+            Catch this exception type if you wish to differentiate between 
+            any DesignByContract exception and other runtime exceptions.
+             
+            </summary>
+        </member>
+        <member name="T:DCommon.Utility.PreconditionException">
+            <summary>
+            Exception raised when a precondition fails.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.PreconditionException.#ctor">
+            <summary>
+            Precondition Exception.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.PreconditionException.#ctor(System.String)">
+            <summary>
+            Precondition Exception.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.PreconditionException.#ctor(System.String,System.Exception)">
+            <summary>
+            Precondition Exception.
+            </summary>
+        </member>
+        <member name="T:DCommon.Utility.PostconditionException">
+            <summary>
+            Exception raised when a postcondition fails.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.PostconditionException.#ctor">
+            <summary>
+            Postcondition Exception.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.PostconditionException.#ctor(System.String)">
+            <summary>
+            Postcondition Exception.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.PostconditionException.#ctor(System.String,System.Exception)">
+            <summary>
+            Postcondition Exception.
+            </summary>
+        </member>
+        <member name="T:DCommon.Utility.InvariantException">
+            <summary>
+            Exception raised when an invariant fails.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.InvariantException.#ctor">
+            <summary>
+            Invariant Exception.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.InvariantException.#ctor(System.String)">
+            <summary>
+            Invariant Exception.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.InvariantException.#ctor(System.String,System.Exception)">
+            <summary>
+            Invariant Exception.
+            </summary>
+        </member>
+        <member name="T:DCommon.Utility.AssertionException">
+            <summary>
+            Exception raised when an assertion fails.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.AssertionException.#ctor">
+            <summary>
+            Assertion Exception.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.AssertionException.#ctor(System.String)">
+            <summary>
+            Assertion Exception.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.AssertionException.#ctor(System.String,System.Exception)">
+            <summary>
+            Assertion Exception.
+            </summary>
+        </member>
+        <member name="T:DCommon.Utility.Guard">
+            <summary>
+            Provides utility methods to guard parameter and local variables.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.Guard.Against``1(System.Boolean,System.String)">
+            <summary>
+            Throws an exception of type <typeparamref name="TException"/> with the specified message
+            when the assertion statement is true.
+            </summary>
+            <typeparam name="TException">The type of exception to throw.</typeparam>
+            <param name="assertion">The assertion to evaluate. If true then the <typeparamref name="TException"/> exception is thrown.</param>
+            <param name="message">string. The exception message to throw.</param>
+        </member>
+        <member name="M:DCommon.Utility.Guard.Against``1(System.Func{System.Boolean},System.String)">
+            <summary>
+            Throws an exception of type <typeparamref name="TException"/> with the specified message
+            when the assertion
+            </summary>
+            <typeparam name="TException"></typeparam>
+            <param name="assertion"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:DCommon.Utility.Guard.InheritsFrom``1(System.Object,System.String)">
+            <summary>
+            Throws a <see cref="T:System.InvalidOperationException"/> when the specified object
+            instance does not inherit from <typeparamref name="TBase"/> type.
+            </summary>
+            <typeparam name="TBase">The base type to check for.</typeparam>
+            <param name="instance">The object to check if it inherits from <typeparamref name="TBase"/> type.</param>
+            <param name="message">string. The exception message to throw.</param>
+        </member>
+        <member name="M:DCommon.Utility.Guard.InheritsFrom``1(System.Type,System.String)">
+            <summary>
+            Throws a <see cref="T:System.InvalidOperationException"/> when the specified type does not
+            inherit from the <typeparamref name="TBase"/> type.
+            </summary>
+            <typeparam name="TBase">The base type to check for.</typeparam>
+            <param name="type">The <see cref="T:System.Type"/> to check if it inherits from <typeparamref name="TBase"/> type.</param>
+            <param name="message">string. The exception message to throw.</param>
+        </member>
+        <member name="M:DCommon.Utility.Guard.Implements``1(System.Object,System.String)">
+            <summary>
+            Throws a <see cref="T:System.InvalidOperationException"/> when the specified object
+            instance does not implement the <typeparamref name="TInterface"/> interface.
+            </summary>
+            <typeparam name="TInterface">The interface type the object instance should implement.</typeparam>
+            <param name="instance">The object insance to check if it implements the <typeparamref name="TInterface"/> interface</param>
+            <param name="message">string. The exception message to throw.</param>
+        </member>
+        <member name="M:DCommon.Utility.Guard.Implements``1(System.Type,System.String)">
+            <summary>
+            Throws an <see cref="T:System.InvalidOperationException"/> when the specified type does not
+            implement the <typeparamref name="TInterface"/> interface.
+            </summary>
+            <typeparam name="TInterface">The interface type that the <paramref name="type"/> should implement.</typeparam>
+            <param name="type">The <see cref="T:System.Type"/> to check if it implements from <typeparamref name="TInterface"/> interface.</param>
+            <param name="message">string. The exception message to throw.</param>
+        </member>
+        <member name="M:DCommon.Utility.Guard.TypeOf``1(System.Object,System.String)">
+            <summary>
+            Throws an <see cref="T:System.InvalidOperationException"/> when the specified object instance is
+            not of the specified type.
+            </summary>
+            <typeparam name="TType">The Type that the <paramref name="instance"/> is expected to be.</typeparam>
+            <param name="instance">The object instance whose type is checked.</param>
+            <param name="message">The message of the <see cref="T:System.InvalidOperationException"/> exception.</param>
+        </member>
+        <member name="M:DCommon.Utility.Guard.IsEqual``1(System.Object,System.Object,System.String)">
+            <summary>
+            Throws an exception if an instance of an object is not equal to another object instance.
+            </summary>
+            <typeparam name="TException">The type of exception to throw when the guard check evaluates false.</typeparam>
+            <param name="compare">The comparison object.</param>
+            <param name="instance">The object instance to compare with.</param>
+            <param name="message">string. The message of the exception.</param>
+        </member>
+        <member name="T:DCommon.Utility.Hash">
+            <summary>
+            Compute an (almost) unique hash value from various sources.
+            This allows computing hash keys that are easily storable
+            and comparable from heterogenous components.
+            </summary>
+        </member>
+        <member name="M:DCommon.Utility.Hash.GetStringHashCode(System.String)">
+            <summary>
+            We need a custom string hash code function, because .NET string.GetHashCode()
+            function is not guaranteed to be constant across multiple executions.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.StringFormatMethodAttribute">
+            <summary>
+            Indicates that marked method builds string by format pattern and (optional) arguments. 
+            Parameter, which contains format string, should be given in constructor.
+            The format string should be in <see cref="M:System.String.Format(System.IFormatProvider,System.String,System.Object[])"/> -like form
+            </summary>
+        </member>
+        <member name="M:JetBrains.Annotations.StringFormatMethodAttribute.#ctor(System.String)">
+            <summary>
+            Initializes new instance of StringFormatMethodAttribute
+            </summary>
+            <param name="formatParameterName">Specifies which parameter of an annotated method should be treated as format-string</param>
+        </member>
+        <member name="P:JetBrains.Annotations.StringFormatMethodAttribute.FormatParameterName">
+            <summary>
+            Gets format parameter name
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.InvokerParameterNameAttribute">
+            <summary>
+            Indicates that the function argument should be string literal and match one  of the parameters of the caller function.
+            For example, <see cref="T:System.ArgumentNullException"/> has such parameter.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AssertionMethodAttribute">
+            <summary>
+            Indicates that the marked method is assertion method, i.e. it halts control flow if one of the conditions is satisfied. 
+            To set the condition, mark one of the parameters with <see cref="T:JetBrains.Annotations.AssertionConditionAttribute"/> attribute
+            </summary>
+            <seealso cref="T:JetBrains.Annotations.AssertionConditionAttribute"/>
+        </member>
+        <member name="T:JetBrains.Annotations.AssertionConditionAttribute">
+            <summary>
+            Indicates the condition parameter of the assertion method. 
+            The method itself should be marked by <see cref="T:JetBrains.Annotations.AssertionMethodAttribute"/> attribute.
+            The mandatory argument of the attribute is the assertion type.
+            </summary>
+            <seealso cref="T:JetBrains.Annotations.AssertionConditionType"/>
+        </member>
+        <member name="M:JetBrains.Annotations.AssertionConditionAttribute.#ctor(JetBrains.Annotations.AssertionConditionType)">
+            <summary>
+            Initializes new instance of AssertionConditionAttribute
+            </summary>
+            <param name="conditionType">Specifies condition type</param>
+        </member>
+        <member name="P:JetBrains.Annotations.AssertionConditionAttribute.ConditionType">
+            <summary>
+            Gets condition type
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AssertionConditionType">
+            <summary>
+            Specifies assertion type. If the assertion method argument satisifes the condition, then the execution continues. 
+            Otherwise, execution is assumed to be halted
+            </summary>
+        </member>
+        <member name="F:JetBrains.Annotations.AssertionConditionType.IS_TRUE">
+            <summary>
+            Indicates that the marked parameter should be evaluated to true
+            </summary>
+        </member>
+        <member name="F:JetBrains.Annotations.AssertionConditionType.IS_FALSE">
+            <summary>
+            Indicates that the marked parameter should be evaluated to false
+            </summary>
+        </member>
+        <member name="F:JetBrains.Annotations.AssertionConditionType.IS_NULL">
+            <summary>
+            Indicates that the marked parameter should be evaluated to null value
+            </summary>
+        </member>
+        <member name="F:JetBrains.Annotations.AssertionConditionType.IS_NOT_NULL">
+            <summary>
+            Indicates that the marked parameter should be evaluated to not null value
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.TerminatesProgramAttribute">
+            <summary>
+            Indicates that the marked method unconditionally terminates control flow execution.
+            For example, it could unconditionally throw exception
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.CanBeNullAttribute">
+            <summary>
+            Indicates that the value of marked element could be <c>null</c> sometimes, so the check for <c>null</c> is necessary before its usage
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.NotNullAttribute">
+            <summary>
+            Indicates that the value of marked element could never be <c>null</c>
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.CannotApplyEqualityOperatorAttribute">
+            <summary>
+            Indicates that the value of marked type (or its derivatives) cannot be compared using '==' or '!=' operators.
+            There is only exception to compare with <c>null</c>, it is permitted
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.BaseTypeRequiredAttribute">
+            <summary>
+            When applied to target attribute, specifies a requirement for any type which is marked with 
+            target attribute to implement or inherit specific type or types
+            </summary>
+            <example>
+            <code>
+            [BaseTypeRequired(typeof(IComponent)] // Specify requirement
+            public class ComponentAttribute : Attribute 
+            {}
+            
+            [Component] // ComponentAttribute requires implementing IComponent interface
+            public class MyComponent : IComponent
+            {}
+            </code>
+            </example>
+        </member>
+        <member name="M:JetBrains.Annotations.BaseTypeRequiredAttribute.#ctor(System.Type[])">
+            <summary>
+            Initializes new instance of BaseTypeRequiredAttribute
+            </summary>
+            <param name="baseTypes">Specifies which types are required</param>
+        </member>
+        <member name="P:JetBrains.Annotations.BaseTypeRequiredAttribute.BaseTypes">
+            <summary>
+            Gets enumerations of specified base types
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.UsedImplicitlyAttribute">
+            <summary>
+            Indicates that the marked symbol is used implicitly (e.g. via reflection, in external library),
+            so this symbol will not be marked as unused (as well as by other usage inspections)
+            </summary>
+        </member>
+        <member name="M:JetBrains.Annotations.UsedImplicitlyAttribute.#ctor">
+            <summary>
+            Initializes new instance of UsedImplicitlyAttribute
+            </summary>
+        </member>
+        <member name="M:JetBrains.Annotations.UsedImplicitlyAttribute.#ctor(JetBrains.Annotations.ImplicitUseFlags)">
+            <summary>
+            Initializes new instance of UsedImplicitlyAttribute with specified flags
+            </summary>
+            <param name="flags">Value of type <see cref="T:JetBrains.Annotations.ImplicitUseFlags"/> indicating usage kind</param>
+        </member>
+        <member name="P:JetBrains.Annotations.UsedImplicitlyAttribute.Flags">
+            <summary>
+            Gets value indicating what is meant to be used
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.MeansImplicitUseAttribute">
+            <summary>
+            Should be used on attributes and causes ReSharper to not mark symbols marked with such attributes as unused (as well as by other usage inspections)
+            </summary>
+        </member>
+        <member name="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor">
+            <summary>
+            Initializes new instance of MeansImplicitUseAttribute
+            </summary>
+        </member>
+        <member name="M:JetBrains.Annotations.MeansImplicitUseAttribute.#ctor(JetBrains.Annotations.ImplicitUseFlags)">
+            <summary>
+            Initializes new instance of MeansImplicitUseAttribute with specified flags
+            </summary>
+            <param name="flags">Value of type <see cref="T:JetBrains.Annotations.ImplicitUseFlags"/> indicating usage kind</param>
+        </member>
+        <member name="P:JetBrains.Annotations.MeansImplicitUseAttribute.Flags">
+            <summary>
+            Gets value indicating what is meant to be used
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.ImplicitUseFlags">
+            <summary>
+            Specify what is considered used implicitly when marked with <see cref="T:JetBrains.Annotations.MeansImplicitUseAttribute"/> or <see cref="T:JetBrains.Annotations.UsedImplicitlyAttribute"/>
+            </summary>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseFlags.Default">
+            <summary>
+            Only entity marked with attribute considered used
+            </summary>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseFlags.IncludeMembers">
+            <summary>
+            Entity marked with attribute and all its members considered used
+            </summary>
+        </member>
+        <member name="T:DCommon.Validation.PathValidation">
+            <summary>
+            Provides methods to validate paths.
+            </summary>
+        </member>
+        <member name="M:DCommon.Validation.PathValidation.ValidatePath(System.String,System.String)">
+            <summary>
+            Determines if a path lies within the base path boundaries.
+            If not, an exception is thrown.
+            </summary>
+            <param name="basePath">The base path which boundaries are not to be transposed.</param>
+            <param name="mappedPath">The path to determine.</param>
+            <rereturns>The mapped path if valid.</rereturns>
+            <exception cref="T:System.ArgumentException">If the path is invalid.</exception>
+        </member>
+    </members>
+</doc>

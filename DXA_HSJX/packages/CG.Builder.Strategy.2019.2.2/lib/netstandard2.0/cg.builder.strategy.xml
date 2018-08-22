@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CG.Builder.Strategy</name>
+    </assembly>
+    <members>
+        <member name="T:CG.Builder.Strategy.IStrategy">
+            <summary>
+            This interface represents a strategy, which is design approach 
+            that lets algorithm implementations vary idependently from the 
+            clients that use them.
+            </summary>
+        </member>
+        <member name="T:CG.Builder.Strategy.NamespaceDoc">
+            <summary>
+            This package defines a base "strategy" abstraction that integrates with the 
+            builder in the <see cref="N:CG.Builder"/> package.
+            </summary>
+        </member>
+        <member name="T:CG.Builder.Strategy.Provider.IStrategyProvider">
+            <summary>
+            This interface represents a strategy provider, which is an object 
+            that provides strategy instances at runtime.
+            </summary>
+        </member>
+        <member name="T:CG.Builder.Strategy.Provider.NamespaceDoc">
+            <summary>
+            This namespace defines provider types for the <see cref="N:CG.Builder.Strategy"/>
+            namespace. 
+            </summary>
+        </member>
+        <member name="T:CG.Builder.Strategy.Provider.StrategyProviderBase">
+            <summary>
+            This class is a base implementation of the <see cref="T:CG.Builder.Strategy.Provider.IStrategyProvider"/>.
+            </summary>
+            <example>
+            This example shows how to derive a concrete class from <see cref="T:CG.Builder.Strategy.Provider.StrategyProviderBase"/>
+            <code>
+            class TestProvider : StrategyProviderBase
+            {
+                
+            }
+            </code>
+            </example>
+            The purpose of the class is to provide a handy-dandy base for deriving 
+            concrete strategy provider classes from.
+            <remarks>
+            </remarks>
+        </member>
+        <member name="T:CG.Builder.Strategy.Setup.IStrategySetup">
+            <summary>
+            This interface represents a strategy setup, which is an object 
+            that contains all the configuration details needed to configure
+            a strategy provider at runtime.
+            </summary>
+        </member>
+        <member name="T:CG.Builder.Strategy.Setup.NamespaceDoc">
+            <summary>
+            This namespace defines setup types for the <see cref="N:CG.Builder.Strategy"/>
+            namespace. A setup is an object that contains configuration details 
+            needed to create a provider at runtime.
+            </summary>
+        </member>
+        <member name="T:CG.Builder.Strategy.Setup.StrategySetupBase`1">
+            <summary>
+            This class is a base implementation of the <see cref="T:CG.Builder.Strategy.Setup.IStrategySetup"/>.
+            </summary>
+            <typeparam name="TProvider">The provider type associated with the setup.</typeparam>
+            <remarks>
+            The purpose of the class is to provide a handy-dandy base for deriving 
+            concrete strategy setup classes from.
+            </remarks>
+        </member>
+        <member name="T:CG.Builder.Strategy.StrategyBase`3">
+            <summary>
+            This class is a base implementation of <see cref="T:CG.Builder.Strategy.IStrategy"/>. 
+            </summary>
+            <typeparam name="TProduct">The type of associated <see cref="T:CG.Builder.IBuilderProduct"/></typeparam>
+            <typeparam name="TProvider">The type of associated <see cref="T:CG.Builder.IBuilderProvider"/></typeparam>
+            <typeparam name="TSetup">The type of associated <see cref="T:CG.Builder.IBuilderSetup"/></typeparam>
+            <example>
+            This example shows how to derive a concrete class from <see cref="T:CG.Builder.Strategy.StrategyBase`3"/>
+            <code>
+            // Note that you'll need to come up with your own product, provider and setup.
+            class TestStrategy : StrategyBase&lt;IMyProduct, IMyProvider, IMySetup&gt;
+            {
+                // You'll need a ctor for your class.
+                public TestStrategy(
+                    IMyProduct product,
+                    IMyProvider provider
+                    ) : base(product, provider)
+                {
+                
+                }
+                
+                // TODO : add your methods and whatnot here ...
+            }
+            </code>
+            </example>
+            <remarks>
+            The purpose of the class is to provide a handy-dandy base for deriving 
+            concrete strategy classes from.
+            </remarks>
+        </member>
+        <member name="P:CG.Builder.Strategy.StrategyBase`3.Product">
+            <summary>
+            This property contains a reference to the associated product.
+            </summary>
+        </member>
+        <member name="P:CG.Builder.Strategy.StrategyBase`3.Provider">
+            <summary>
+            This property contains a reference to the strategy's provider.
+            </summary>
+        </member>
+        <member name="P:CG.Builder.Strategy.StrategyBase`3.Setup">
+            <summary>
+            This property contains a reference to the strategy's setup.
+            </summary>
+        </member>
+        <member name="M:CG.Builder.Strategy.StrategyBase`3.#ctor(`0,`1)">
+            <summary>
+            This constructor creates a new instance of the <see cref="T:CG.Builder.Strategy.StrategyBase`3"/>
+            class.
+            </summary>
+            <param name="product">A reference to the associated product.</param>
+            <param name="provider">A reference to the strategy's provider.</param>
+        </member>
+        <member name="T:CG.Builder.Strategy.StrategyException">
+            <summary>
+            This class represents a strategy related exception.
+            </summary>
+        </member>
+        <member name="M:CG.Builder.Strategy.StrategyException.#ctor">
+            <summary>
+            This constructor creates a new instance of the <see cref="T:CG.Builder.Strategy.StrategyException"/>
+            class.
+            </summary>
+        </member>
+        <member name="M:CG.Builder.Strategy.StrategyException.#ctor(System.String,System.Exception)">
+            <summary>
+            This constructor creates a new instance of the <see cref="T:CG.Builder.Strategy.StrategyException"/>
+            class.
+            </summary>
+            <param name="message">A message for the exception.</param>
+            <param name="innerException">An inner exception for the exception.</param>
+        </member>
+        <member name="M:CG.Builder.Strategy.StrategyException.#ctor(System.String)">
+            <summary>
+            This constructor creates a new instance of the <see cref="T:CG.Builder.Strategy.StrategyException"/>
+            class.
+            </summary>
+            <param name="message">A message for the exception.</param>
+        </member>
+        <member name="M:CG.Builder.Strategy.StrategyException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This constructor creates a new instance of the <see cref="T:CG.Builder.Strategy.StrategyException"/>
+            class.
+            </summary>
+            <param name="info">The serialization info to use for the exception.</param>
+            <param name="context">The streaming context to use for the exception.</param>
+        </member>
+    </members>
+</doc>

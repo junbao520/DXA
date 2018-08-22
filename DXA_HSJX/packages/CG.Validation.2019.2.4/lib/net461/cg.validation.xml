@@ -1,0 +1,889 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CG.Validation</name>
+    </assembly>
+    <members>
+        <member name="T:CG.Validation.Guard">
+            <summary>
+            This class performs parameter validations.
+            </summary>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfZero(System.TimeSpan,System.String)">
+            <summary>
+            This method throws an exception if the <paramref name="argValue"/>
+            argument contains an empty time span value.
+            </summary>
+            <param name="argValue">The argument to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains an empty time 
+            span value.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfZero(System.TimeSpan,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = TimeSpan.Zero;
+            
+                    // throws an exception, since the argument is invalid.
+                    Guard.Instance.ThrowIfZero(arg, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfInvalidDateTime(System.DateTime,System.String)">
+            <summary>
+            This method throws an exception if the <paramref name="argValue"/>
+            argument contains an invalid DateTime value.
+            </summary>
+            <param name="argValue">The argument to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains an invalid value.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfFalse(System.Boolean,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = new DateTime();
+            
+                    // throws an exception, since the argument is invalid.
+                    Guard.Instance.ThrowIfInvalidDateTime(arg, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfFalse(System.Boolean,System.String)">
+            <summary>
+            This method throws an exception if the <paramref name="argValue"/>
+            argument contains a FALSE value.
+            </summary>
+            <param name="argValue">The argument to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains a FALSE value.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfFalse(System.Boolean,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = false;
+            
+                    // throws an exception, since the argument is false.
+                    Guard.Instance.ThrowIfFalse(arg, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfTrue(System.Boolean,System.String)">
+            <summary>
+            This method throws an exception if the <paramref name="argValue"/>
+            argument contains a TRUE value.
+            </summary>
+            <param name="argValue">The argument to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains a FALSE value.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfTrue(System.Boolean,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = true;
+            
+                    // throws an exception, since the argument is true.
+                    Guard.Instance.ThrowIfTrue(arg, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfLessThanOrEqualZero(System.Int32,System.String)">
+            <summary>
+            This method throws an exception if the <paramref name="argValue"/>
+            argument contains a value that is less than or equal to zero.
+            </summary>
+            <param name="argValue">The argument to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains a value that is
+            less than or equal to zero.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfLessThanOrEqualZero(System.Int32,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = 0;
+            
+                    // throws an exception, since the argument is less than or equal to zero.
+                    Guard.Instance.ThrowIfLessThanOrEqualZero(arg, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfLessThanOrEqualZero(System.Int64,System.String)">
+            <summary>
+            This method throws an exception if the '<paramref name="argValue"/>
+            argument contains a value that is less than or equal to zero.
+            </summary>
+            <param name="argValue">The argument to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains a value that is
+            less than or equal to zero.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfLessThanOrEqualZero(System.Int64,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = 0;
+            
+                    // throws an exception, since the argument is less than or equal to zero.
+                    Guard.Instance.ThrowIfLessThanOrEqualZero(arg, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfLessThanZero(System.Int32,System.String)">
+            <summary>
+            This method throws an exception if the <paramref name="argValue"/> 
+            argument contains a value that is less than zero.
+            </summary>
+            <param name="argValue">The argument to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains a value that is
+            less than zero.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfLessThanZero(System.Int64,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = -1;
+            
+                    // throws an exception, since the argument is less than zero.
+                    Guard.Instance.ThrowIfLessThanZero(arg, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfLessThanZero(System.Int64,System.String)">
+            <summary>
+            This method throws an exception if the <paramref name="argValue"/> 
+            argument contains a value that is less than zero.
+            </summary>
+            <param name="argValue">The argument to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains a value that is
+            less than zero.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfLessThanZero(System.Int64,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = -1;
+            
+                    // throws an exception, since the argument is less than zero.
+                    Guard.Instance.ThrowIfLessThanZero(arg, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfLessThan(System.Int32,System.Int32,System.String)">
+            <summary>
+            This method will throw an exception if the <paramref name="argValue"/>
+            argument is less than the <paramref name="amount"/> argument.
+            </summary>
+            <param name="argValue">The argument to be validated.</param>
+            <param name="amount">The amount to be used for validation.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains a value that is
+            less than the <paramref name="amount"/> argument.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfLessThan(System.Int32,System.Int32,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = 1;
+            
+                    // make the value to compare it against.
+                    var amount = 2; 
+            
+                    // throws an exception, since the argument is less than 2.
+                    Guard.Instance.ThrowIfLessThan(arg, amount, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfLessThan(System.Int64,System.Int64,System.String)">
+            <summary>
+            This method will throw an exception if the <paramref name="argValue"/>
+            argument is less than the <paramref name="amount"/> argument.
+            </summary>
+            <param name="argValue">The argument to be validated.</param>
+            <param name="amount">The amount to be used for validation.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains a value that is
+            less than the <paramref name="amount"/> argument.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfLessThan(System.Int64,System.Int64,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = 1;
+            
+                    // make the value to compare it against.
+                    var amount = 2; 
+            
+                    // throws an exception, since the argument is less than 2.
+                    Guard.Instance.ThrowIfLessThan(arg, amount, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfLessThan(System.TimeSpan,System.TimeSpan,System.String)">
+            <summary>
+            This method will throw an exception if the <paramref name="argValue"/>
+            argument is less than the <paramref name="amount"/> argument.
+            </summary>
+            <param name="argValue">The argument to be validated.</param>
+            <param name="amount">The amount to be used for validation.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains a value that is
+            less than the <paramref name="amount"/> argument.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfLessThan(System.TimeSpan,System.TimeSpan,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = new timeSpan(1, 1, 1);
+            
+                    // make the value to compare it against.
+                    var amount = new TimeSpan(2, 2, 2); 
+            
+                    // throws an exception, since the argument is less than 2:2:2.
+                    Guard.Instance.ThrowIfLessThan(arg, amount, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfGreaterThan(System.Int32,System.Int32,System.String)">
+            <summary>
+            This method will throw an exception if the <paramref name="argValue"/> 
+            argument is greater than the <paramref name="amount"/> argument. 
+            </summary>
+            <param name="argValue">The argument to be validated.</param>
+            <param name="amount">The amount to be used for validation.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains a value that is
+            greater than the <paramref name="amount"/> argument.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfGreaterThan(System.Int32,System.Int32,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = 2;
+            
+                    // make the value to compare it against.
+                    var amount = 1; 
+            
+                    // throws an exception, since the argument is greater than 1.
+                    Guard.Instance.ThrowIfGreaterThan(arg, amount, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfGreaterThan(System.Int64,System.Int64,System.String)">
+            <summary>
+            This method will throw an exception if the <paramref name="argValue"/> 
+            argument is greater than the <paramref name="amount"/> argument. 
+            </summary>
+            <param name="argValue">The argument to be validated.</param>
+            <param name="amount">The amount to be used for validation.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains a value that is
+            greater than the <paramref name="amount"/> argument.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfGreaterThan(System.Int64,System.Int64,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = 2;
+            
+                    // make the value to compare it against.
+                    var amount = 1; 
+            
+                    // throws an exception, since the argument is greater than 1.
+                    Guard.Instance.ThrowIfGreaterThan(arg, amount, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfGreaterThan(System.TimeSpan,System.TimeSpan,System.String)">
+            <summary>
+            This method will throw an exception if the <paramref name="argValue"/> 
+            argument is greater than the <paramref name="amount"/> argument. 
+            </summary>
+            <param name="argValue">The argument to be validated.</param>
+            <param name="amount">The amount to be used for validation.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains a value that is
+            greater than the <paramref name="amount"/> argument.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfGreaterThan(System.TimeSpan,System.TimeSpan,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = new TimeSpan(1, 1, 1);
+            
+                    // make the value to compare it against.
+                    var amount = new TimeSpan(1, 1, 1); 
+            
+                    // throws an exception, since the argument is greater than 1.
+                    Guard.Instance.ThrowIfGreaterThan(arg, amount, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfZero(System.Int32,System.String)">
+            <summary>
+            This method throws an exception if the <paramref name="argValue"/> 
+            argument contains a zero.
+            </summary>
+            <param name="argValue">The argument to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains a value that is
+            zero.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfZero(System.Int32,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = 0;
+            
+                    // throws an exception, since the argument is zero.
+                    Guard.Instance.ThrowIfZero(arg, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfZero(System.Int64,System.String)">
+            <summary>
+            This method throws an exception if the <paramref name="argValue"/> 
+            argument contains a zero.
+            </summary>
+            <param name="argValue">The argument to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains a value that is
+            zero.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfZero(System.Int64,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = 0;
+            
+                    // throws an exception, since the argument is zero.
+                    Guard.Instance.ThrowIfZero(arg, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfNotZero(System.Int64,System.String)">
+            <summary>
+            This method throws an exception if the <paramref name="argValue"/> 
+            argument contains something other than zero.
+            </summary>
+            <param name="argValue">The argument to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains a value that is
+            something other than zero.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfNotZero(System.Int64,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = 1;
+            
+                    // throws an exception, since the argument is not zero.
+                    Guard.Instance.ThrowIfNotZero(arg, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfNotZero(System.Int32,System.String)">
+            <summary>
+            This method throws an exception if the <paramref name="argValue"/> 
+            argument contains something other than zero.
+            </summary>
+            <param name="argValue">The argument to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains a value that is
+            something other than zero.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfNotZero(System.Int32,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = 1;
+            
+                    // throws an exception, since the argument is not zero.
+                    Guard.Instance.ThrowIfNotZero(arg, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfNull(System.Object,System.String)">
+            <summary>
+            This method throws an exception if the <paramref name="argValue"/> 
+            argument contains a null reference.
+            </summary>
+            <param name="argValue">The argument to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains a null value.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfNull(System.Object,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = null;
+            
+                    // throws an exception, since the argument is null.
+                    Guard.Instance.ThrowIfNullOrEmpty(arg, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfNullOrEmpty(System.String,System.String)">
+            <summary>
+            This method throws an exception if the <paramref name="argValue"/>
+            argument contains a null reference or an empty string.
+            </summary>
+            <param name="argValue">The argument to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains an empty or null 
+            string value.</exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfNullOrEmpty(System.String,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = string.Empty;
+            
+                    // throws an exception, since the string is null or empty.
+                    Guard.Instance.ThrowIfNullOrEmpty(arg, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfNotNullOrEmpty(System.String,System.String)">
+            <summary>
+            This method throws an exception if the <paramref name="argValue"/>
+            argument does not contain a null reference or an empty string.
+            </summary>
+            <param name="argValue">The argument to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument does not contain an empty 
+            or null string value.</exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfNotNullOrEmpty(System.String,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = "testing, 1, 2, 3";
+            
+                    // throws an exception, since the string not null or empty.
+                    Guard.Instance.ThrowIfNotNullOrEmpty(arg, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfEmptyGuid(System.Guid,System.String)">
+            <summary>
+            This method throws an exception if the <paramref name="argValue"/> 
+            argument contains an empty GUID instance.
+            </summary>
+            <param name="argValue">The argument to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains an empty GUID.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfEmptyGuid(System.Guid,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = Guid.Empty;
+            
+                    // throws an exception, since the GUID is empty.
+                    Guard.Intance.ThrowIfEmptyGuid(arg, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfNotEmptyGuid(System.Guid,System.String)">
+            <summary>
+            This method throws an exception if the <paramref name="argValue"/> 
+            argument does not contain an empty GUID instance.
+            </summary>
+            <param name="argValue">The argument to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument does not contain an 
+            empty GUID.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfNotEmptyGuid(System.Guid,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = Guid.Parse("some guid value");
+            
+                    // throws an exception, since the GUID is not empty.
+                    Guard.Instance.ThrowIfNotEmptyGuid(arg, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfMalformedUri(System.String,System.String)">
+            <summary>
+            This method throws an exception if the "argValue" argument 
+            contains a malformed URI.
+            </summary>
+            <param name="argValue">The argument to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains a malformed uri.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfMalformedUri(System.String,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = "*";
+            
+                    // throws an exception, since the URI is malformed.
+                    Guard.Instance.ThrowIfMalformedUri(arg, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Validation.Guard.ThrowIfMissingType(System.Type,System.String)">
+            <summary>
+            This method throws an exception if the "argValue" argument contains 
+            the type 'Missing'.
+            </summary>
+            <param name="argValue">The argument to test.</param>
+            <param name="argName">The name of the argument.</param>
+            <returns>The guard instance.</returns>
+            <exception cref="T:System.ArgumentException">This exception is thrown when
+            the <paramref name="argValue"/> argument contains a 'Missing' type.
+            </exception>
+            <example>
+            This example shows how to call the <see cref="M:CG.Validation.Guard.ThrowIfMissingType(System.Type,System.String)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // make an invalid argument.
+                    var arg = Type.Missing;
+            
+                    // throws an exception, since the type is 'Missing.
+                    Guard.Instance.ThrowIfMissingType(arg, nameof(arg));
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="T:CG.Validation.NamespaceDoc">
+            <summary>
+            This namespace defines common parameter validations.
+            </summary>
+        </member>
+        <member name="T:CG.Validation.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.Guard_ArgGreaterThan">
+            <summary>
+              Looks up a localized string similar to The argument must be greater than  {0}!.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.Guard_ArgIsFalse">
+            <summary>
+              Looks up a localized string similar to The argument must not be FALSE!.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.Guard_ArgIsInvalidDateTime">
+            <summary>
+              Looks up a localized string similar to The argument contains an invalid date-time value!.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.Guard_ArgIsTrue">
+            <summary>
+              Looks up a localized string similar to The argument must not be TRUE!.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.Guard_ArgIsZero">
+            <summary>
+              Looks up a localized string similar to The argument may not contain a zero time span!.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.Guard_ArgLessThan">
+            <summary>
+              Looks up a localized string similar to The argument must not be less than {0}!.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.Guard_ArgLessThanEqualZero">
+            <summary>
+              Looks up a localized string similar to The argument must contain a value &gt; 0!.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.Guard_ArgLessThanZero">
+            <summary>
+              Looks up a localized string similar to The argument must contain a value &gt;= 0!.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.Guard_ArgNotNull">
+            <summary>
+              Looks up a localized string similar to The argument may not contain a null value!.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.Guard_ArgNotNullOrEmpty">
+            <summary>
+              Looks up a localized string similar to The argument must be null or empty!.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.Guard_ArgNotZero">
+            <summary>
+              Looks up a localized string similar to The argument must contain a zero!.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.Guard_ArgNullOrEmpty">
+            <summary>
+              Looks up a localized string similar to The argument may not be null or empty!.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.Guard_ArgZero">
+            <summary>
+              Looks up a localized string similar to The argument may not contain a zero!.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.Guard_EmptyGuid">
+            <summary>
+              Looks up a localized string similar to The argument may not contain an empty GUID!.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.Guard_MalformedUri">
+            <summary>
+              Looks up a localized string similar to The argument is not a well formed URI!.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.Guard_MissingType">
+            <summary>
+              Looks up a localized string similar to The argument must not contain the &apos;Missing&apos; type!.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.Guard_NotEmptyGuid">
+            <summary>
+              Looks up a localized string similar to The argument should contain an empty GUID!.
+            </summary>
+        </member>
+        <member name="P:CG.Validation.Properties.Resources.Guard_TypeIsMissing">
+            <summary>
+              Looks up a localized string similar to The argument contains a missing type!.
+            </summary>
+        </member>
+    </members>
+</doc>

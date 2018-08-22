@@ -1,0 +1,84 @@
+﻿[
+  {
+    "ItemCode": "20100",
+    "ItemName": "倒车入库"
+  },
+  {
+    "ItemCode": "20300",
+    "ItemName": "上坡起步"
+  },
+  {
+    "ItemCode": "20400",
+    "ItemName": "侧方停车"
+  },
+  {
+    "ItemCode": "20500",
+    "ItemName": "单边桥"
+  },
+  {
+    "ItemCode": "20600",
+    "ItemName": "曲线行驶"
+  },
+  {
+    "ItemCode": "20700",
+    "ItemName": "直角转弯"
+  },
+  {
+    "ItemCode": "10100",
+    "ItemName": "综合评判"
+  },
+  {
+    "ItemCode": "60100",
+    "ItemName": "完成倒车入库",
+    "ParentItemCode": "20100"
+
+  },
+  {
+    "ItemCode": "60300",
+    "ItemName": "完成坡起",
+    "ParentItemCode": "20300"
+  },
+  {
+    "ItemCode": "60400",
+    "ItemName": "完成侧方",
+    "ParentItemCode": "20400"
+  },
+  {
+    "ItemCode": "60500",
+    "ItemName": "完成单边桥"
+  },
+  {
+    "ItemCode": "60600",
+    "ItemName": "完成曲线",
+    "ParentItemCode": "20600"
+  },
+  {
+    "ItemCode": "60700",
+    "ItemName": "完成直角",
+    "ParentItemCode": "20700"
+  },
+  {
+    "ItemCode": "20800",
+    "ItemName": "开始起步"
+  },
+  {
+    "ItemCode": "60001",
+    "ItemName": "项目合格"
+  },
+  {
+    "ItemCode": "60002",
+    "ItemName": "考试合格"
+  },
+  {
+    "ItemCode": "60003",
+    "ItemName": "恭喜合格"
+  },
+  {
+    "ItemCode": "60004",
+    "ItemName": "侧方出库"
+  },
+  {
+    "ItemCode": "60005",
+    "ItemName": "倒库出库"
+  }
+]

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DContainer.Autofac</name>
+    </assembly>
+    <members>
+        <member name="T:DContainer.Autofac.ServiceLocatorAdapter">
+            <summary>
+            Translates calls from IServiceLocator to Spring.NET's IListableObjectFactory-based containers
+            </summary>
+        </member>
+        <member name="M:DContainer.Autofac.ServiceLocatorAdapter.DoGetInstance(System.Type,System.String)">
+            <summary>
+            Resolves a requested service instance.
+            </summary>
+            <param name="serviceType">Type of instance requested.</param>
+            <param name="key">Name of registered service you want. May be null.</param>
+            <returns>
+            The requested service instance or null, if <paramref name="key"/> is not found.
+            </returns>
+        </member>
+        <member name="M:DContainer.Autofac.ServiceLocatorAdapter.DoGetAllInstances(System.Type)">
+            <summary>
+            Resolves service instances by type.
+            </summary>
+            <param name="serviceType">Type of service requested.</param>
+            <returns>
+            Sequence of service instance objects matching the <paramref name="serviceType"/>.
+            </returns>
+        </member>
+    </members>
+</doc>

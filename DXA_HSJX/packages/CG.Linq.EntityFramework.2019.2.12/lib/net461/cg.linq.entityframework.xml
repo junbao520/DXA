@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CG.Linq.EntityFramework</name>
+    </assembly>
+    <members>
+        <member name="T:CG.Linq.EntityFramework.NamespaceDoc">
+            <summary>
+            This namespace defines common EntityFramework extensions to the 
+            <see cref="N:CG.Linq"/> namespace.
+            </summary>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:CG.Linq.EntityFramework.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:CG.Linq.EntityFramework.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:CG.Linq.EntityFramework.Properties.Resources.KeyCache_Add">
+            <summary>
+              Looks up a localized string similar to Failed to add key information to the shared key cache!.
+            </summary>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.Provider.EntityFrameworkUnitOfWorkProviderBase`1">
+            <summary>
+            This class is a base implementation of <see cref="T:CG.Linq.EntityFramework.Provider.IEntityFrameworkUnitOfWorkProvider`1"/>
+            </summary>
+            <typeparam name="TContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> associated with
+            the provider.</typeparam>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.Provider.IEntityFrameworkUnitOfWorkProvider`1">
+            <summary>
+            This interface is an entity-framework implementation of <see cref="T:CG.Linq.Provider.ILinqUnitOfWorkProvider"/>
+            </summary>
+            <typeparam name="TContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> associated with
+            the provider.</typeparam>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.Provider.NamespaceDoc">
+            <summary>
+            This namespace defines provider types for the <see cref="N:CG.Linq.EntityFramework"/>
+            namespace. A provider is an object that supplies resources at runtime.
+            </summary>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.Setup.EntityFrameworkUnitOfWorkSetupBase`2">
+            <summary>
+            This class is a base implementation of <see cref="T:CG.Linq.EntityFramework.Setup.IEntityFrameworkUnitOfWorkSetup`1"/>
+            </summary>
+            <typeparam name="TContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> associated with
+            the setup.</typeparam>
+            <typeparam name="TProvider">The provider associated with the setup.</typeparam>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.Setup.IEntityFrameworkUnitOfWorkSetup`1">
+            <summary>
+            This interface is an entity-framework implementation of <see cref="T:CG.Linq.Setup.ILinqUnitOfWorkSetup"/>
+            </summary>
+            <typeparam name="TContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> associated with
+            the setup.</typeparam>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.Setup.NamespaceDoc">
+            <summary>
+            This namespace defines setup types for the <see cref="N:CG.Linq.EntityFramework"/>
+            namespace. A setup is an object that contains configuration details 
+            needed to create a provider at runtime.
+            </summary>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.Strategy.EntityFrameworkUnitOfWorkStrategyBase`4">
+            <summary>
+            This class is a base implementation of <see cref="T:CG.Linq.EntityFramework.Strategy.IEntityFrameworkUnitOfWorkStrategy"/>
+            </summary>
+            <typeparam name="TContext">The type of associated <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/></typeparam>
+            <typeparam name="TProduct">The type of associated <see cref="T:CG.Linq.ILinqUnitOfWork"/></typeparam>
+            <typeparam name="TProvider">The type of associated <see cref="T:CG.Linq.EntityFramework.Provider.IEntityFrameworkUnitOfWorkProvider`1"/></typeparam>
+            <typeparam name="TSetup">The type of associated <see cref="T:CG.Linq.EntityFramework.Setup.IEntityFrameworkUnitOfWorkSetup`1"/></typeparam>
+        </member>
+        <member name="P:CG.Linq.EntityFramework.Strategy.EntityFrameworkUnitOfWorkStrategyBase`4.Cache">
+            <summary>
+            This property contains a local property cache.
+            </summary>
+        </member>
+        <member name="P:CG.Linq.EntityFramework.Strategy.EntityFrameworkUnitOfWorkStrategyBase`4.Context">
+            <summary>
+            This property contains a reference to a database context.
+            </summary>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.Strategy.EntityFrameworkUnitOfWorkStrategyBase`4.#ctor(`1,`2)">
+            <summary>
+            This constructor creates a new instance of the <see cref="T:CG.Linq.EntityFramework.Strategy.EntityFrameworkUnitOfWorkStrategyBase`4"/>
+            class.
+            </summary>
+            <param name="product">A reference to the associated product.</param>
+            <param name="provider">A reference to the strategy's provider.</param>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.Strategy.EntityFrameworkUnitOfWorkStrategyBase`4.SaveChangesAsync(System.Threading.CancellationToken)">
+            <summary>
+            This method saves any pending changes.
+            </summary>
+            <param name="token">A cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.Strategy.EntityFrameworkUnitOfWorkStrategyBase`4.InsertAsync``1(``0,System.Threading.CancellationToken)">
+            <summary>
+            This method inserts a new entity to the underlying data store.
+            </summary>
+            <typeparam name="TEntity">The type of the entity.</typeparam>
+            <param name="entity">The entity to use for the operation.</param>
+            <param name="token">A cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.Strategy.EntityFrameworkUnitOfWorkStrategyBase`4.UpdateAsync``1(``0,System.Threading.CancellationToken)">
+            <summary>
+            This method updates an entity in the underlying data store.
+            </summary>
+            <param name="entity">The entity to be updated.</param>
+            <param name="token">A cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.Strategy.EntityFrameworkUnitOfWorkStrategyBase`4.DeleteAsync``1(``0,System.Threading.CancellationToken)">
+            <summary>
+            This method deletes an entity from the underlying data store.
+            </summary>
+            <param name="entity">The entity to be deleted.</param>
+            <param name="token">A cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.Strategy.EntityFrameworkUnitOfWorkStrategyBase`4.AsQueryable``1">
+            <summary>
+            This method returns an unfiltered queryable sequence of 
+            objects from the underlying data store.
+            </summary>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that 
+            represents a queryable sequence of objects.</returns>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.Strategy.EntityFrameworkUnitOfWorkStrategyBase`4.ExecuteScalarAsync``1(System.String,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            This method executes the specified scalar stored-procedure 
+            on the underlying data store.
+            </summary>
+            <typeparam name="T">The return scalar type.</typeparam>
+            <param name="commandName">The name of the command.</param>
+            <param name="parameters">An optional array of arguments.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.Strategy.EntityFrameworkUnitOfWorkStrategyBase`4.ExecuteNonQueryAsync(System.String,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            This method executes the specified stored-procedure on 
+            the underlying data store.
+            </summary>
+            <param name="commandName">The name of the command.</param>
+            <param name="parameters">An optional array of arguments.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.Strategy.EntityFrameworkUnitOfWorkStrategyBase`4.ExecuteEntityQueryAsync``1(System.String,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            This method executes a stored procedure on the underlying
+            data store.
+            </summary>
+            <typeparam name="TEntity">The return entity type.</typeparam>
+            <param name="commandName">The name of the command.</param>
+            <param name="parameters">Optional arguments for the command.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.Strategy.IEntityFrameworkUnitOfWorkStrategy">
+            <summary>
+            This interface represents an entity-framework specific <see cref="T:CG.Linq.Strategy.ILinqUnitOfWorkStrategy"/>
+            </summary>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.Strategy.NamespaceDoc">
+            <summary>
+            This namespace defines strategy types for the <see cref="N:CG.Linq.EntityFramework"/>
+            namespace. A strategy is a design approach that lets algorithm 
+            implementations vary idependently from the clients that use them.
+            </summary>
+        </member>
+    </members>
+</doc>

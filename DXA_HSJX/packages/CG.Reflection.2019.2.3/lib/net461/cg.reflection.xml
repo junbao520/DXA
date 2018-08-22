@@ -1,0 +1,329 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CG.Reflection</name>
+    </assembly>
+    <members>
+        <member name="T:CG.Reflection.AppDomainExtensions">
+            <summary>
+            This class contains extension methods related to the <see cref="T:System.AppDomain"/>
+            type.
+            </summary>
+        </member>
+        <member name="M:CG.Reflection.AppDomainExtensions.GetTypes``1(System.AppDomain,System.Boolean)">
+            <summary>
+            This method finds all the types dervied from <typeparamref name="T"/>
+            that are currently loaded in the specified <see cref="T:System.AppDomain"/>
+            </summary>
+            <typeparam name="T">The type to use for the operation.</typeparam>
+            <param name="appDomain">The app-domain to use for the operation.</param>
+            <param name="publicOnly">If true, restricts the search to public
+            class only.</param>
+            <returns>
+            An array of types that are derived from <typeparamref name="T"/>.
+            </returns>
+        </member>
+        <member name="T:CG.Reflection.AssemblyExtensions">
+            <summary>
+            This class contains extension methods related to the <see cref="T:System.Reflection.Assembly"/>
+            type.
+            </summary>
+        </member>
+        <member name="M:CG.Reflection.AssemblyExtensions.GetTypes(System.Reflection.Assembly,System.String,System.Boolean)">
+            <summary>
+            This method gets type objects with the specified name in the 
+            assembly instance, ignoring any namespaces in the search, with 
+            the option of throwing an exception if the type is not found.
+            </summary>
+            <param name="assembly">The assembly to search.</param>
+            <param name="typeName">The name of the type.</param>
+            <param name="throwOnError">True to throw an error if the type 
+            is not found.</param>
+            <returns>A collection of <see cref="T:System.Type"/> objects.</returns>
+        </member>
+        <member name="M:CG.Reflection.AssemblyExtensions.CopyResourceTo(System.Reflection.Assembly,System.String,System.String,System.Int32)">
+            <summary>
+            Copies an embedded resource to disk.
+            </summary>
+            <param name="assembly">The assembly that contains the resource.</param>
+            <param name="resourceName">The name of the resource.</param>
+            <param name="destFilePath">The location to copy the bits to.</param>
+            <param name="chunkSize">Number of bytes to transfer in each chunk.</param>
+        </member>
+        <member name="M:CG.Reflection.AssemblyExtensions.CopyResourceTo(System.Reflection.Assembly,System.String,System.IO.Stream,System.Int32)">
+            <summary>
+            Copies an embedded resource to disk.
+            </summary>
+            <param name="assembly">The assembly that contains the resource.</param>
+            <param name="resourceName">The name of the resource.</param>
+            <param name="destStream">The stream to copy the bits to.</param>
+            <param name="chunkSize">Number of bytes to transfer in each chunk.</param>
+        </member>
+        <member name="T:CG.Reflection.NamespaceDoc">
+            <summary>
+            This namespace defines extensions to the <see cref="N:System.Reflection"/> 
+            namespace.
+            </summary>
+        </member>
+        <member name="T:CG.Reflection.PropertyCache">
+            <summary>
+            This class represents cached property reflection information. The 
+            purpose of the class is to make it easier to reach out and quickly
+            grab property information for a type, and then have that same info
+            cached locally, for the next time it's needed.
+            </summary>
+        </member>
+        <member name="F:CG.Reflection.PropertyCache._cache">
+            <summary>
+            This field contains a property type cache.
+            </summary>
+        </member>
+        <member name="P:CG.Reflection.PropertyCache.Item(System.Type,System.String)">
+            <summary>
+            This indexer gets/sets cached property information.
+            </summary>
+            <param name="type">The type to use for the operation.</param>
+            <param name="property">The property to use for the operation.</param>
+            <returns>Cached property information.</returns>
+        </member>
+        <member name="T:CG.Reflection.TypeExtensions">
+            <summary>
+            This class contains extension methods related to the <see cref="T:System.Type"/>
+            type.
+            </summary>
+        </member>
+        <member name="M:CG.Reflection.TypeExtensions.GetBaseTypes(System.Type)">
+            <summary>
+            This method returns the entire type hierarchy for the specified type.
+            </summary>
+            <param name="type">The type to use for the operation.</param>
+            <returns>A collection of types.</returns>
+        </member>
+        <member name="M:CG.Reflection.TypeExtensions.GetExtensionMethods(System.Type,System.Boolean)">
+            <summary>
+            This method finds public extension methods that match the specific 
+            type. The search is performed across all assemblies in the current
+            application domain.
+            </summary>
+            <param name="type">The type use for the operation.</param>
+            <param name="recursive">True to include any base types; False otherwise.</param>
+            <returns>A collection of <see cref="T:System.Reflection.MethodInfo"/> objects for the
+            extension methods.</returns>
+        </member>
+        <member name="M:CG.Reflection.TypeExtensions.GetExtensionMethods(System.Type,System.Reflection.Assembly[],System.Boolean)">
+            <summary>
+            This method finds public extension methods that match the specific 
+            type. The search is performed across the specifed assemblies.
+            </summary>
+            <param name="type">The type use for the operation.</param>
+            <param name="assemblies">The assemblies to use for the operation.</param>
+            <param name="recursive">True to include any base types; False otherwise.</param>
+            <returns>A collection of <see cref="T:System.Reflection.MethodInfo"/> objects for the
+            extension methods.</returns>
+        </member>
+        <member name="M:CG.Reflection.TypeExtensions.GetExtensionMethods(System.Type,System.Collections.Generic.IEnumerable{System.Reflection.Assembly},System.Boolean)">
+            <summary>
+            This method finds public extension methods that match the specific 
+            type. The search is performed across the specifed assemblies.
+            </summary>
+            <param name="type">The type use for the operation.</param>
+            <param name="assemblies">The assemblies to use for the operation.</param>
+            <param name="recursive">True to include any base types; False otherwise.</param>
+            <returns>A collection of <see cref="T:System.Reflection.MethodInfo"/> objects for the
+            extension methods.</returns>
+        </member>
+        <member name="M:CG.Reflection.TypeExtensions.GetExtensionMethods(System.Type,System.Collections.Generic.IList{System.Reflection.Assembly},System.Boolean)">
+            <summary>
+            This method finds public extension methods that match the specific 
+            type. The search is performed across the specifed assemblies.
+            </summary>
+            <param name="type">The type use for the operation.</param>
+            <param name="assemblies">The assemblies to use for the operation.</param>
+            <param name="recursive">True to include any base types; False otherwise.</param>
+            <returns>A collection of <see cref="T:System.Reflection.MethodInfo"/> objects for the
+            extension methods.</returns>
+        </member>
+        <member name="M:CG.Reflection.TypeExtensions.GetExtensionMethods(System.Type,System.Reflection.Assembly,System.Boolean)">
+            <summary>
+            This method finds public extension methods that match the specific 
+            type, within the specified assembly. 
+            </summary>
+            <param name="type">The type use for the operation.</param>
+            <param name="assembly">The assembly to use for the operation.</param>
+            <param name="recursive">True to include any base types; False otherwise.</param>
+            <returns>A collection of <see cref="T:System.Reflection.MethodInfo"/> objects for the
+            extension methods.</returns>
+        </member>
+        <member name="T:CG.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.ForEach_Error">
+            <summary>
+              Looks up a localized string similar to An error occured while enumerating through the sequence and performing the specified action on each element! See the inner exception(s) for more details..
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.MaskedFormatter_Overflow">
+            <summary>
+              Looks up a localized string similar to The mask didn't contain enough symbols to hold the entire value!
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.AssemblyExtensions_TypeLoad">
+            <summary>
+              Looks up a localized string similar to Failed to locate the type {0} in assembly {1}!
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.MaskedFormatter_InvalidFormat">
+            <summary>
+              Looks up a localized string similar to The format of '{0}' is invalid.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.Guard_ArgGreaterThan">
+            <summary>
+              Looks up a localized string similar to The argument must be greater than  {0}!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.Guard_ArgIsFalse">
+            <summary>
+              Looks up a localized string similar to The argument must not be FALSE!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.Guard_ArgIsInvalidDateTime">
+            <summary>
+              Looks up a localized string similar to The argument contains an invalid date-time value!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.Guard_ArgIsTrue">
+            <summary>
+              Looks up a localized string similar to The argument must not be TRUE!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.Guard_ArgLessThan">
+            <summary>
+              Looks up a localized string similar to The argument must not be less than {0}!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.Guard_ArgLessThanEqualZero">
+            <summary>
+              Looks up a localized string similar to The argument must contain a value &gt; 0!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.Guard_ArgLessThanZero">
+            <summary>
+              Looks up a localized string similar to The argument must contain a value &gt;= 0!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.Guard_ArgNotNull">
+            <summary>
+              Looks up a localized string similar to The argument may not contain a null value!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.Guard_ArgNotNullOrEmpty">
+            <summary>
+              Looks up a localized string similar to The argument must be null or empty!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.Guard_ArgNotZero">
+            <summary>
+              Looks up a localized string similar to The argument must contain a zero!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.Guard_ArgNullOrEmpty">
+            <summary>
+              Looks up a localized string similar to The argument may not be null or empty!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.Guard_ArgZero">
+            <summary>
+              Looks up a localized string similar to The argument may not contain a zero!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.Guard_EmptyGuid">
+            <summary>
+              Looks up a localized string similar to The argument may not contain an empty GUID!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.Guard_MalformedUri">
+            <summary>
+              Looks up a localized string similar to The argument is not a well formed URI!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.Guard_MissingType">
+            <summary>
+              Looks up a localized string similar to The argument must not contain the &apos;Missing&apos; type!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.Guard_NotEmptyGuid">
+            <summary>
+              Looks up a localized string similar to The argument should contain an empty GUID!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.Guard_ArgIsZero">
+            <summary>
+              Looks up a localized string similar to The argument may not contain a zero time span!
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.Guard_TypeIsMissing">
+            <summary>
+              Looks up a localized string similar to The argument contains a missing type!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.GuardExtensions_ArgEmptyCollection">
+            <summary>
+              Looks up a localized string similar to The argument may not contain an empty collection!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.GuardExtensions_ArgNotEmptyCollection">
+            <summary>
+              Looks up a localized string similar to The argument must contain an empty collection!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.GuardExtensions_ArgNotReadable">
+            <summary>
+              Looks up a localized string similar to The argument is not a readable stream!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.GuardExtensions_ArgNotWritable">
+            <summary>
+              Looks up a localized string similar to The argument is not a writable stream!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.GuardExtensions_InvalidExtension">
+            <summary>
+              Looks up a localized string similar to The argument contains an invalid file extension!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.GuardExtensions_InvalidFilePath">
+            <summary>
+              Looks up a localized string similar to The argument contains an invalid file path!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.GuardExtensions_InvalidFolderPath">
+            <summary>
+              Looks up a localized string similar to The argument contains an invalid folder path!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.PropertyCache_NotFound">
+            <summary>
+              Looks up a localized string similar to The type &apos;{0}&apos; does not have a public property named &apos;{1}&apos;!.
+            </summary>
+        </member>
+        <member name="P:CG.Properties.Resources.PropertyCache_UnableToCache">
+            <summary>
+              Looks up a localized string similar to Unable to cache key information for the property &apos;{1}&apos; on type &apos;{0}&apos;!.
+            </summary>
+        </member>
+    </members>
+</doc>

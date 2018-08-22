@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CG.Core</name>
+    </assembly>
+    <members>
+        <member name="T:CG.DisposableBase">
+            <summary>
+            This class is a base implementation of the standard .NET "disposable
+            pattern", except that, with this class, it's no longer neccessary to
+            manually implement that pattern over and over, each time you need a 
+            disposable class. The purpose of the class is to provide a handy-dandy 
+            base for deriving concrete disposable classess from.
+            </summary>
+            <example>
+            This example shows how to derive a concrete class from <see cref="T:CG.DisposableBase"/>:
+            <code>
+            class TestClass : DisposableBase
+            {
+                // Override Dispose and add your own cleanup code ...
+                protected override void Dispose(bool disposing)
+                {
+                    // TODO : put your own cleanup code here ...
+                    base.Dispose(disposing);
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:CG.DisposableBase.IsDisposed">
+            <summary>
+            This property contains a flag that indicates whether the object
+            has been disposed of.
+            </summary>
+        </member>
+        <member name="M:CG.DisposableBase.System#IDisposable#Dispose">
+            <summary>
+            This method performs application-defined tasks associated with 
+            freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:CG.DisposableBase.Dispose(System.Boolean)">
+            <summary>
+            This method is called when the object is disposed.
+            </summary>
+            <param name="disposing">True to dispose of managed resources; false
+            otherwise.</param>
+        </member>
+        <member name="T:CG.NamespaceDoc">
+            <summary>
+            This namespace defines general extensions to the <see cref="N:System"/> 
+            namespace.
+            </summary>
+        </member>
+        <member name="T:CG.SingletonBase`1">
+            <summary>
+            This class is a reusable implementation of the "singleton" patter. 
+            </summary>
+            <typeparam name="T">The type of singleton to create.</typeparam>
+            <remarks>
+            The purpose of the class is to provide a handy-dandy base for deriving 
+            concrete singleton classes from.
+            </remarks>
+            <example>
+            Here is a quick example of how to use this class as a base for a concrete 
+            singleton class:
+            <code>
+            public TestSingleton : SingletonBase&lt;TestSingleton&gt;
+            {
+                // A private ctor is important so that it's not possible to
+                //   simply "new" another instance of the class - which is exactly
+                //   what we're trying to avoid with the whole singeton thing.
+                private TestSingleton() { }
+                
+                // This is jus an example method, something for the singleton to do.
+                public string Hello() { return "Hi There!"; }
+            }
+            </code>
+            <para/>
+            Here is an example of using a concrete singleton in your code:
+            <code>
+            public static class TestClass
+            {
+                public static void Main()
+                {
+                    Console.WriteLine(TestSingleton.Instance.Hello());
+                }
+            }
+            The above example prints "Hi There!" to the console.
+            </code>
+            </example>
+        </member>
+        <member name="F:CG.SingletonBase`1._instance">
+            <summary>
+            This field contains the singleton instance.
+            </summary>
+        </member>
+        <member name="P:CG.SingletonBase`1.Instance">
+            <summary>
+            This property contains the instance of the singleton.
+            </summary>
+        </member>
+        <member name="M:CG.SingletonBase`1.#cctor">
+            <summary>
+            This class constructor initializes the <see cref="T:CG.SingletonBase`1"/>
+            type.
+            </summary>
+        </member>
+    </members>
+</doc>

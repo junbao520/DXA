@@ -1,0 +1,712 @@
+﻿[
+        {
+            "RuleCode": "10101",
+            "SubRuleCode": "",
+            "RuleName": "不按规定使用安全带",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "不按规定使用安全带",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10102",
+            "SubRuleCode": "",
+            "RuleName": "遮挡、关闭车内音视频监控设备",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "遮挡、关闭车内音视频监控设备",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10103",
+            "SubRuleCode": "",
+            "RuleName": "不按考试员指令驾驶",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "不按考试员指令驾驶",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10104",
+            "SubRuleCode": "",
+            "RuleName": "不能正确使用灯光、雨刮器等车辆常用操纵件",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "不能正确使用灯光、雨刮器等车辆常用操纵件",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10105",
+            "SubRuleCode": "",
+            "RuleName": "起步时车辆后溜距离大于30cm",
+            "ExamItemId": "20300",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "起步时车辆后溜距离大于30cm",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10106",
+            "SubRuleCode": "",
+            "RuleName": "驾驶汽车双手同时离开转向盘",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "驾驶汽车双手同时离开转向盘",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10107",
+            "SubRuleCode": "",
+            "RuleName": "使用档位与车速长时间不匹配，造成车辆发动机转速过高或过低",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "使用档位与车速长时间不匹配，造成车辆发动机转速过高或过低",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10108",
+            "SubRuleCode": "",
+            "RuleName": "车辆在行驶中低头看挡或连续2次挂挡不进",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "车辆在行驶中低头看挡或连续2次挂挡不进",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10109",
+            "SubRuleCode": "",
+            "RuleName": "行驶中空挡滑行",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "行驶中空挡滑行",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10110",
+            "SubRuleCode": "",
+            "RuleName": "视线离开行驶方向超过2s",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "视线离开行驶方向超过2s",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10111",
+            "SubRuleCode": "",
+            "RuleName": "违反交通安全法律、法规，影响交通安全",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "违反交通安全法律、法规，影响交通安全",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10112",
+            "SubRuleCode": "",
+            "RuleName": "不按交通信号灯、标志、标线或者民警指挥信号行驶",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "不按交通信号灯、标志、标线或者民警指挥信号行驶",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10113",
+            "SubRuleCode": "",
+            "RuleName": "不按规定速度行驶",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "不按规定速度行驶",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10114",
+            "SubRuleCode": "",
+            "RuleName": "车辆行驶中骑轧车道中心实线或者车道边缘实线",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "车辆行驶中骑轧车道中心实线或者车道边缘实线",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10115",
+            "SubRuleCode": "",
+            "RuleName": "长时间骑轧车道分界线行驶",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "长时间骑轧车道分界线行驶",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10116",
+            "SubRuleCode": "",
+            "RuleName": "对可能出现危险的情形未采取减速、鸣喇叭等安全措施",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "对可能出现危险的情形未采取减速、鸣喇叭等安全措施",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10117",
+            "SubRuleCode": "",
+            "RuleName": "因观察、判断或者操作不当出现危险情况",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "因观察、判断或者操作不当出现危险情况",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10118",
+            "SubRuleCode": "",
+            "RuleName": "行驶中不能保持安全距离和安全车速",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "行驶中不能保持安全距离和安全车速",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10119",
+            "SubRuleCode": "",
+            "RuleName": "行驶中身体任何部位伸出车外",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "行驶中身体任何部位伸出车外",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10120",
+            "SubRuleCode": "",
+            "RuleName": "制动、加速踏板使用错误",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "制动、加速踏板使用错误",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10121",
+            "SubRuleCode": "",
+            "RuleName": "驾驶摩托车时手离开转向把",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "驾驶摩托车时手离开转向把",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10122",
+            "SubRuleCode": "",
+            "RuleName": "二轮摩托车在行驶中左右摇摆或者脚触地",
+            "ExamItemId": "10000",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "二轮摩托车在行驶中左右摇摆或者脚触地",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10123",
+            "SubRuleCode": "",
+            "RuleName": "摩托车制动时不使用前、后制动器",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "摩托车制动时不使用前、后制动器",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10124",
+            "SubRuleCode": "",
+            "RuleName": "考生未按照预约考试时间参加考试",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "考生未按照预约考试时间参加考试",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10201",
+            "SubRuleCode": "",
+            "RuleName": "驾驶姿势不正确",
+            "ExamItemId": "10100",
+            "DeductedScores": "10",
+            "IsRequired": "0",
+            "DeductedReason": "驾驶姿势不正确",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10202",
+            "SubRuleCode": "",
+            "RuleName": "起步时车辆后溜距离小于30cm",
+            "ExamItemId": "20300",
+            "DeductedScores": "10",
+            "IsRequired": "1",
+            "DeductedReason": "起步时车辆后溜距离小于30cm",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10203",
+            "SubRuleCode": "",
+            "RuleName": "操纵转向盘手法不合理",
+            "ExamItemId": "10100",
+            "DeductedScores": "10",
+            "IsRequired": "1",
+            "DeductedReason": "操纵转向盘手法不合理",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10204",
+            "SubRuleCode": "",
+            "RuleName": "起步或行驶中挂错挡，不能及时纠正",
+            "ExamItemId": "10100",
+            "DeductedScores": "10",
+            "IsRequired": "1",
+            "DeductedReason": "起步或行驶中挂错挡，不能及时纠正",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10205",
+            "SubRuleCode": "",
+            "RuleName": "起步前不使用转向灯",
+            "ExamItemId": "10100",
+            "DeductedScores": "10",
+            "IsRequired": "0",
+            "DeductedReason": "起步前不使用转向灯",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10206",
+            "SubRuleCode": "",
+            "RuleName": "起步、转向、变更车道、超车、停车前,开转向灯少于3s即转向",
+            "ExamItemId": "10100",
+            "DeductedScores": "10",
+            "IsRequired": "0",
+            "DeductedReason": "起步、转向、变更车道、超车、停车前,开转向灯少于3s即转向",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10207",
+            "SubRuleCode": "",
+            "RuleName": "转弯时，转、回方向过早、过晚，或者转向角度过大、过小",
+            "ExamItemId": "10100",
+            "DeductedScores": "10",
+            "IsRequired": "0",
+            "DeductedReason": "转弯时，转、回方向过早、过晚，或者转向角度过大、过小",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10208",
+            "SubRuleCode": "",
+            "RuleName": "换挡时发生齿轮撞击",
+            "ExamItemId": "10100",
+            "DeductedScores": "10",
+            "IsRequired": "1",
+            "DeductedReason": "换挡时发生齿轮撞击",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10209",
+            "SubRuleCode": "",
+            "RuleName": "遇情况时不会合理使用离合器半联动控制车速",
+            "ExamItemId": "10100",
+            "DeductedScores": "10",
+            "IsRequired": "0",
+            "DeductedReason": "遇情况时不会合理使用离合器半联动控制车速",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10210",
+            "SubRuleCode": "",
+            "RuleName": "因操作不当造成发动机熄火一次",
+            "ExamItemId": "10100",
+            "DeductedScores": "10",
+            "IsRequired": "1",
+            "DeductedReason": "因操作不当造成发动机熄火一次",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "10211",
+            "SubRuleCode": "",
+            "RuleName": "制动不平顺",
+            "ExamItemId": "10100",
+            "DeductedScores": "10",
+            "IsRequired": "1",
+            "DeductedReason": "制动不平顺",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "20101",
+            "SubRuleCode": "",
+            "RuleName": "不按规定路线、顺序行驶",
+            "ExamItemId": "20100",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "不按规定路线、顺序行驶",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "20102",
+            "SubRuleCode": "",
+            "RuleName": "车身出线",
+            "ExamItemId": "20100",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "车身出线",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "20103",
+            "SubRuleCode": "",
+            "RuleName": "倒库不入",
+            "ExamItemId": "20100",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "倒库不入",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "20104",
+            "SubRuleCode": "",
+            "RuleName": "中途停车",
+            "ExamItemId": "20100",
+            "DeductedScores": "5",
+            "IsRequired": "1",
+            "DeductedReason": "中途停车",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "20301",
+            "SubRuleCode": "",
+            "RuleName": "车辆停止后，汽车前保险杠或者摩托车前轴未定于桩杆线上，且前后超出50cm",
+            "ExamItemId": "20300",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "车辆停止后，汽车前保险杠或者摩托车前轴未定于桩杆线上，且前后超出50cm",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "20302",
+            "SubRuleCode": "",
+            "RuleName": "起步时间超过规定时间",
+            "ExamItemId": "20300",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "起步时间超过规定时间",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "20303",
+            "SubRuleCode": "",
+            "RuleName": "车辆停止后，汽车前保险杠或者摩托车前轴未定于桩杆线上，且前后不超出50cm",
+            "ExamItemId": "20300",
+            "DeductedScores": "10",
+            "IsRequired": "1",
+            "DeductedReason": "车辆停止后，汽车前保险杠或者摩托车前轴未定于桩杆线上，且前后不超出50cm",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "20304",
+            "SubRuleCode": "",
+            "RuleName": "车辆停止后，车身距离路边缘线30cm以上",
+            "ExamItemId": "20300",
+            "DeductedScores": "10",
+            "IsRequired": "1",
+            "DeductedReason": "车辆停止后，车身距离路边缘线30cm以上",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "20401",
+            "SubRuleCode": "",
+            "RuleName": "车辆入库停止后，车身出线",
+            "ExamItemId": "20400",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "车辆入库停止后，车身出线",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "20402",
+            "SubRuleCode": "",
+            "RuleName": "中途停车",
+            "ExamItemId": "20400",
+            "DeductedScores": "5",
+            "IsRequired": "1",
+            "DeductedReason": "中途停车",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "20403",
+            "SubRuleCode": "",
+            "RuleName": "行驶中轮胎触轧车道边线",
+            "ExamItemId": "20400",
+            "DeductedScores": "10",
+            "IsRequired": "1",
+            "DeductedReason": "行驶中轮胎触轧车道边线",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "20501",
+            "SubRuleCode": "",
+            "RuleName": "中途停车",
+            "ExamItemId": "20500",
+            "DeductedScores": "10",
+            "IsRequired": "0",
+            "DeductedReason": "中途停车",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "20502",
+            "SubRuleCode": "",
+            "RuleName": "其中有一车轮未上桥",
+            "ExamItemId": "20500",
+            "DeductedScores": "10",
+            "IsRequired": "0",
+            "DeductedReason": "其中有一车轮未上桥",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "20503",
+            "SubRuleCode": "",
+            "RuleName": "已骑上桥面，在行驶中出现一个车轮掉下桥面",
+            "ExamItemId": "20500",
+            "DeductedScores": "10",
+            "IsRequired": "0",
+            "DeductedReason": "已骑上桥面，在行驶中出现一个车轮掉下桥面",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "20601",
+            "SubRuleCode": "",
+            "RuleName": "车轮轧道路边缘线",
+            "ExamItemId": "20600",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "车轮轧道路边缘线",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "20602",
+            "SubRuleCode": "",
+            "RuleName": "中途停车",
+            "ExamItemId": "20600",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "中途停车",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "20701",
+            "SubRuleCode": "",
+            "RuleName": "车轮轧道路边缘线",
+            "ExamItemId": "20700",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "车轮轧道路边缘线",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "20702",
+            "SubRuleCode": "",
+            "RuleName": "中途停车",
+            "ExamItemId": "20700",
+            "DeductedScores": "5",
+            "IsRequired": "1",
+            "DeductedReason": "中途停车",
+            "CreatedOn": "2015-05-15"
+        },
+        {
+            "RuleCode": "11110",
+            "SubRuleCode": "",
+            "RuleName": "启动发动机时档位未置于空挡",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "启动发动机时档位未置于空挡",
+            "CreatedOn": "2017-10-14"
+        },
+        {
+            "RuleCode": "11111",
+            "SubRuleCode": "",
+            "RuleName": "发动机启动后，不及时松开启动开关挡",
+            "ExamItemId": "10100",
+            "DeductedScores": "10",
+            "IsRequired": "1",
+            "DeductedReason": "发动机启动后,不及时松开启动开关",
+            "CreatedOn": "2017-10-14"
+        },
+        {
+            "RuleCode": "11112",
+            "SubRuleCode": "",
+            "RuleName": "不按规定线路顺序行驶",
+            "ExamItemId": "10100",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "不按规定线路顺序行驶",
+            "CreatedOn": "2017-10-14"
+        },
+        {
+            "RuleCode": "20110",
+            "SubRuleCode": "",
+            "RuleName": "在倒车前,未将两个前轮触地点均试过控制线",
+            "ExamItemId": "20100",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "在倒车前未将两个前轮触地点均试过控制线",
+            "CreatedOn": "2017-10-14"
+        },
+        {
+            "RuleCode": "20111",
+            "SubRuleCode": "",
+            "RuleName": "项目完成时间超过210s",
+            "ExamItemId": "20100",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "项目完成时间超过210s",
+            "CreatedOn": "2017-10-14"
+        },
+        {
+            "RuleCode": "20112",
+            "SubRuleCode": "",
+            "RuleName": "车辆停止后，汽车前保险杠未定于桩杆线上，且前后超出50cm",
+            "ExamItemId": "20100",
+            "DeductedScores": "100",
+            "IsRequired": "0",
+            "DeductedReason": "车辆停止后，汽车前保险杠未定于桩杆线上，且前后超出50cm",
+            "CreatedOn": "2017-10-14"
+        },
+        {
+            "RuleCode": "20113",
+            "SubRuleCode": "",
+            "RuleName": "行驶中车轮轧道路边缘线",
+            "ExamItemId": "20100",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "行驶中车轮轧道路边缘线",
+            "CreatedOn": "2017-10-14"
+        },
+        {
+            "RuleCode": "20311",
+            "SubRuleCode": "",
+            "RuleName": "车辆停止后，起步时间超过30s",
+            "ExamItemId": "20300",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "车辆停止后，起步时间超过30s",
+            "CreatedOn": "2017-10-14"
+        },
+        {
+            "RuleCode": "20312",
+            "SubRuleCode": "",
+            "RuleName": "车辆停止后，汽车前保险杠未定于桩杆线上，且前后不超出50cm",
+            "ExamItemId": "20300",
+            "DeductedScores": "10",
+            "IsRequired": "0",
+            "DeductedReason": "车辆停止后，汽车前保险杠未定于桩杆线上，且前后不超出50cm",
+            "CreatedOn": "2017-10-14"
+        },
+        {
+            "RuleCode": "20313",
+            "SubRuleCode": "",
+            "RuleName": "车辆停止后，车身距离道路边缘线超出50cm",
+            "ExamItemId": "20300",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "车辆停止后，车身距离道路边缘线超出50cm",
+            "CreatedOn": "2017-10-14"
+        },
+        {
+            "RuleCode": "20314",
+            "SubRuleCode": "",
+            "RuleName": "停车后，未拉紧驻车制动器",
+            "ExamItemId": "20300",
+            "DeductedScores": "10",
+            "IsRequired": "1",
+            "DeductedReason": "停车后，未拉紧驻车制动器",
+            "CreatedOn": "2017-10-14"
+        },
+        {
+            "RuleCode": "20410",
+            "SubRuleCode": "",
+            "RuleName": "车辆入库停止后车身出线",
+            "ExamItemId": "20400",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "车辆入库停止后车身出线",
+            "CreatedOn": "2017-10-14"
+        },
+        {
+            "RuleCode": "20411",
+            "SubRuleCode": "",
+            "RuleName": "出库时不使用或错误使用转向灯",
+            "ExamItemId": "20400",
+            "DeductedScores": "10",
+            "IsRequired": "1",
+            "DeductedReason": "出库时不使用或错误使用转向灯",
+            "CreatedOn": "2017-10-14"
+        },
+        {
+            "RuleCode": "20412",
+            "SubRuleCode": "",
+            "RuleName": "项目完成时间超过90s",
+            "ExamItemId": "20400",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "项目完成时间超过90s",
+            "CreatedOn": "2017-10-14"
+        },
+        {
+            "RuleCode": "20413",
+            "SubRuleCode": "",
+            "RuleName": "行驶中车身触碰库位边线",
+            "ExamItemId": "20400",
+            "DeductedScores": "10",
+            "IsRequired": "1",
+            "DeductedReason": "行驶中车身触碰库位边线",
+            "CreatedOn": "2017-10-14"
+        },
+        {
+            "RuleCode": "20414",
+            "SubRuleCode": "",
+            "RuleName": "行驶中车轮触轧车道边线",
+            "ExamItemId": "20400",
+            "DeductedScores": "10",
+            "IsRequired": "1",
+            "DeductedReason": "行驶中车轮触轧车道边线",
+            "CreatedOn": "2017-10-14"
+        },
+        {
+            "RuleCode": "20710",
+            "SubRuleCode": "",
+            "RuleName": "转弯时不使用或错误使用转向灯，转弯后不关闭转向灯",
+            "ExamItemId": "20700",
+            "DeductedScores": "10",
+            "IsRequired": "1",
+            "DeductedReason": "转弯时不使用或错误使用转向灯，转弯后不关闭转向灯",
+            "CreatedOn": "2017-10-14"
+        },
+        {
+            "RuleCode": "20310",
+            "SubRuleCode": "",
+            "RuleName": "行驶中车轮触轧车道边线",
+            "ExamItemId": "20300",
+            "DeductedScores": "100",
+            "IsRequired": "1",
+            "DeductedReason": "行驶中车轮触轧车道边线",
+            "CreatedOn": "2017-10-14"
+        }
+    ]

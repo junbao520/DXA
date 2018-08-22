@@ -1,0 +1,723 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CG.Retry</name>
+    </assembly>
+    <members>
+        <member name="T:CG.Retry.NamespaceDoc">
+            <summary>
+            This namespace defines a reusable implementation of the 
+            "retry" pattern.
+            </summary>
+        </member>
+        <member name="T:CG.Retry.RetryHelper">
+            <summary>
+            This class contains logic for retrying an arbitrary operation up to 
+            'N' times. There are synchronous and asynchronous versions with various 
+            options for return values and an optional mechanism for deciding which 
+            exceptions (if any) should cause another retry.
+            </summary>
+            <remarks>
+            The async versions use a random task delay between retries, in order to 
+            prevent locking up the task thread for long periods of time. The synchronous 
+            versions use a thread sleep between retries. That means the synchronous 
+            versions might not be a great choice for use in MVC or REST controllers.
+            </remarks>
+            <example>
+            This example shows how to use the <see cref="N:CG.Retry"/> class to retry a simple operation
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a retry instance.
+                    var retry = new Retry(3);
+                    
+                    // Tries to perform the operation up to three times.
+                    retry.Execute(() =>
+                    {
+                        // TODO : do 'stuff' that might throw an exception ...
+                    },
+                    (Exception ex) =>
+                    {
+                        // TODO : decide whether to retry, or not ...
+                        return true;
+                    });
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:CG.Retry.RetryHelper.MaxRetries">
+            <summary>
+            This property contains the maximum number of times to retry any 
+            given operation.
+            </summary>
+        </member>
+        <member name="P:CG.Retry.RetryHelper.Ranges">
+            <summary>
+            This property contains a collection of retry timing values.
+            </summary>
+        </member>
+        <member name="P:CG.Retry.RetryHelper.Random">
+            <summary>
+            This property contains a random number generator.
+            </summary>
+        </member>
+        <member name="M:CG.Retry.RetryHelper.#ctor(System.Int32)">
+            <summary>
+            This constructor creates a new instance of the <see cref="N:CG.Retry"/>
+            class.
+            </summary>
+            <param name="maxRetries">The maximum number of times to retry any given
+            operation.</param>
+            <exception cref="T:System.ArgumentException">This exception is thrown if the <paramref name="maxRetries"/>
+            parameter is less than or equal to zero.</exception>
+            <example>
+            This example shows how to create an instance of the <see cref="N:CG.Retry"/> class to 
+            retry an operation up to 3 times.
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a retry instance.
+                    var retry = new Retry(3);
+                    
+                    // Tries to perform the operation up to three times.
+                    retry.Execute(() =>
+                    {
+                        // TODO : do 'stuff' that might throw an exception ...
+                    });
+                }
+            }
+            </code>
+            </example>
+            <remarks>
+            For this constructor, the <paramref name="maxRetries"/> parameter is used to create an
+            array of time ranges, one for each retry attempt, that are then used to generate a random
+            delay between retry attempts. For more control over the timinig of retry attempts, use
+            the ctor overload that accepts the array of tuples.
+            </remarks>
+        </member>
+        <member name="M:CG.Retry.RetryHelper.#ctor(System.Tuple{System.Int32,System.Int32}[])">
+            <summary>
+            This constructor creates a new instance of the <see cref="N:CG.Retry"/>
+            class.
+            </summary>
+            <param name="ranges">A collection of retry delay ranges, min and max, 
+            for each time the retry perform a retry.</param>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="ranges"/>
+            parameter is NULL.</exception>
+            <example>
+            This example shows how to create an instance of the <see cref="N:CG.Retry"/> class to 
+            retry an operation up to 3 times - with custom retry timing ranges.
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a retry instance.
+                    var retry = new Retry(
+                       new Tuple&lt;int, int&gt;[]
+                       { 
+                           Tuple.Create(1, 1000),
+                           Tuple.Create(1000, 2000),
+                           Tuple.Create(2000, 3000)
+                       });
+                    
+                    // Tries to perform the operation up to three times.
+                    retry.Execute(() =>
+                    {
+                        // TODO : do 'stuff' that might throw an exception ...
+                    });
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Retry.RetryHelper.Execute``3(System.Func{System.Tuple{``0,``1,``2}},System.Func{System.Exception,System.Boolean})">
+            <summary>
+            This method calls the <paramref name="action"/> func and automatically
+            retries as long as the <paramref name="shouldRetry"/> returns true and
+            the maximum number of retries hasn't yet been reached.
+            </summary>
+            <typeparam name="T1">The first type to return from the action.</typeparam>
+            <typeparam name="T2">The second type to return from the action.</typeparam>
+            <typeparam name="T3">The third type to return from the action.</typeparam>
+            <param name="action">The action to be performed.</param>
+            <param name="shouldRetry">A func to determine if another retry to be 
+            performed. Should return True to retry; False otherwise.</param>
+            <returns>The return from the action.</returns>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="action"/> 
+            or <paramref name="shouldRetry"/> parameters are NULL.</exception>
+            <example>
+            This example shows how to use the <see cref="N:CG.Retry"/> class to retry a simple operation
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a retry instance.
+                    var retry = new Retry(3);
+                    
+                    // Tries to perform the operation up to three times.
+                    var result = retry.Execute&lt;string, string&gt;(() =>
+                    {
+                        // TODO : do 'stuff' that might throw an exception ...
+                        return Tuple.Create("I", "am", "done");
+                    },
+                    (Exception ex) =>
+                    {
+                        // TODO : decide whether to retry to operation, or not.
+                        return true;
+                    });
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Retry.RetryHelper.Execute``3(System.Func{System.Tuple{``0,``1,``2}})">
+            <summary>
+            This method calls the <paramref name="action"/> func and automatically
+            retries as long as the maximum number of retries hasn't yet been reached.
+            </summary>
+            <typeparam name="T1">The first type to return from the action.</typeparam>
+            <typeparam name="T2">The second type to return from the action.</typeparam>
+            <typeparam name="T3">The third type to return from the action.</typeparam>
+            <param name="action">The action to be performed.</param>
+            <returns>The return from the action.</returns>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="action"/> 
+            parameter is NULL.</exception>
+            <example>
+            This example shows how to use the <see cref="N:CG.Retry"/> class to retry a simple operation
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a retry instance.
+                    var retry = new Retry(3);
+                    
+                    // Tries to perform the operation up to three times.
+                    var result = retry.Execute&lt;string, string&gt;(() =>
+                    {
+                        // TODO : do 'stuff' that might throw an exception ...
+                        return Tuple.Create("I", "am", "done");
+                    });
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Retry.RetryHelper.ExecuteAsync``3(System.Func{System.Threading.Tasks.Task{System.Tuple{``0,``1,``2}}},System.Func{System.Exception,System.Boolean})">
+            <summary>
+            This method calls the <paramref name="action"/> func and automatically
+            retries as long as the <paramref name="shouldRetry"/> returns true and
+            the maximum number of retries hasn't yet been reached.
+            </summary>
+            <typeparam name="T1">The first type to return from the action.</typeparam>
+            <typeparam name="T2">The second type to return from the action.</typeparam>
+            <typeparam name="T3">The third type to return from the action.</typeparam>
+            <param name="action">The action to be performed.</param>
+            <param name="shouldRetry">A func to determine if another retry to be 
+            performed. Should return True to retry; False otherwise.</param>
+            <returns>A task to perform the operation.</returns>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="action"/> 
+            or <paramref name="shouldRetry"/> parameters are NULL.</exception>
+            <example>
+            This example shows how to use the <see cref="N:CG.Retry"/> class to retry a simple operation
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a retry instance.
+                    var retry = new Retry(3);
+                    
+                    // Tries to perform the operation up to three times.
+                    var result = retry.ExecuteAsync&lt;string, string&gt;(async () =>
+                    {
+                        // TODO : do 'stuff' that might throw an exception ...
+                        return Tuple.Create("I", "am", "done");
+                    },
+                    (Exception ex) =>
+                    {
+                        // TODO : decide whether to retry to operation, or not.
+                        return true;
+                    }).Result;
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Retry.RetryHelper.ExecuteAsync``3(System.Func{System.Threading.Tasks.Task{System.Tuple{``0,``1,``2}}})">
+            <summary>
+            This method calls the <paramref name="action"/> func and automatically
+            retries as long as the the maximum number of retries hasn't yet been reached.
+            </summary>
+            <typeparam name="T1">The first type to return from the action.</typeparam>
+            <typeparam name="T2">The second type to return from the action.</typeparam>
+            <typeparam name="T3">The third type to return from the action.</typeparam>
+            <param name="action">The action to be performed.</param>
+            <returns>A task to perform the operation.</returns>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="action"/> 
+            parameter is NULL.</exception>
+            <example>
+            This example shows how to use the <see cref="N:CG.Retry"/> class to retry a simple operation
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a retry instance.
+                    var retry = new Retry(3);
+                    
+                    // Tries to perform the operation up to three times.
+                    var result = retry.ExecuteAsync&lt;string, string&gt;(async () =>
+                    {
+                        // TODO : do 'stuff' that might throw an exception ...
+                        return Tuple.Create("I", "am", "done");
+                    }).Result;
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Retry.RetryHelper.Execute``2(System.Func{System.Tuple{``0,``1}},System.Func{System.Exception,System.Boolean})">
+            <summary>
+            This method calls the <paramref name="action"/> func and automatically
+            retries as long as the <paramref name="shouldRetry"/> returns true and
+            the maximum number of retries hasn't yet been reached.
+            </summary>
+            <typeparam name="T1">The first type to return from the action.</typeparam>
+            <typeparam name="T2">The second type to return from the action.</typeparam>
+            <param name="action">The action to be performed.</param>
+            <param name="shouldRetry">A func to determine if another retry to be 
+            performed. Should return True to retry; False otherwise.</param>
+            <returns>The return from the action.</returns>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="action"/> 
+            or <paramref name="shouldRetry"/> parameters are NULL.</exception>
+            <example>
+            This example shows how to use the <see cref="N:CG.Retry"/> class to retry a simple operation
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a retry instance.
+                    var retry = new Retry(3);
+                    
+                    // Tries to perform the operation up to three times.
+                    var result = retry.Execute&lt;string, string&gt;(() =>
+                    {
+                        // TODO : do 'stuff' that might throw an exception ...
+                        return Tuple.Create("I am", "done");
+                    },
+                    (Exception ex) =>
+                    {
+                        // TODO : decide whether to do a retry, or not.
+                        return true;
+                    });
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Retry.RetryHelper.Execute``2(System.Func{System.Tuple{``0,``1}})">
+            <summary>
+            This method calls the <paramref name="action"/> func and automatically
+            retries as long as the the maximum number of retries hasn't yet been reached.
+            </summary>
+            <typeparam name="T1">The first type to return from the action.</typeparam>
+            <typeparam name="T2">The second type to return from the action.</typeparam>
+            <param name="action">The action to be performed.</param>
+            <returns>The return from the action.</returns>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="action"/> 
+            parameter is NULL.</exception>
+            <example>
+            This example shows how to use the <see cref="N:CG.Retry"/> class to retry a simple operation
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a retry instance.
+                    var retry = new Retry(3);
+                    
+                    // Tries to perform the operation up to three times.
+                    var result = retry.Execute&lt;string, string&gt;(() =>
+                    {
+                        // TODO : do 'stuff' that might throw an exception ...
+                        return Tuple.Create("I am", "done");
+                    });
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Retry.RetryHelper.ExecuteAsync``2(System.Func{System.Threading.Tasks.Task{System.Tuple{``0,``1}}},System.Func{System.Exception,System.Boolean})">
+            <summary>
+            This method calls the <paramref name="action"/> func and automatically
+            retries as long as the <paramref name="shouldRetry"/> returns true and
+            the maximum number of retries hasn't yet been reached.
+            </summary>
+            <typeparam name="T1">The first type to return from the action.</typeparam>
+            <typeparam name="T2">The second type to return from the action.</typeparam>
+            <param name="action">The action to be performed.</param>
+            <param name="shouldRetry">A func to determine if another retry to be 
+            performed. Should return True to retry; False otherwise.</param>
+            <returns>A task to perform the operation.</returns>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="action"/> 
+            or <paramref name="shouldRetry"/> parameters are NULL.</exception>
+            <example>
+            This example shows how to use the <see cref="N:CG.Retry"/> class to retry a simple operation
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a retry instance.
+                    var retry = new Retry(3);
+                    
+                    // Tries to perform the operation up to three times.
+                    var result = retry.ExecuteAsync&lt;string, string&gt;(async () =>
+                    {
+                        // TODO : do 'stuff' that might throw an exception ...
+                        return Tuple.Create("I am", "done");
+                    },
+                    (Exception ex) =>
+                    {
+                        // TODO : decide whether to do a retry, or not.
+                        return true;
+                    }).Result;
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Retry.RetryHelper.ExecuteAsync``2(System.Func{System.Threading.Tasks.Task{System.Tuple{``0,``1}}})">
+            <summary>
+            This method calls the <paramref name="action"/> func and automatically
+            retries as long as the the maximum number of retries hasn't yet been reached.
+            </summary>
+            <typeparam name="T1">The first type to return from the action.</typeparam>
+            <typeparam name="T2">The second type to return from the action.</typeparam>
+            <param name="action">The action to be performed.</param>
+            <returns>A task to perform the operation.</returns>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="action"/> 
+            parameters is NULL.</exception>
+            <example>
+            This example shows how to use the <see cref="N:CG.Retry"/> class to retry a simple operation
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a retry instance.
+                    var retry = new Retry(3);
+                    
+                    // Tries to perform the operation up to three times.
+                    var result = retry.ExecuteAsync&lt;string, string&gt;(async () =>
+                    {
+                        // TODO : do 'stuff' that might throw an exception ...
+                        return Tuple.Create("I am", "done");
+                    }).Result;
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Retry.RetryHelper.Execute``1(System.Func{``0},System.Func{System.Exception,System.Boolean})">
+            <summary>
+            This method calls the <paramref name="action"/> func and automatically
+            retries as long as the <paramref name="shouldRetry"/> returns true and
+            the maximum number of retries hasn't yet been reached.
+            </summary>
+            <typeparam name="T">The type to return from the action.</typeparam>
+            <param name="action">The action to be performed.</param>
+            <param name="shouldRetry">A func to determine if another retry to be 
+            performed. Should return True to retry; False otherwise.</param>
+            <returns>The return from the action.</returns>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="action"/> 
+            or <paramref name="shouldRetry"/> parameters are NULL.</exception>
+            <example>
+            This example shows how to use the <see cref="N:CG.Retry"/> class to retry a simple operation
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a retry instance.
+                    var retry = new Retry(3);
+                    
+                    // Tries to perform the operation up to three times.
+                    retry.Execute&lt;string&gt;(() =>
+                    {
+                        // TODO : do 'stuff' that might throw an exception ...
+                        return "done";
+                    },
+                    (Exception ex) =>
+                    {
+                        // TODO : decide whether to do a retry, or not.
+                        return true;
+                    });
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Retry.RetryHelper.Execute``1(System.Func{``0})">
+            <summary>
+            This method calls the <paramref name="action"/> func and automatically
+            retries as long as the maximum number of retries hasn't yet been reached.
+            </summary>
+            <typeparam name="T">The type to return from the action.</typeparam>
+            <param name="action">The action to be performed.</param>
+            <returns>The return from the action.</returns>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="action"/> 
+            parameter is NULL.</exception>
+            <example>
+            This example shows how to use the <see cref="N:CG.Retry"/> class to retry a simple operation
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a retry instance.
+                    var retry = new Retry(3);
+                    
+                    // Tries to perform the operation up to three times.
+                    retry.Execute&lt;string&gt;(() =>
+                    {
+                        // TODO : do 'stuff' that might throw an exception ...
+                        return "done";
+                    });
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Retry.RetryHelper.ExecuteAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Func{System.Exception,System.Boolean})">
+            <summary>
+            This method calls the <paramref name="action"/> func and automatically
+            retries as long as the <paramref name="shouldRetry"/> returns true and
+            the maximum number of retries hasn't yet been reached.
+            </summary>
+            <typeparam name="T">The type to return from the action.</typeparam>
+            <param name="action">The action to be performed.</param>
+            <param name="shouldRetry">A func to determine if another retry to be 
+            performed. Should return True to retry; False otherwise.</param>
+            <returns>A task to perform the operation.</returns>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="action"/> 
+            or <paramref name="shouldRetry"/> parameters are NULL.</exception>
+            <example>
+            This example shows how to use the <see cref="N:CG.Retry"/> class to retry a simple operation
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a retry instance.
+                    var retry = new Retry(3);
+                    
+                    // Tries to perform the operation up to three times.
+                    var result = retry.ExecuteAsync&lt;string&gt;(async () =>
+                    {
+                        // TODO : do 'stuff' that might throw an exception ...
+                        return "done";
+                    },
+                    (Exception ex) =>
+                    {
+                        // TODO : decide whether to do a retry, or not.
+                        return true;
+                    }).Result;
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Retry.RetryHelper.ExecuteAsync``1(System.Func{System.Threading.Tasks.Task{``0}})">
+            <summary>
+            This method calls the <paramref name="action"/> func and automatically
+            retries as long as the the maximum number of retries hasn't yet been reached.
+            </summary>
+            <typeparam name="T">The type to return from the action.</typeparam>
+            <param name="action">The action to be performed.</param>
+            <returns>A task to perform the operation.</returns>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="action"/> 
+            parameter is NULL.</exception>
+            <example>
+            This example shows how to use the <see cref="N:CG.Retry"/> class to retry a simple operation
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a retry instance.
+                    var retry = new Retry(3);
+                    
+                    // Tries to perform the operation up to three times.
+                    var result = retry.ExecuteAsync&lt;string&gt;(async () =>
+                    {
+                        // TODO : do 'stuff' that might throw an exception ...
+                        return "done";
+                    }).Result;
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Retry.RetryHelper.ExecuteAsync(System.Action,System.Func{System.Exception,System.Boolean})">
+            <summary>
+            This method calls the <paramref name="action"/> action and automatically
+            retries as long as the <paramref name="shouldRetry"/> returns true and
+            the maximum number of retries hasn't yet been reached.
+            </summary>
+            <param name="action">The action to be performed.</param>
+            <param name="shouldRetry">A func to determine if another retry to be 
+            performed. Should return True to retry; False otherwise.</param>
+            <returns>A task to perform the operation.</returns>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="action"/> 
+            or <paramref name="shouldRetry"/> parameters are NULL.</exception>
+            <example>
+            This example shows how to use the <see cref="N:CG.Retry"/> class to retry a simple operation
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a retry instance.
+                    var retry = new Retry(3);
+                    
+                    // Tries to perform the operation up to three times.
+                    retry.ExecuteAsync(async () =>
+                    {
+                        // TODO : do 'stuff' that might throw an exception ...
+                    },
+                    (Exception ex) =>
+                    {
+                        // TODO : decide whether to retry, or not ...
+                        return true;
+                    }).Wait();
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Retry.RetryHelper.Execute(System.Action,System.Func{System.Exception,System.Boolean})">
+            <summary>
+            This method calls the <paramref name="action"/> action and automatically
+            retries as long as the <paramref name="shouldRetry"/> returns true and
+            the maximum number of retries hasn't yet been reached.
+            </summary>
+            <param name="action">The action to be performed.</param>
+            <param name="shouldRetry">A func to determine if another retry to be 
+            performed. Should return True to retry; False otherwise.</param>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="action"/> 
+            or <paramref name="shouldRetry"/> parameters are NULL.</exception>
+            <example>
+            This example shows how to use the <see cref="N:CG.Retry"/> class to retry a simple operation
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a retry instance.
+                    var retry = new Retry(3);
+                    
+                    // Tries to perform the operation up to three times.
+                    retry.Execute(() =>
+                    {
+                        // TODO : do 'stuff' that might throw an exception ...
+                    },
+                    (Exception ex) =>
+                    {
+                        // TODO : decide whether to retry, or not ...
+                        return true;
+                    });
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Retry.RetryHelper.ExecuteAsync(System.Action)">
+            <summary>
+            This method calls the <paramref name="action"/> action and automatically
+            retries as long as the the maximum number of retries hasn't yet been
+            reached.
+            </summary>
+            <param name="action">The action to be performed.</param>
+            <returns>A task to perform the operation.</returns>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="action"/> 
+            parameter is NULL.</exception>
+            <example>
+            This example shows how to use the <see cref="N:CG.Retry"/> class to retry a simple operation
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a retry instance.
+                    var retry = new Retry(3);
+                    
+                    // Tries to perform the operation up to three times.
+                    retry.ExecuteAsync( async () =>
+                    {
+                        // TODO : do 'stuff' that might throw an exception ...
+                    }).Wait();
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Retry.RetryHelper.Execute(System.Action)">
+            <summary>
+            This method calls the <paramref name="action"/> action and automatically
+            retries as long as the the maximum number of retries hasn't yet been
+            reached.
+            </summary>
+            <param name="action">The action to be performed.</param>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the <paramref name="action"/> 
+            parameter is NULL.</exception>
+            <example>
+            This example shows how to use the <see cref="N:CG.Retry"/> class to retry a simple operation
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a retry instance.
+                    var retry = new Retry(3);
+                    
+                    // Tries to perform the operation up to three times.
+                    retry.Execute(() =>
+                    {
+                        // TODO : do 'stuff' that might throw an exception ...
+                    });
+                }
+            }
+            </code>
+            </example>
+        </member>
+    </members>
+</doc>

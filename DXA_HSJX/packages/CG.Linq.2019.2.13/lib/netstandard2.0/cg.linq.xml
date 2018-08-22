@@ -1,0 +1,1002 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CG.Linq</name>
+    </assembly>
+    <members>
+        <member name="T:CG.Linq.EntityBase`1">
+            <summary>
+            This class is a base implementation of an entity. The purpose of the 
+            class is to provide a handy-dandy base for deriving concrete entity 
+            classes from. 
+            </summary>
+            <remarks>
+            Note that you don't HAVE to derive your entity classes from this base 
+            class, but, if you don't then you'll need to ensure your class has a 
+            public property named 'Key', in order to comply with the convention 
+            used by the various classes in the <see cref="N:CG.Linq"/> namespace.
+            </remarks>
+            <typeparam name="TKey">The type for the entity's key.</typeparam>
+        </member>
+        <member name="P:CG.Linq.EntityBase`1.Key">
+            <summary>
+            This property contains a unique key for the entity.
+            </summary>
+        </member>
+        <member name="M:CG.Linq.EntityBase`1.#ctor(`0)">
+            <summary>
+            This constructor creates a new instance of the <see cref="T:CG.Linq.EntityBase`1"/>
+            class.
+            </summary>
+            <param name="key">A unique key for the entity.</param>
+        </member>
+        <member name="M:CG.Linq.EntityBase`1.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This constructor creates a new instance of the <see cref="T:CG.Linq.EntityBase`1"/>
+            class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> to use.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> to use.</param>
+            <exception cref="T:System.ArgumentException">Thrown if the <paramref name="info"/>
+            or <paramref name="context"/> arguments are null.</exception>
+        </member>
+        <member name="M:CG.Linq.EntityBase`1.GetHashCode">
+            <summary>
+            This method is overridden in order to generate a hash code for 
+            the entity.
+            </summary>
+            <returns>An integer hash code that represents the entity.</returns>
+        </member>
+        <member name="M:CG.Linq.EntityBase`1.Equals(System.Object)">
+            <summary>
+            This method is overriden in order to determine equality.
+            </summary>
+            <param name="obj">The entity to compare with.</param>
+            <returns>True if the objects are equal; false otherwise.</returns>
+        </member>
+        <member name="M:CG.Linq.EntityBase`1.ToString">
+            <summary>
+            This method returns a string that represents the current entity.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:CG.Linq.EntityBase`1.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with the data needed
+            to serialize the target object.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> to populate 
+            with data.</param>
+            <param name="context">The destination (<see cref="T:System.Runtime.Serialization.StreamingContext"/>) 
+            for this serialization.</param>
+            <exception cref="T:System.ArgumentException">Thrown if the <paramref name="info"/>
+            or <paramref name="context"/> arguments are null.</exception>
+        </member>
+        <member name="M:CG.Linq.EntityBase`1.CompareTo(CG.Linq.EntityBase{`0})">
+            <summary>
+            This method compares one entity to another.
+            </summary>
+            <param name="other">The entity to compare against.</param>
+            <returns>The results of the comparison.</returns>
+        </member>
+        <member name="T:CG.Linq.EntityContext`1">
+            <summary>
+            This class is an implementation of <see cref="T:CG.Linq.IEntityContext`1"/>.
+            </summary>
+            <typeparam name="TEntity">The type of entity to associate with the 
+            entity-context.</typeparam>
+        </member>
+        <member name="P:CG.Linq.EntityContext`1.UnitOfWork">
+            <summary>
+            This property contains a reference to a unit-of-work.
+            </summary>
+        </member>
+        <member name="M:CG.Linq.EntityContext`1.#ctor(CG.Linq.ILinqUnitOfWork)">
+            <summary>
+            This constructor creates a new instance of <see cref="T:CG.Linq.EntityContext`1"/>
+            class.
+            </summary>
+            <param name="unitOfWork">A reference to a LINQ unit-of-work.</param>
+        </member>
+        <member name="M:CG.Linq.EntityContext`1.InsertAsync(`0,System.Threading.CancellationToken)">
+            <summary>
+            This method inserts a new entity to the underlying data store.
+            </summary>
+            <param name="entity">The entity to be inserted.</param>
+            <param name="token">A cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            newly inserted entity instance.</returns>
+            <exception cref="T:CG.Linq.LinqException">This exception is thrown if 
+            anything goes wrong during the execution of this task.</exception>
+        </member>
+        <member name="M:CG.Linq.EntityContext`1.UpdateAsync(`0,System.Threading.CancellationToken)">
+            <summary>
+            This method updates an entity in the underlying data store.
+            </summary>
+            <param name="entity">The entity to be updated.</param>
+            <param name="token">A cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            newly updated entity instance.</returns>
+            <exception cref="T:CG.Linq.LinqException">This exception is thrown if 
+            anything goes wrong during the execution of this task.</exception>
+        </member>
+        <member name="M:CG.Linq.EntityContext`1.DeleteAsync(`0,System.Threading.CancellationToken)">
+            <summary>
+            This method deletes an entity from the underlying data store.
+            </summary>
+            <param name="entity">The entity to be deleted.</param>
+            <param name="token">A cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+            <exception cref="T:CG.Linq.LinqException">This exception is thrown if 
+            anything goes wrong during the execution of this task.</exception>
+        </member>
+        <member name="M:CG.Linq.EntityContext`1.AsQueryable">
+            <summary>
+            This method returns an unfiltered queryable sequence of objects
+            from the underlying data store.
+            </summary>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that 
+            represents a queryable sequence of objects.</returns>
+            <exception cref="T:CG.Linq.LinqException">This exception is thrown if 
+            anything goes wrong during the execution of this task.</exception>
+        </member>
+        <member name="T:CG.Linq.IEntityContext`1">
+            <summary>
+            This interface represents a generic entity-context, which is a design 
+            approach that is useful for performing basic CRUD related activities 
+            in a database agnostic fashion. 
+            </summary>
+            <typeparam name="TEntity">The type of entity to associate with the 
+            entity-context.</typeparam>
+        </member>
+        <member name="M:CG.Linq.IEntityContext`1.InsertAsync(`0,System.Threading.CancellationToken)">
+            <summary>
+            This method inserts a new entity to the underlying data store.
+            </summary>
+            <param name="entity">The entity to be inserted.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            newly inserted entity instance.</returns>
+        </member>
+        <member name="M:CG.Linq.IEntityContext`1.UpdateAsync(`0,System.Threading.CancellationToken)">
+            <summary>
+            This method updates an entity in the underlying data store.
+            </summary>
+            <param name="entity">The entity to be updated.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            newly updated entity instance.</returns>
+        </member>
+        <member name="M:CG.Linq.IEntityContext`1.DeleteAsync(`0,System.Threading.CancellationToken)">
+            <summary>
+            This method deletes an entity from the underlying data store.
+            </summary>
+            <param name="entity">The entity to be deleted.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+        </member>
+        <member name="M:CG.Linq.IEntityContext`1.AsQueryable">
+            <summary>
+            This method returns an unfiltered queryable sequence of 
+            objects from the underlying data store.
+            </summary>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that 
+            represents a queryable sequence of objects.</returns>
+        </member>
+        <member name="T:CG.Linq.ILinqUnitOfWork">
+            <summary>
+            This interface represents a LINQ specific unit-of-work.
+            </summary>
+        </member>
+        <member name="M:CG.Linq.ILinqUnitOfWork.SaveChangesAsync(System.Threading.CancellationToken)">
+            <summary>
+            This method saves any pending changes.
+            </summary>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+        </member>
+        <member name="T:CG.Linq.ILinqUnitOfWorkExtensions">
+            <summary>
+            This class contains extension methods related to the <see cref="T:CG.Linq.ILinqUnitOfWork"/>
+            type.
+            </summary>
+        </member>
+        <member name="M:CG.Linq.ILinqUnitOfWorkExtensions.CreateEntityContext``1(CG.Linq.ILinqUnitOfWork)">
+            <summary>
+            This method creates a new instance of an entity-context.
+            </summary>
+            <typeparam name="TEntity">The type of entity to associate with
+            the entity-context.</typeparam>
+            <param name="unitOfWork">The unit-of-work to use for the operation.</param>
+            <returns>An new <see cref="T:CG.Linq.IEntityContext`1"/> reference.</returns>
+            <example>
+            This example shows how to call the <see cref="M:CG.Linq.ILinqUnitOfWorkExtensions.CreateEntityContext``1(CG.Linq.ILinqUnitOfWork)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                // An example entity class.
+                class Foo { public int Id {get; set;} }
+                
+                static void Main()
+                {
+                    // Create a builder.
+                    var builder = new ILinqUnitOfWorkBuilder();
+                    
+                    // TODO : configure the builder by adding providers...
+            
+                    // Create a unit of work.
+                    using (ILinqUnitOfWork unitOfWork = builder.Builder())
+                    {
+                        // Create an entity context.
+                        var ec = unitOfWork.CreateEntityContext{Foo}();
+                        
+                        // Do something with it here ...
+                    }
+                {
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Linq.ILinqUnitOfWorkExtensions.CreateStoredProcedure(CG.Linq.ILinqUnitOfWork)">
+            <summary>
+            This method creates a new instance of a stored-procedure. Note 
+            that it is possible that the underlying data store might not support 
+            a notion of a stored-procedure. In that case, it's up to the developer 
+            of whatever strategy is in use to decide upon a proper fallback 
+            scheme - including the possibility of simply throwing an exception. 
+            </summary>
+            <param name="unitOfWork">The unit-of-work to use for the operation.</param>
+            <returns>A new <see cref="T:CG.Linq.IStoredProcedure"/> reference.</returns>
+            <example>
+            This example shows how to call the <see cref="M:CG.Linq.ILinqUnitOfWorkExtensions.CreateStoredProcedure(CG.Linq.ILinqUnitOfWork)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a builder.
+                    var builder = new ILinqUnitOfWorkBuilder();
+                    
+                    // TODO : configure the builder by adding providers...
+            
+                    // Create a unit of work.
+                    using (ILinqUnitOfWork unitOfWork = builder.Builder())
+                    {
+                        // Create a stored-procedure.
+                        var sp = unitOfWork.CreateStorexProcedure();
+                        
+                        // Do something with it here ...
+                    }
+                {
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Linq.ILinqUnitOfWorkExtensions.CreateSequence(CG.Linq.ILinqUnitOfWork)">
+            <summary>
+            This method creates a new instance of a sequence. Note that it is 
+            possible that the underlying data store might not support a notion 
+            of a sequence. In that case, it's up to the developer of whatever 
+            strategy is in use to decide upon a proper fallback scheme - including 
+            the possibility of simply throwing an exception. 
+            </summary>
+            <param name="unitOfWork">The unit-of-work to use for the operation.</param>
+            <returns>A new <see cref="T:CG.Linq.ISequence"/> reference.</returns>
+            <example>
+            This example shows how to call the <see cref="M:CG.Linq.ILinqUnitOfWorkExtensions.CreateSequence(CG.Linq.ILinqUnitOfWork)"/>
+            method.
+            <code>
+            class TestClass
+            {
+                static void Main()
+                {
+                    // Create a builder.
+                    var builder = new ILinqUnitOfWorkBuilder();
+                    
+                    // TODO : configure the builder by adding providers...
+            
+                    // Create a unit of work.
+                    using (ILinqUnitOfWork unitOfWork = builder.Builder())
+                    {
+                        // Create a sequence.
+                        var sp = unitOfWork.CreateSequence();
+                        
+                        // Do something with it here ...
+                    }
+                {
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:CG.Linq.ILinqUnitOfWorkExtensions.GetStrategy(CG.Linq.ILinqUnitOfWork)">
+            <summary>
+            This method returns the <see cref="T:CG.Linq.Strategy.ILinqUnitOfWorkStrategy"/>
+            associated with a given <see cref="T:CG.Linq.ILinqUnitOfWork"/> reference.
+            </summary>
+            <param name="unitOfWork">The unit-of-work to use for the operation.</param>
+            <returns>The <see cref="T:CG.Linq.Strategy.ILinqUnitOfWorkStrategy"/> that corresponds
+            with the specified <see cref="T:CG.Linq.ILinqUnitOfWork"/> reference.</returns>
+        </member>
+        <member name="T:CG.Linq.ISequence">
+            <summary>
+            This interface represents a numeric sequence, which is a design 
+            approach that's useful for generating ranges of unique, sequential 
+            integer values in a database agnostic fashion. 
+            </summary>
+            <remarks>
+            Note that it is possible that the underlying data store might not 
+            support a notion of a sequence. In that case, it's up to the developer 
+            of whatever strategy is in use to decide upon a proper fallback 
+            scheme - including the possibility of simply throwing an exception. 
+            So, pick a strategy and test, test, test to ensure you'll get the
+            behavior you need in production!
+            </remarks>
+        </member>
+        <member name="M:CG.Linq.ISequence.NextValueAsync(System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            This method returns the next 'N' values in a numeric sequence.
+            </summary>
+            <param name="name">An optional sequence name. If no value
+            is specified then the next value from the default sequence
+            is returned.</param>
+            <param name="count">The number of values to return.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+            <exception cref="T:CG.Linq.LinqException">This exception is thrown if 
+            anything goes wrong during the execution of this task.</exception>
+            <exception cref="T:System.ArgumentException">This exception is thrown if
+            any of the input parameters are missing or invalid.</exception>
+        </member>
+        <member name="T:CG.Linq.ISequenceExtensions">
+            <summary>
+            This class contains extension methods related to the <see cref="T:CG.Linq.ISequence"/>
+            type.
+            </summary>
+        </member>
+        <member name="M:CG.Linq.ISequenceExtensions.NextValue(CG.Linq.ISequence,System.String)">
+            <summary>
+            This method returns the next value in a numeric sequence.
+            </summary>
+            <param name="sequence">The sequence to use for the operation.</param>
+            <param name="name">An optional sequence name. If no value
+            is specified then the next value from the default sequence
+            is returned.</param>
+            <returns>The next value in the sequence.</returns>
+            <exception cref="T:CG.Linq.LinqException">This exception is thrown if 
+            anything goes wrong during the execution of this task.</exception>
+            <exception cref="T:System.ArgumentException">This exception is thrown if
+            any of the input parameters are missing or invalid.</exception>
+        </member>
+        <member name="M:CG.Linq.ISequenceExtensions.NextValueAsync(CG.Linq.ISequence,System.String,System.Threading.CancellationToken)">
+            <summary>
+            This method returns the next value in a numeric sequence.
+            </summary>
+            <param name="sequence">The sequence to use for the operation.</param>
+            <param name="name">An optional sequence name. If no value
+            is specified then the next value from the default sequence
+            is returned.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+            <exception cref="T:CG.Linq.LinqException">This exception is thrown if 
+            anything goes wrong during the execution of this task.</exception>
+            <exception cref="T:System.ArgumentException">This exception is thrown if
+            any of the input parameters are missing or invalid.</exception>
+        </member>
+        <member name="T:CG.Linq.IStoredProcedure">
+            <summary>
+            This interface represents a generic database procedure, which is a 
+            design approach that's usefull for executing procedures in a database
+            agnostic fashion. 
+            </summary>
+            <remarks>
+            Note that it is possible that the underlying data store might not support
+            a notion of a procedure. In that case, it's up to the developer of whatever 
+            strategy is in use to decide upon a proper fallback scheme - including the 
+            possibility of simply throwing an exception. So, pick a strategy and test, 
+            test, test to ensure you'll get the behavior you need in production!
+            </remarks>
+        </member>
+        <member name="M:CG.Linq.IStoredProcedure.ExecuteNonQueryAsync(System.String,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            This method executes a non-query stored procedure on the underlying 
+            data store.
+            </summary>
+            <param name="procedureName">The name of the procedure.</param>
+            <param name="parameters">An optional array of arguments.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            results from the underlying data store, after executing the 
+            procedure.</returns>
+            <exception cref="T:CG.Linq.LinqException">This exception is thrown in anything
+            goes wrong during the execution of the procedure.</exception>
+            <exception cref="T:System.ArgumentException">This exception is thrown if any
+            of the input parameters are missing or invalid.</exception>
+        </member>
+        <member name="M:CG.Linq.IStoredProcedure.ExecuteScalarAsync``1(System.String,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            This method executes a scalar query stored procedure on the 
+            underlying data store.
+            </summary>
+            <typeparam name="T">The scalar return value type.</typeparam>
+            <param name="procedureName">The name of the procedure.</param>
+            <param name="parameters">An optional array of arguments.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            scalar value from the underlying data store, after executing the 
+            procedure.</returns>
+            <exception cref="T:CG.Linq.LinqException">This exception is thrown in anything
+            goes wrong during the execution of the procedure.</exception>
+            <exception cref="T:System.ArgumentException">This exception is thrown if any
+            of the input parameters are missing or invalid.</exception>
+        </member>
+        <member name="M:CG.Linq.IStoredProcedure.ExecuteEntityQueryAsync``1(System.String,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            This method executes an entity based query stored procedure on the 
+            underlying data store.
+            </summary>
+            <typeparam name="TEntity">The entity return value type.</typeparam>
+            <param name="procedureName">The name of the procedure.</param>
+            <param name="token">An optional cancellation token.</param>
+            <param name="parameters">An optional array of arguments.</param>
+            <returns>A task to perform the operation. The task returns an
+            enumerable sequence of <typeparamref name="TEntity"/> objects
+            from the underlying data store.</returns>
+            <exception cref="T:CG.Linq.LinqException">This exception is thrown in anything
+            goes wrong during the execution of the procedure.</exception>
+            <exception cref="T:System.ArgumentException">This exception is thrown if any
+            of the input parameters are missing or invalid.</exception>
+        </member>
+        <member name="T:CG.Linq.LinqException">
+            <summary>
+            This class represents a LINQ related exception.
+            </summary>
+        </member>
+        <member name="M:CG.Linq.LinqException.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:CG.Linq.LinqException"/> class.
+            </summary>
+        </member>
+        <member name="M:CG.Linq.LinqException.#ctor(System.String,System.Exception)">
+            <summary>
+            Creates a new instance of the <see cref="T:CG.Linq.LinqException"/> 
+            class with a specified error message and a reference to the inner 
+            exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason 
+            for the exception.</param>
+            <param name="innerException">The exception that is the cause of the 
+            current exception. If the innerException parameter is not a null 
+            reference (Nothing in Visual Basic), the current exception is raised 
+            in a catch block that handles the inner exception.</param>
+        </member>
+        <member name="M:CG.Linq.LinqException.#ctor(System.String)">
+            <summary>
+            Creates a new instance of the <see cref="T:CG.Linq.LinqException"/> 
+            class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason 
+            for the exception.</param>
+        </member>
+        <member name="T:CG.Linq.LinqUnitOfWorkBuilder">
+            <summary>
+            This class builds up instances of <see cref="T:CG.Linq.ILinqUnitOfWork"/> at runtime.
+            </summary>
+        </member>
+        <member name="M:CG.Linq.LinqUnitOfWorkBuilder.#ctor">
+            <summary>
+             This constructor creates a new instance of the <see cref="T:CG.Linq.LinqUnitOfWorkBuilder"/>
+             class.
+            </summary>
+        </member>
+        <member name="M:CG.Linq.LinqUnitOfWorkBuilder.#ctor(CG.Builder.IBuilderProvider)">
+            <summary>
+             This constructor creates a new instance of the <see cref="T:CG.Linq.LinqUnitOfWorkBuilder"/>
+             class.
+            </summary>
+            <param name="provider">A parent provider reference.</param>
+        </member>
+        <member name="M:CG.Linq.LinqUnitOfWorkBuilder.#ctor(CG.Builder.IBuilderProduct)">
+            <summary>
+             This constructor creates a new instance of the <see cref="T:CG.Linq.LinqUnitOfWorkBuilder"/>
+             class.
+            </summary>
+            <param name="product">A parent product reference.</param>
+        </member>
+        <member name="M:CG.Linq.LinqUnitOfWorkBuilder.Build">
+            <summary>
+            This method builds up an instance of <see cref="T:CG.Linq.ILinqUnitOfWork"/>
+            </summary>
+            <returns>An instance of <see cref="T:CG.Linq.ILinqUnitOfWork"/></returns>
+            <exception cref="T:CG.Builder.BuilderException">This exception is thrown if 
+            anything goes wrong during the build process.</exception>
+            <exception cref="T:System.ArgumentException">This exception is thrown if
+            any of the input parameters are missing or invalid.</exception>
+        </member>
+        <member name="T:CG.Linq.NamespaceDoc">
+            <summary>
+            This namespace defines extensions to the <see cref="N:System.Linq"/> 
+            namespace.
+            </summary>
+        </member>
+        <member name="T:CG.Linq.LinqUnitOfWorkProduct">
+            <summary>
+            This class is an implementation of <see cref="T:CG.Linq.ILinqUnitOfWork"/>. An 
+            instance of this class is what is built up and returned whenever the 
+            <see cref="M:CG.Linq.LinqUnitOfWorkBuilder.Build"/> method is called. 
+            </summary>
+        </member>
+        <member name="P:CG.Linq.LinqUnitOfWorkProduct.Strategy">
+            <summary>
+            This property contains a reference to a LINQ unit-of-work strategy.
+            </summary>
+        </member>
+        <member name="M:CG.Linq.LinqUnitOfWorkProduct.SaveChangesAsync(System.Threading.CancellationToken)">
+            <summary>
+            This method saves any pending changes.
+            </summary>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+        </member>
+        <member name="M:CG.Linq.LinqUnitOfWorkProduct.Dispose(System.Boolean)">
+            <summary>
+            This method performs application-defined tasks associated with 
+            freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <param name="disposing">True to dispose managed resources; False
+            otherwise.</param>
+        </member>
+        <member name="M:CG.Linq.LinqUnitOfWorkProduct.OnInitialize(CG.Builder.IBuilder)">
+            <summary>
+            This method is called when the product is initialized by the builder.
+            </summary>
+            <param name="builder">The builder to use for the operation.</param>
+        </member>
+        <member name="T:CG.Linq.Product.NamespaceDoc">
+            <summary>
+            This namespace defines products that support the <see cref="N:CG.Linq"/>
+            namespace. A product is an object that is created by a builder and 
+            injected with providers at build time.
+            </summary>
+        </member>
+        <member name="T:CG.Linq.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:CG.Linq.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:CG.Linq.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:CG.Linq.Properties.Resources.EntityContext_AsQueryable">
+            <summary>
+              Looks up a localized string similar to Failed to get a queryable sequence from the entity-context. See inner exception(s) for more details..
+            </summary>
+        </member>
+        <member name="P:CG.Linq.Properties.Resources.EntityContext_DeleteError">
+            <summary>
+              Looks up a localized string similar to Failed to delete an entity from the entity-context. See inner exception(s) for more details..
+            </summary>
+        </member>
+        <member name="P:CG.Linq.Properties.Resources.EntityContext_InsertError">
+            <summary>
+              Looks up a localized string similar to Failed to insert an entity into the entity-context. See inner exception(s) for more details..
+            </summary>
+        </member>
+        <member name="P:CG.Linq.Properties.Resources.EntityContext_UpdateError">
+            <summary>
+              Looks up a localized string similar to Failed to update an entity in the entity-context. See inner exception(s) for more details..
+            </summary>
+        </member>
+        <member name="P:CG.Linq.Properties.Resources.IEntityContext_Provision_Deserialize">
+            <summary>
+              Looks up a localized string similar to Failed to deserialize the contents of the provision file: &apos;{0}&apos;! .
+            </summary>
+        </member>
+        <member name="P:CG.Linq.Properties.Resources.LinqUnitOfWorkProduct_NoProviders">
+            <summary>
+              Looks up a localized string similar to The LINQ unit of work failed to locate ANY providers at build time! This usually means that the builder wasn&apos;t properly configured..
+            </summary>
+        </member>
+        <member name="P:CG.Linq.Properties.Resources.NoProvider">
+            <summary>
+              Looks up a localized string similar to No LINQ provider was found! This is most likely because a provider was not configured for the builder before it&apos;s Build method was called. Be sure to properly configure the builder before attempting to build an IUnitOfWork instance!.
+            </summary>
+        </member>
+        <member name="P:CG.Linq.Properties.Resources.PropertyCache_NotFound">
+            <summary>
+              Looks up a localized string similar to The type &apos;{0}&apos; does not have a public property named &apos;{1}&apos;!.
+            </summary>
+        </member>
+        <member name="P:CG.Linq.Properties.Resources.PropertyCache_UnableToCache">
+            <summary>
+              Looks up a localized string similar to Unable to cache key information for the property &apos;{1}&apos; on type &apos;{0}&apos;!.
+            </summary>
+        </member>
+        <member name="P:CG.Linq.Properties.Resources.Sequence_Next">
+            <summary>
+              Looks up a localized string similar to Failed to fetch the next {0} items from the sequence named &apos;{1}&apos;!.
+            </summary>
+        </member>
+        <member name="P:CG.Linq.Properties.Resources.StoredProcedure_ExecuteAsync">
+            <summary>
+              Looks up a localized string similar to Failed to execute the stored procedure &apos;{0}&apos;. See inner exception(s) for more details..
+            </summary>
+        </member>
+        <member name="P:CG.Linq.Properties.Resources.UowNotAProduct">
+            <summary>
+              Looks up a localized string similar to The unit-of-work instance is not a builder product, for some weird reason, so we can&apos;t access the LINQ provider! .
+            </summary>
+        </member>
+        <member name="T:CG.Linq.Provider.ILinqUnitOfWorkProvider">
+            <summary>
+            This interface represents a LINQ unit-of-work strategy provider.
+            </summary>
+        </member>
+        <member name="T:CG.Linq.Provider.LinqUnitOfWorkProviderBase">
+            <summary>
+            This class is a base implementation of <see cref="T:CG.Linq.Provider.ILinqUnitOfWorkProvider"/>
+            The purpose of the class is to provide a handy-dandy base for deriving 
+            concrete provider classes from.
+            </summary>
+            <example>
+            This example shows how to derive a concrete class from <see cref="T:CG.Linq.Provider.LinqUnitOfWorkProviderBase"/>
+            <code>
+            class TestProvider : LinqUnitOfWorkProviderBase
+            {
+                
+            }
+            </code>
+            </example>
+        </member>
+        <member name="T:CG.Linq.Provider.NamespaceDoc">
+            <summary>
+            This namespace defines providers that support the <see cref="N:CG.Linq"/>
+            namespace. A provider is an object that supplies resources at runtime.
+            </summary>
+        </member>
+        <member name="T:CG.Linq.Sequence">
+            <summary>
+            This class is an implementation of <see cref="T:CG.Linq.ISequence"/>
+            </summary>
+        </member>
+        <member name="P:CG.Linq.Sequence.UnitOfWork">
+            <summary>
+            This property contains a reference to a unit-of-work.
+            </summary>
+        </member>
+        <member name="M:CG.Linq.Sequence.#ctor(CG.Linq.ILinqUnitOfWork)">
+            <summary>
+            This constructor creates a new instance of the <see cref="T:CG.Linq.Sequence"/>
+            class.
+            </summary>
+            <param name="unitOfWork">A reference to a LINQ unit-of-work.</param>
+        </member>
+        <member name="M:CG.Linq.Sequence.NextValueAsync(System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            This method returns the next 'N' values in a numeric sequence.
+            </summary>
+            <param name="name">An optional sequence name. If no value
+            is specified then the next value from the default sequence
+            is returned.</param>
+            <param name="count">The number of values to return.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+            <exception cref="T:CG.Linq.LinqException">This exception is thrown if 
+            anything goes wrong during the execution of this task.</exception>
+            <exception cref="T:System.ArgumentException">This exception is thrown if
+            any of the input parameters are missing or invalid.</exception>
+        </member>
+        <member name="T:CG.Linq.Setup.ILinqUnitOfWorkSetup">
+            <summary>
+            This interface represents a LINQ unit-of-work strategy setup.
+            </summary>
+        </member>
+        <member name="T:CG.Linq.Setup.LinqUnitOfWorkSetupBase`1">
+            <summary>
+            This class is a base implementation of <see cref="T:CG.Linq.Setup.ILinqUnitOfWorkSetup"/> 
+            The purpose of the class is to provide a handy-dandy base for deriving 
+            concrete setup classes from.
+            </summary>
+            <typeparam name="TProvider">The provider associated with the setup.</typeparam>
+        </member>
+        <member name="T:CG.Linq.Setup.NamespaceDoc">
+            <summary>
+            This namespace defines setups that support the <see cref="N:CG.Linq"/>
+            namespace. A setup is an object that contains configuration details 
+            needed to create a provider at runtime.
+            </summary>
+        </member>
+        <member name="T:CG.Linq.StoredProcedure">
+            <summary>
+            This class is an implementation of <see cref="T:CG.Linq.IStoredProcedure"/>
+            </summary>
+        </member>
+        <member name="P:CG.Linq.StoredProcedure.UnitOfWork">
+            <summary>
+            This property contains a reference to a unit-of-work.
+            </summary>
+        </member>
+        <member name="M:CG.Linq.StoredProcedure.#ctor(CG.Linq.ILinqUnitOfWork)">
+            <summary>
+            This constructor creates a new instance of the <see cref="T:CG.Linq.StoredProcedure"/>
+            class.
+            </summary>
+            <param name="unitOfWork">A reference to a LINQ unit-of-work.</param>
+        </member>
+        <member name="M:CG.Linq.StoredProcedure.ExecuteNonQueryAsync(System.String,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            This method executes a non-query stored procedure on the underlying 
+            data store.
+            </summary>
+            <param name="procedureName">The name of the procedure.</param>
+            <param name="parameters">An optional array of arguments.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            results from the underlying data store, after executing the 
+            procedure.</returns>
+            <exception cref="T:CG.Linq.LinqException">This exception is thrown in anything
+            goes wrong during the execution of the procedure.</exception>
+            <exception cref="T:System.ArgumentException">This exception is thrown if any
+            of the input parameters are missing or invalid.</exception>
+        </member>
+        <member name="M:CG.Linq.StoredProcedure.ExecuteScalarAsync``1(System.String,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            This method executes a scalar query stored procedure on the 
+            underlying data store.
+            </summary>
+            <typeparam name="T">The scalar return value type.</typeparam>
+            <param name="procedureName">The name of the procedure.</param>
+            <param name="parameters">An optional array of arguments.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            scalar value from the underlying data store, after executing the 
+            procedure.</returns>
+            <exception cref="T:CG.Linq.LinqException">This exception is thrown in anything
+            goes wrong during the execution of the procedure.</exception>
+            <exception cref="T:System.ArgumentException">This exception is thrown if any
+            of the input parameters are missing or invalid.</exception>
+        </member>
+        <member name="M:CG.Linq.StoredProcedure.ExecuteEntityQueryAsync``1(System.String,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            This method executes an entity based query stored procedure on the 
+            underlying data store.
+            </summary>
+            <typeparam name="TEntity">The entity return value type.</typeparam>
+            <param name="procedureName">The name of the procedure.</param>
+            <param name="parameters">An optional array of arguments.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation. The task returns an
+            enumerable sequence of <typeparamref name="TEntity"/> objects
+            from the underlying data store.</returns>
+            <exception cref="T:CG.Linq.LinqException">This exception is thrown in anything
+            goes wrong during the execution of the procedure.</exception>
+            <exception cref="T:System.ArgumentException">This exception is thrown if any
+            of the input parameters are missing or invalid.</exception>
+        </member>
+        <member name="T:CG.Linq.Strategy.ILinqUnitOfWorkStrategy">
+            <summary>
+            This interface represents a LINQ specific unit-of-work strategy.
+            </summary>
+        </member>
+        <member name="M:CG.Linq.Strategy.ILinqUnitOfWorkStrategy.SaveChangesAsync(System.Threading.CancellationToken)">
+            <summary>
+            This method saves any pending changes to the underlying data store.
+            </summary>
+            <param name="token">A cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+        </member>
+        <member name="M:CG.Linq.Strategy.ILinqUnitOfWorkStrategy.InsertAsync``1(``0,System.Threading.CancellationToken)">
+            <summary>
+            This method inserts a new entity to the underlying data store.
+            </summary>
+            <typeparam name="TEntity">The type of the entity.</typeparam>
+            <param name="entity">The entity to use for the operation.</param>
+            <param name="token">A cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            newly inserted entity instance.</returns>
+        </member>
+        <member name="M:CG.Linq.Strategy.ILinqUnitOfWorkStrategy.UpdateAsync``1(``0,System.Threading.CancellationToken)">
+            <summary>
+            This method updates an entity in the underlying data store.
+            </summary>
+            <typeparam name="TEntity">The type of the entity.</typeparam>
+            <param name="entity">The entity to be updated.</param>
+            <param name="token">A cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            newly updated entity instance.</returns>
+        </member>
+        <member name="M:CG.Linq.Strategy.ILinqUnitOfWorkStrategy.DeleteAsync``1(``0,System.Threading.CancellationToken)">
+            <summary>
+            This method deletes an entity from the underlying data store.
+            </summary>
+            <typeparam name="TEntity">The type of the entity.</typeparam>
+            <param name="entity">The entity to be deleted.</param>
+            <param name="token">A cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+        </member>
+        <member name="M:CG.Linq.Strategy.ILinqUnitOfWorkStrategy.AsQueryable``1">
+            <summary>
+            This method returns an unfiltered queryable sequence of 
+            objects from the underlying data store.
+            </summary>
+            <typeparam name="TEntity">The type of the entity.</typeparam>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that 
+            represents a queryable sequence of objects.</returns>
+        </member>
+        <member name="M:CG.Linq.Strategy.ILinqUnitOfWorkStrategy.ExecuteNonQueryAsync(System.String,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            This method executes the specified non-query stored-procedure 
+            on the underlying data store.
+            </summary>
+            <param name="commandName">The name of the command.</param>
+            <param name="parameters">An optional array of arguments.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            result of executing the command with the underlying data store.</returns>
+        </member>
+        <member name="M:CG.Linq.Strategy.ILinqUnitOfWorkStrategy.ExecuteScalarAsync``1(System.String,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            This method executes the specified scalar stored-procedure 
+            on the underlying data store.
+            </summary>
+            <typeparam name="T">The return scalar type.</typeparam>
+            <param name="commandName">The name of the command.</param>
+            <param name="parameters">An optional array of arguments.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            result of executing the command with the underlying data store.</returns>
+        </member>
+        <member name="M:CG.Linq.Strategy.ILinqUnitOfWorkStrategy.ExecuteEntityQueryAsync``1(System.String,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            This method executes a stored procedure on the underlying
+            data store.
+            </summary>
+            <typeparam name="TEntity">The return entity type.</typeparam>
+            <param name="commandName">The name of the command.</param>
+            <param name="parameters">An optional array of arguments.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            result of executing the command with the underlying data store.</returns>
+        </member>
+        <member name="M:CG.Linq.Strategy.ILinqUnitOfWorkStrategy.NextValueAsync(System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            This method returns the next 'N' values in a numeric sequence.
+            </summary>
+            <param name="name">An optional sequence name. If no value
+            is specified then the next value from the default sequence
+            is returned.</param>
+            <param name="count">The number of values to return.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            value of the next <paramref name="count"/> sequence items as 
+            an enumerable sequence.</returns>
+        </member>
+        <member name="T:CG.Linq.Strategy.LinqUnitOfWorkStrategyBase`3">
+            <summary>
+            This class is a base implementation of <see cref="T:CG.Linq.Strategy.ILinqUnitOfWorkStrategy"/> 
+            The purpose of the class is to provide a handy-dandy base for deriving 
+            concrete strategy classes from.
+            </summary>
+            <typeparam name="TProduct">The type of associated <see cref="T:CG.Linq.ILinqUnitOfWork"/></typeparam>
+            <typeparam name="TProvider">The type of associated <see cref="T:CG.Linq.Provider.ILinqUnitOfWorkProvider"/></typeparam>
+            <typeparam name="TSetup">The type of associated <see cref="T:CG.Linq.Setup.ILinqUnitOfWorkSetup"/></typeparam>
+        </member>
+        <member name="M:CG.Linq.Strategy.LinqUnitOfWorkStrategyBase`3.#ctor(`0,`1)">
+            <summary>
+            This constructor creates a new instance of the <see cref="T:CG.Linq.Strategy.LinqUnitOfWorkStrategyBase`3"/>
+            class.
+            </summary>
+            <param name="product">A reference to the associated product.</param>
+            <param name="provider">A reference to the strategy's provider.</param>
+        </member>
+        <member name="M:CG.Linq.Strategy.LinqUnitOfWorkStrategyBase`3.SaveChangesAsync(System.Threading.CancellationToken)">
+            <summary>
+            This method saves any pending changes.
+            </summary>
+            <param name="token">A cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+        </member>
+        <member name="M:CG.Linq.Strategy.LinqUnitOfWorkStrategyBase`3.InsertAsync``1(``0,System.Threading.CancellationToken)">
+            <summary>
+            This method inserts a new entity to the underlying data store.
+            </summary>
+            <typeparam name="TEntity">The type of the entity.</typeparam>
+            <param name="entity">The entity to use for the operation.</param>
+            <param name="token">A cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            newly inserted entity instance.</returns>
+        </member>
+        <member name="M:CG.Linq.Strategy.LinqUnitOfWorkStrategyBase`3.UpdateAsync``1(``0,System.Threading.CancellationToken)">
+            <summary>
+            This method updates an entity in the underlying data store.
+            </summary>
+            <typeparam name="TEntity">The type of the entity.</typeparam>
+            <param name="entity">The entity to be updated.</param>
+            <param name="token">A cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            newly updated entity instance.</returns>
+        </member>
+        <member name="M:CG.Linq.Strategy.LinqUnitOfWorkStrategyBase`3.DeleteAsync``1(``0,System.Threading.CancellationToken)">
+            <summary>
+            This method deletes an entity from the underlying data store.
+            </summary>
+            <typeparam name="TEntity">The type of the entity.</typeparam>
+            <param name="entity">The entity to be deleted.</param>
+            <param name="token">A cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+        </member>
+        <member name="M:CG.Linq.Strategy.LinqUnitOfWorkStrategyBase`3.AsQueryable``1">
+            <summary>
+            This method returns an unfiltered queryable sequence of 
+            objects from the underlying data store.
+            </summary>
+            <typeparam name="TEntity">The type of the entity.</typeparam>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> that 
+            represents a queryable sequence of objects.</returns>
+        </member>
+        <member name="M:CG.Linq.Strategy.LinqUnitOfWorkStrategyBase`3.ExecuteNonQueryAsync(System.String,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            This method executes the specified non-query stored-procedure 
+            on the underlying data store.
+            </summary>
+            <param name="commandName">The name of the command.</param>
+            <param name="parameters">An optional array of arguments.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            result of executing the command with the underlying data store.</returns>
+        </member>
+        <member name="M:CG.Linq.Strategy.LinqUnitOfWorkStrategyBase`3.ExecuteScalarAsync``1(System.String,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            This method executes the specified scalar stored-procedure 
+            on the underlying data store.
+            </summary>
+            <typeparam name="T">The return scalar type.</typeparam>
+            <param name="commandName">The name of the command.</param>
+            <param name="parameters">An optional array of arguments.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            result of executing the command with the underlying data store.</returns>
+        </member>
+        <member name="M:CG.Linq.Strategy.LinqUnitOfWorkStrategyBase`3.ExecuteEntityQueryAsync``1(System.String,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            This method executes a stored procedure on the underlying
+            data store.
+            </summary>
+            <typeparam name="TEntity">The return entity type.</typeparam>
+            <param name="commandName">The name of the command.</param>
+            <param name="parameters">An optional array of arguments.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            result of executing the command with the underlying data store.</returns>
+        </member>
+        <member name="M:CG.Linq.Strategy.LinqUnitOfWorkStrategyBase`3.NextValueAsync(System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            This method returns the next 'N' values in a numeric sequence.
+            </summary>
+            <param name="name">An optional sequence name. If no value
+            is specified then the next value from the default sequence
+            is returned.</param>
+            <param name="count">The number of values to return.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation. The task returns the
+            value of the next <paramref name="count"/> sequence items as 
+            an enumerable sequence.</returns>
+        </member>
+        <member name="T:CG.Linq.Strategy.NamespaceDoc">
+            <summary>
+            This namespace defines strategy types for the <see cref="N:CG.Linq"/>
+            namespace. A strategy is a design approach that lets algorithm 
+            implementations vary idependently from the clients that use them.
+            </summary>
+        </member>
+    </members>
+</doc>

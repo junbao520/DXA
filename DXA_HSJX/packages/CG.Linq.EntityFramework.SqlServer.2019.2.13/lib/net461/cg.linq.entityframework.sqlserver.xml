@@ -1,0 +1,236 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CG.Linq.EntityFramework.SqlServer</name>
+    </assembly>
+    <members>
+        <member name="T:CG.Linq.LinqUnitOfWorkBuilderExtensions">
+            <summary>
+            This class contains extension methods related to the <see cref="T:CG.Linq.LinqUnitOfWorkBuilder"/>
+            type.
+            </summary>
+        </member>
+        <member name="M:CG.Linq.LinqUnitOfWorkBuilderExtensions.AddSqlServerProvider``1(CG.Linq.LinqUnitOfWorkBuilder)">
+            <summary>
+            This method directs the builder to inject a sql-server provider 
+            into the unit-of-work at build time.
+            </summary>
+            <typeparam name="TContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> associated 
+            with the unit-of-work.</typeparam>
+            <param name="builder">The builder to use for the operation.</param>
+            <returns>A <see cref="T:CG.Linq.EntityFramework.SqlServer.Setup.ISqlServerUnitOfWorkSetup`1"/> instance to use
+            for configuring the provider.</returns>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.SqlServer.NamespaceDoc">
+            <summary>
+            This namespace defines sql-server extensions to the <see cref="N:CG.Linq.EntityFramework"/> 
+            namespace.
+            </summary>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.SqlServer.Provider.ISqlServerUnitOfWorkProvider`1">
+            <summary>
+            This interface is a sql-server implementation of <see cref="T:CG.Linq.EntityFramework.Provider.IEntityFrameworkUnitOfWorkProvider`1"/>
+            </summary>
+            <typeparam name="TContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> associated with
+            the provider.</typeparam>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.SqlServer.Provider.NamespaceDoc">
+            <summary>
+            This namespace defines provider types for the <see cref="N:CG.Linq.EntityFramework.SqlServer"/>
+            namespace. A provider is an object that supplies resources at runtime.
+            </summary>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.SqlServer.Provider.SqlServerUnitOfWorkProvider`1">
+            <summary>
+            This interface is an implementation of <see cref="T:CG.Linq.EntityFramework.SqlServer.Provider.ISqlServerUnitOfWorkProvider`1"/>
+            </summary>
+            <typeparam name="TContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> associated with
+            the provider.</typeparam>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.SqlServer.Setup.ISqlServerUnitOfWorkSetup`1">
+            <summary>
+            This interface is a sql-server implementation of <see cref="T:CG.Linq.EntityFramework.Setup.IEntityFrameworkUnitOfWorkSetup`1"/>
+            </summary>
+            <typeparam name="TContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> associated with
+            the setup.</typeparam>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.SqlServer.Setup.ISqlServerUnitOfWorkSetup`1.SetConnectionString(System.String)">
+            <summary>
+            This method sets the sql-server connection string.
+            </summary>
+            <param name="connectionString">A sql-server connection string.</param>
+            <returns>The setup instance.</returns>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.SqlServer.Setup.ISqlServerUnitOfWorkSetup`1.GetConnectionString">
+            <summary>
+            This method returns the sql-server connection string.
+            </summary>
+            <returns>A sql-server connection string.</returns>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.SqlServer.Setup.ISqlServerUnitOfWorkSetup`1.SetDeadlockRetryCount(System.Int32)">
+            <summary>
+            This method determines the number of times to retry an operation 
+            after a deadlock is detected. 
+            </summary>
+            <param name="retryCount">The number of times to retry an operation 
+            after a deadlock is detected.</param>
+            <returns>The setup instance.</returns>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.SqlServer.Setup.ISqlServerUnitOfWorkSetup`1.GetDeadlockRetryCount">
+            <summary>
+            This method returns the number of times to retry an operation after 
+            a deadlock is detected.
+            </summary>
+            <returns>The number of times to retry an operation 
+            after a deadlock is detected.</returns>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.SqlServer.Setup.NamespaceDoc">
+            <summary>
+            This namespace defines setup types for the <see cref="N:CG.Linq.EntityFramework.SqlServer"/>
+            namespace. A setup is an object that contains configuration details 
+            needed to create a provider at runtime.
+            </summary>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.SqlServer.Setup.SqlServerUnitOfWorkSetup`1">
+            <summary>
+            This class is an implementation of <see cref="T:CG.Linq.EntityFramework.SqlServer.Setup.ISqlServerUnitOfWorkSetup`1"/>
+            </summary>
+            <typeparam name="TContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> associated with
+            the setup.</typeparam>
+        </member>
+        <member name="F:CG.Linq.EntityFramework.SqlServer.Setup.SqlServerUnitOfWorkSetup`1._connectionString">
+            <summary>
+            This field contains the connection string.
+            </summary>
+        </member>
+        <member name="F:CG.Linq.EntityFramework.SqlServer.Setup.SqlServerUnitOfWorkSetup`1._deadlockRetryCount">
+            <summary>
+            This field contains the deadlock retry count.
+            </summary>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.SqlServer.Setup.SqlServerUnitOfWorkSetup`1.SetConnectionString(System.String)">
+            <summary>
+            This method sets the sql-server connection string.
+            </summary>
+            <param name="connectionString">A sql-server connection string.</param>
+            <returns>The setup instance.</returns>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.SqlServer.Setup.SqlServerUnitOfWorkSetup`1.GetConnectionString">
+            <summary>
+            This method returns the sql-server connection string.
+            </summary>
+            <returns>A sql-server connection string.</returns>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.SqlServer.Setup.SqlServerUnitOfWorkSetup`1.SetDeadlockRetryCount(System.Int32)">
+            <summary>
+            This method determines the number of times to retry an operation 
+            after a deadlock is detected. 
+            </summary>
+            <param name="retryCount">The number of times to retry an operation 
+            after a deadlock is detected.</param>
+            <returns>The setup instance.</returns>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.SqlServer.Setup.SqlServerUnitOfWorkSetup`1.GetDeadlockRetryCount">
+            <summary>
+            This method returns the number of times to retry an operation after 
+            a deadlock is detected.
+            </summary>
+            <returns>The number of times to retry an operation 
+            after a deadlock is detected.</returns>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.SqlServer.Strategy.DbContextExtensions">
+            <summary>
+            This class contains extension methods related to the <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/>
+            type.
+            </summary>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.SqlServer.Strategy.DbContextExtensions.TableExistsAsync(Microsoft.EntityFrameworkCore.DbContext,System.String,System.Threading.CancellationToken)">
+            <summary>
+            This method checks the database for the existence of the specific 
+            table.
+            </summary>
+            <param name="context">The database context to use.</param>
+            <param name="tableName">The table to look for.</param>
+            <param name="token">A cancellation token.</param>
+            <returns>A task to perform the operation. That task returns True 
+            if the table exists; False otheriwse.</returns>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.SqlServer.Strategy.DbContextExtensions.SprocExistsAsync(Microsoft.EntityFrameworkCore.DbContext,System.String,System.Threading.CancellationToken)">
+            <summary>
+            This method checks the database for the existence of the specific 
+            stored-procedure.
+            </summary>
+            <param name="context">The database context to use.</param>
+            <param name="sproceName">The sproc to look for.</param>
+            <param name="token">A cancellation token.</param>
+            <returns>A task to perform the operation. That task returns True 
+            if the sproc exists; False otheriwse.</returns>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.SqlServer.Strategy.ISqlServerUnitOfWorkStrategy`1">
+            <summary>
+            This interface is a sql-server implementation of <see cref="T:CG.Linq.EntityFramework.Strategy.IEntityFrameworkUnitOfWorkStrategy"/>
+            </summary>
+            <typeparam name="TContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> associated with
+            the strategy.</typeparam>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.SqlServer.Strategy.NamespaceDoc">
+            <summary>
+            This namespace defines strategy types for the <see cref="N:CG.Linq.EntityFramework.SqlServer"/>
+            namespace. A strategy is a design approach that lets algorithm 
+            implementations vary idependently from the clients that use them.
+            </summary>
+        </member>
+        <member name="T:CG.Linq.EntityFramework.SqlServer.Strategy.SqlServerUnitOfWorkStrategy`1">
+            <summary>
+            This class is an implementation of <see cref="T:CG.Linq.EntityFramework.SqlServer.Strategy.ISqlServerUnitOfWorkStrategy`1"/>
+            </summary>
+            <typeparam name="TContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> associated with
+            the strategy.</typeparam>
+        </member>
+        <member name="P:CG.Linq.EntityFramework.SqlServer.Strategy.SqlServerUnitOfWorkStrategy`1.SequenceTableExists">
+            <summary>
+            This property indicates whether the sequence table exists.
+            </summary>
+        </member>
+        <member name="P:CG.Linq.EntityFramework.SqlServer.Strategy.SqlServerUnitOfWorkStrategy`1.SequenceSprocExists">
+            <summary>
+            This property indicates whether the sequence sproc exists.
+            </summary>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.SqlServer.Strategy.SqlServerUnitOfWorkStrategy`1.#ctor(CG.Linq.ILinqUnitOfWork,CG.Linq.EntityFramework.SqlServer.Provider.ISqlServerUnitOfWorkProvider{`0})">
+            <summary>
+            This constructor creates a new instance of the <see cref="T:CG.Linq.EntityFramework.SqlServer.Strategy.SqlServerUnitOfWorkStrategy`1"/>
+            class.
+            </summary>
+            <param name="product">A reference to the associated product.</param>
+            <param name="provider">A reference to the strategy's provider.</param>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.SqlServer.Strategy.SqlServerUnitOfWorkStrategy`1.NextValueAsync(System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            This method returns the next 'N' values in a numeric sequence.
+            </summary>
+            <param name="name">An optional sequence name. If no value
+            is specified then the next value from the default sequence
+            is returned.</param>
+            <param name="count">The number of values to return.</param>
+            <param name="token">An optional cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.SqlServer.Strategy.SqlServerUnitOfWorkStrategy`1.EnsureSequenceTableExistsAsync(System.Threading.CancellationToken)">
+            <summary>
+            This method ensure that the specified table exists in the underlying
+            data store.
+            </summary>
+            <param name="token">A cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+        </member>
+        <member name="M:CG.Linq.EntityFramework.SqlServer.Strategy.SqlServerUnitOfWorkStrategy`1.EnsureSequenceSprocExistsAsync(System.Threading.CancellationToken)">
+            <summary>
+            This method ensure that the specified stored-procedure exists in 
+            the underlying data store.
+            </summary>
+            <param name="token">A cancellation token.</param>
+            <returns>A task to perform the operation.</returns>
+        </member>
+    </members>
+</doc>
