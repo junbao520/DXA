@@ -3,8 +3,10 @@ using Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,10 +20,11 @@ namespace DXA_HSJX
 
         private IEFRepository<ExamStudent> examStudentRepository;
         Timer timerCRV;
+        string ReportCardPath = string.Empty;
         public FormExamStudentManage()
         {
             InitializeComponent();
-           
+            ReportCardPath = ConfigurationManager.AppSettings["ReportCardPath"];
         }
         private int m_iUSBOpened = -1;
         private bool CRV_Init()
@@ -96,6 +99,11 @@ namespace DXA_HSJX
                     txtAddress.Text = UAddress;
 
                     var picbuff = System.IO.File.ReadAllBytes("zp.bmp");
+                    //把图片变小易于传输
+                    var newPath = ReportCardPath + "//" + SFZH + ".jpg";
+                    var Image= BytesToImage(picbuff);
+                    //把照片存到指定目录中
+                    Image.Save(newPath, ImageFormat.Jpeg);
                     picIDCardImage.Image = BytesToImage(picbuff);
 
 
@@ -112,10 +120,17 @@ namespace DXA_HSJX
             var IdCard = txtIDCard.Text.Trim();
             var phone = txtPhone.Text.Trim();
             var address = txtAddress.Text.Trim();
+            var carType = radC1.Checked ? "C1" : "C2";
             if (picIDCardImage.Image != null)
             {
-                var image = System.IO.File.ReadAllBytes("zp.bmp");
-                entity.IDCardImage = image;
+                var newpath = ReportCardPath + "\\" + IdCard + ".jpg";
+                if (File.Exists(newpath))
+                {
+                    //把照片存入新的路劲
+                    var image = System.IO.File.ReadAllBytes(ReportCardPath);
+                    entity.IDCardImage = image;
+                }
+              
             }
             //判断身份证号码是否已经添加了
             if (examStudentRepository.LoadEntities(s =>s.IdCard==IdCard).Count() > 0)
@@ -123,11 +138,12 @@ namespace DXA_HSJX
                 MessageBox.Show("已经添加了该考生请勿重复添加","考生管理");
                 return;
             }
-          
             entity.IdCard = IdCard;
             entity.Phone = phone;
             entity.Name = name;
-
+            entity.Address = address;
+            entity.CarType = carType;
+            entity.CreateTime = DateTime.Now;
             examStudentRepository.AddEntity(entity);
             MessageBox.Show("录入成功", "考生管理");
         }

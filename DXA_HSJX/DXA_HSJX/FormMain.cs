@@ -154,6 +154,7 @@ namespace DXA_HSJX
              var newItem = new KeyValuePair<int, string>(examCar.Position, examCar.ExamStudent.IdCard);
             lstPosition.Add(newItem);
             carSignal.CreateSendSocket(examCar.Ip, examCar.Port, examCar.Position);
+            //如果主程需收到消息 //就需要更新
             control.updateExamCarInfo(message);
         }
 

@@ -38,29 +38,41 @@ namespace DXA_HSJX
         private void btnSave_Click(object sender, EventArgs e)
         {
 
+
+            //要不直接执行Sql 更新？
+            //不在使用EF更新？
             //同一个人不能绑定两个车
             var IdCard = cmbExamStudent.Text.Split(',')[1];
 
-            var examCarID= Convert.ToInt32(txtID.Text);
-            var otherCarEntities = examCarRepository.LoadEntities(s => s.Id != examCarID && s.ExamStudent.IdCard == IdCard);
-            if(otherCarEntities.Count()>0)
+            var examCarID = Convert.ToInt32(txtID.Text);
+            var otherCarEntitiy = examCarRepository.LoadEntities(s => s.Id != examCarID && s.ExamStudent.IdCard == IdCard).FirstOrDefault(); ;
+            //todo:设计Bug
+            //如果这个学员有绑定其他车辆 那么这个学员 怎么办？ 
+            //如果我删除关系会怎么样？
+            //如果这个人选中路 
+            //todo:bug 在这点
+            //可以这样添加一个学员车辆关系表 
+            //这样就可以知道学员那辆车了
+            //其实我只要解决了更新头像Bug就可以了
+            //这样还是会更新下//
+            if (otherCarEntitiy!=null)
             {
-                foreach (var item in otherCarEntities)
-                {
-                    item.ExamStudentId = null;
-                    examCarRepository.UpdateEntity(item);
-                }
-            
+                otherCarEntitiy.ExamStudentId = null;
+                examCarRepository.UpdateEntity(otherCarEntitiy);
             }
+          
+
+
+            //其实这点不需要取查询了
             var examstudent = examStudentRepository.LoadEntitiy(s => s.IdCard == IdCard);
             // 其实还需要一个ID
+            // 如果我不执行更新操作 //会怎么样？
             ExamCar examCar = examCarRepository.LoadEntitiy(s => s.Id == examCarID);
             examCar.Ip = txtIP.Text.ToString();
             examCar.Port = Convert.ToInt32(txtPort.Text);
             examCar.ExamStudentId = examstudent.Id;
             examCar.LicensePlate = txtLicensePlate.Text;
-
-            //
+            examCar.ExamStudent = examstudent;
             examCarRepository.UpdateEntity(examCar);
 
             message = new ExamCarChangeMessage(examCar);
@@ -71,7 +83,7 @@ namespace DXA_HSJX
             BindExamCar();
 
             MessageBox.Show("修改成功", "车辆管理");
-            
+
         }
 
         public void BindExamCar()
@@ -82,36 +94,36 @@ namespace DXA_HSJX
 
             ExamCarSelect(examCarRepository.LoadEntities().FirstOrDefault());
         }
-       
+
 
         private void FormCarSetting_Load(object sender, EventArgs e)
         {
-          examCarRepository= ServiceLocator.Current.GetInstance<EFRepositoryBase<ExamCar>>();
-          examStudentRepository= ServiceLocator.Current.GetInstance<EFRepositoryBase<ExamStudent>>();
-          Messenger= ServiceLocator.Current.GetInstance<IMessenger>();
+            examCarRepository = ServiceLocator.Current.GetInstance<EFRepositoryBase<ExamCar>>();
+            examStudentRepository = ServiceLocator.Current.GetInstance<EFRepositoryBase<ExamStudent>>();
+            Messenger = ServiceLocator.Current.GetInstance<IMessenger>();
             this.MaximizeBox = false;
             // var result = examCarRepository.LoadEntitiy(s=>s.Id==1);
 
-           BindExamCar();
-           cmbExamStudent.Properties.Items.Clear();
+            BindExamCar();
+            cmbExamStudent.Properties.Items.Clear();
             //学员默认不重复就行
-            var students= examStudentRepository.LoadEntities();
+            var students = examStudentRepository.LoadEntities();
             ComboBoxItemCollection coll = cmbExamStudent.Properties.Items;
             foreach (var item in students)
             {
-                coll.Add(item.Name+","+item.IdCard);
+                coll.Add(item.Name + "," + item.IdCard);
             }
-        
+
         }
 
         private void cmbExamStudent_KeyDown(object sender, KeyEventArgs e)
         {
-           
+
         }
 
         private void cmbExamStudent_KeyPress(object sender, KeyPressEventArgs e)
         {
-         
+
         }
 
         public void ExamCarSelect(ExamCar examCar)

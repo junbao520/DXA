@@ -42,7 +42,11 @@
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.lblMsg = new DevExpress.XtraEditors.LabelControl();
             this.txtAddress = new System.Windows.Forms.TextBox();
+            this.radC1 = new CCWin.SkinControl.SkinRadioButton();
+            this.radC2 = new CCWin.SkinControl.SkinRadioButton();
+            this.pannelCarType = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.picIDCardImage)).BeginInit();
+            this.pannelCarType.SuspendLayout();
             this.SuspendLayout();
             // 
             // lableTitle
@@ -81,7 +85,6 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(236, 30);
             this.txtName.TabIndex = 16;
-            this.txtName.Text = "张三";
             // 
             // labelControl1
             // 
@@ -104,7 +107,6 @@
             this.txtIDCard.Name = "txtIDCard";
             this.txtIDCard.Size = new System.Drawing.Size(236, 30);
             this.txtIDCard.TabIndex = 19;
-            this.txtIDCard.Text = "500227199111294612";
             // 
             // picIDCardImage
             // 
@@ -125,7 +127,7 @@
             this.btnSave.Appearance.Options.UseFont = true;
             this.btnSave.Appearance.Options.UseForeColor = true;
             this.btnSave.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
-            this.btnSave.Location = new System.Drawing.Point(53, 316);
+            this.btnSave.Location = new System.Drawing.Point(55, 361);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(302, 55);
             this.btnSave.TabIndex = 21;
@@ -141,7 +143,7 @@
             this.btnExit.Appearance.Options.UseFont = true;
             this.btnExit.Appearance.Options.UseForeColor = true;
             this.btnExit.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
-            this.btnExit.Location = new System.Drawing.Point(438, 316);
+            this.btnExit.Location = new System.Drawing.Point(438, 361);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(302, 55);
             this.btnExit.TabIndex = 22;
@@ -154,7 +156,7 @@
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.White;
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Appearance.Options.UseForeColor = true;
-            this.labelControl2.Location = new System.Drawing.Point(53, 211);
+            this.labelControl2.Location = new System.Drawing.Point(55, 204);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(60, 23);
             this.labelControl2.TabIndex = 23;
@@ -165,11 +167,10 @@
             this.txtPhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(71)))), ((int)(((byte)(102)))));
             this.txtPhone.Font = new System.Drawing.Font("Tahoma", 14F);
             this.txtPhone.ForeColor = System.Drawing.Color.White;
-            this.txtPhone.Location = new System.Drawing.Point(139, 208);
+            this.txtPhone.Location = new System.Drawing.Point(139, 204);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(236, 30);
             this.txtPhone.TabIndex = 24;
-            this.txtPhone.Text = "13637822683";
             // 
             // lblMsg
             // 
@@ -188,12 +189,62 @@
             this.txtAddress.Enabled = false;
             this.txtAddress.Font = new System.Drawing.Font("Tahoma", 14F);
             this.txtAddress.ForeColor = System.Drawing.Color.White;
-            this.txtAddress.Location = new System.Drawing.Point(139, 259);
+            this.txtAddress.Location = new System.Drawing.Point(121, 314);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(236, 30);
             this.txtAddress.TabIndex = 26;
             this.txtAddress.Text = "13637822683";
             this.txtAddress.Visible = false;
+            // 
+            // radC1
+            // 
+            this.radC1.AutoSize = true;
+            this.radC1.BackColor = System.Drawing.Color.Transparent;
+            this.radC1.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.radC1.DownBack = null;
+            this.radC1.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Bold);
+            this.radC1.Location = new System.Drawing.Point(17, 13);
+            this.radC1.MouseBack = null;
+            this.radC1.Name = "radC1";
+            this.radC1.NormlBack = null;
+            this.radC1.SelectedDownBack = null;
+            this.radC1.SelectedMouseBack = null;
+            this.radC1.SelectedNormlBack = null;
+            this.radC1.Size = new System.Drawing.Size(53, 27);
+            this.radC1.TabIndex = 27;
+            this.radC1.TabStop = true;
+            this.radC1.Text = "C1";
+            this.radC1.UseVisualStyleBackColor = false;
+            // 
+            // radC2
+            // 
+            this.radC2.AutoSize = true;
+            this.radC2.BackColor = System.Drawing.Color.Transparent;
+            this.radC2.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.radC2.DownBack = null;
+            this.radC2.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Bold);
+            this.radC2.Location = new System.Drawing.Point(109, 13);
+            this.radC2.MouseBack = null;
+            this.radC2.Name = "radC2";
+            this.radC2.NormlBack = null;
+            this.radC2.SelectedDownBack = null;
+            this.radC2.SelectedMouseBack = null;
+            this.radC2.SelectedNormlBack = null;
+            this.radC2.Size = new System.Drawing.Size(53, 27);
+            this.radC2.TabIndex = 28;
+            this.radC2.TabStop = true;
+            this.radC2.Text = "C2";
+            this.radC2.UseVisualStyleBackColor = false;
+            // 
+            // pannelCarType
+            // 
+            this.pannelCarType.Controls.Add(this.radC2);
+            this.pannelCarType.Controls.Add(this.radC1);
+            this.pannelCarType.Location = new System.Drawing.Point(139, 244);
+            this.pannelCarType.Name = "pannelCarType";
+            this.pannelCarType.Size = new System.Drawing.Size(200, 53);
+            this.pannelCarType.TabIndex = 29;
+            this.pannelCarType.Visible = false;
             // 
             // FormExamStudentManage
             // 
@@ -201,6 +252,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(71)))), ((int)(((byte)(102)))));
             this.ClientSize = new System.Drawing.Size(852, 439);
+            this.Controls.Add(this.pannelCarType);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.lblMsg);
             this.Controls.Add(this.txtPhone);
@@ -217,6 +269,8 @@
             this.Text = "FormExamStudentManage";
             this.Load += new System.EventHandler(this.FormExamStudentManage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picIDCardImage)).EndInit();
+            this.pannelCarType.ResumeLayout(false);
+            this.pannelCarType.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,5 +291,8 @@
         private System.Windows.Forms.TextBox txtPhone;
         private DevExpress.XtraEditors.LabelControl lblMsg;
         private System.Windows.Forms.TextBox txtAddress;
+        private CCWin.SkinControl.SkinRadioButton radC1;
+        private CCWin.SkinControl.SkinRadioButton radC2;
+        private System.Windows.Forms.Panel pannelCarType;
     }
 }

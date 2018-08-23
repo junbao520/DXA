@@ -15,6 +15,11 @@ namespace Model
             var SeedTool = new SeedTool(directory, "orders.txt");
             SeedTool.Import(context);
 
+            //到时候执行Sql更新
+            //EFRepositoryBase<User> repositoryBase = new EFRepositoryBase<User>();
+            //repositoryBase.ExecuteSqlNonQuery("",context.c)
+                
+
             //EFRepositoryBase<ExamCar> eFRepositoryBase = new EFRepositoryBase<ExamCar>();
             //var entity= eFRepositoryBase.LoadEntitiy(s => s.Id == 1);
             //entity.ExamStudentId = 1;

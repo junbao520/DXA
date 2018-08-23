@@ -579,3 +579,6 @@ E:\HSJXProject\DXA\DXA_HSJX\DXA_HSJX\obj\Debug\DXA_HSJX.exe
 E:\HSJXProject\DXA\DXA_HSJX\DXA_HSJX\obj\Debug\DXA_HSJX.pdb
 E:\HSJXProject\DXA\DXA_HSJX\DXA_HSJX\bin\Debug\Signal.dll
 E:\HSJXProject\DXA\DXA_HSJX\DXA_HSJX\bin\Debug\Signal.pdb
+E:\HSJXProject\DXA\DXA_HSJX\DXA_HSJX\bin\Debug\termb.dll
+E:\HSJXProject\DXA\DXA_HSJX\DXA_HSJX\bin\Debug\sdtapi.dll
+E:\HSJXProject\DXA\DXA_HSJX\DXA_HSJX\bin\Debug\UnPack.dll

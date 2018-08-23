@@ -264,7 +264,6 @@ namespace Service
             //这个去获取
             record.LicensePlate = GetLicensePlateByIdCard(message.ExamStudent.IdCard);
             record.ExamLine = message.ExamLine;
-
             record.ExamStudentId = GetExamStudent(message.ExamStudent.IdCard).Id;
             record.Score = message.Score;
             record.GUID = message.GUID;

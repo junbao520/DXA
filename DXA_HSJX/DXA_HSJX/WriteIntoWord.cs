@@ -123,6 +123,29 @@ namespace DXA_HSJX
                 File.Delete(tmpPath);
             }
         }
+
+        public void PrintWorld(string filePath)
+        {
+            Microsoft.Office.Interop.Word.Application app = null;
+            Microsoft.Office.Interop.Word.Document doc = null;
+            object missing = System.Reflection.Missing.Value;
+            object templateFile = filePath;
+            app = new Microsoft.Office.Interop.Word.ApplicationClass();
+            doc = app.Documents.Add(ref templateFile, ref missing, ref missing, ref missing);
+
+            doc.PrintOut(ref missing, ref missing, ref missing, ref missing,
+                 ref missing, ref missing, ref missing, ref missing, ref missing,
+                 ref missing, ref missing, ref missing, ref missing, ref missing,
+                 ref missing, ref missing, ref missing, ref missing);
+
+
+            object saveChange = Microsoft.Office.Interop.Word.WdSaveOptions.wdDoNotSaveChanges;
+            if (doc != null)
+                doc.Close(ref saveChange, ref missing, ref missing);
+            if (app != null)
+                app.Quit(ref missing, ref missing, ref missing);
+        }
+
         public void WriteIntoDocument(string BookmarkName, string FillName)
         {
             object bookmarkName = BookmarkName;

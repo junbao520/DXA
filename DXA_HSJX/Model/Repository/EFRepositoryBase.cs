@@ -54,7 +54,6 @@ namespace Model
         public bool AddEntity(TEntity entity, bool isSave = true)
         {
             var DBContext = GetDataContext();
-
             DBContext.Entry<TEntity>(entity).State = EntityState.Added;
             return SaveCommit(isSave);
 

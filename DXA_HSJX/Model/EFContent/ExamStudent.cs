@@ -24,5 +24,15 @@ namespace Model
         /// 身份证头像
         /// </summary>
         public byte[] IDCardImage { get; set; }
+
+        /// <summary>
+        /// 考试车型 
+        /// </summary>
+        public string CarType { get; set; }
+
+        /// <summary>
+        /// 学生所在的考场ID 也就是车牌 这个作为备用 如果要做分车
+        /// </summary>
+        public string CarId { get; set; }
     }
 }

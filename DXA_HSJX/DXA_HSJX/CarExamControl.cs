@@ -43,16 +43,21 @@ namespace DXA_HSJX
         Color EnterExamColor = Color.Green;
         Color LeaveExamColor = Color.Red;
 
+        private byte[] CurrentImage = null;
+
         private UdpCarSignalSeedV4 udpCarSignalSeedV4;
 
 
         private List<DeductionRule> _deductionRules = new List<DeductionRule>();
         BindingSource ruleBindingSource;
+        private bool IsPrint = true;
         public CarExamControl()
         {
             InitializeComponent();
             dgvDeductRules.AutoGenerateColumns = false;
+            //todo：这些可以考虑写一个类来专门管理或者做一个配置界面
             ReportCardPath = ConfigurationManager.AppSettings["ReportCardPath"];
+            IsPrint =Convert.ToBoolean(ConfigurationManager.AppSettings["IsPrint"]);
         }
         public void InitInstance(IMessenger messager, UdpCarSignalSeedV4 server,IExamService examService)
         {
@@ -92,10 +97,25 @@ namespace DXA_HSJX
             {
                 var Image = BytesToImage(examStudent.IDCardImage);
                 PictureBoxIDCard.Image = Image;
+                //利用全局变量交换数据 todo:
+                CurrentImage = examStudent.IDCardImage;
             }
             Init();
         }
-
+        //tood:由于数据库照片被意外清空，原因不明，所以数据库没有照片直接去指定目录读取照片
+        public string GetIDCardPath()
+        {
+           return ReportCardPath + "//" + IDCard + ".jpg";
+        }
+        public byte[] GetIDCardByte()
+        {
+            var path = GetIDCardPath();
+            if (File.Exists(GetIDCardPath()))
+            {
+                return File.ReadAllBytes(path);
+            }
+            return null;
+        }
        /// <summary>
        /// 如果是通过项目
        /// </summary>
@@ -108,18 +128,27 @@ namespace DXA_HSJX
                 return;
             }
             ExamMessage message = new ExamMessage();
+            //我其实是依赖与这个给考生赋值
             message.ExamStudent =CurrentExamCar.ExamStudent;
-            if (message.CmdType!=CmdTypeEnum.SendExamStudentInfo)
+            if (cmdType != CmdTypeEnum.SendExamStudentInfo)
             {
-                //如果不是发送考生不要发送图片
                 message.ExamStudent.IDCardImage = null;
             }
-       
+            if (cmdType==CmdTypeEnum.SendExamStudentInfo)
+            {
+                //如果照片被清空 直接取指定路径读取照片
+                if (message.ExamStudent.IDCardImage==null)
+                {
+                    //直接还思路
+                    message.ExamStudent.IDCardImage = GetIDCardByte();
+                }
+            }
+            //直接再界面取怎么样？
             message.SendTime = DateTime.Now;
             message.CmdType = cmdType;
             message.ExamItem = ExamItem;
 
-            if (message.CmdType==CmdTypeEnum.BreakeRule)
+            if (cmdType==CmdTypeEnum.BreakeRule)
             {
                 //发送扣分
                 message.DeductionRule = new ExamMessageDeductionRule();
@@ -206,7 +235,7 @@ namespace DXA_HSJX
                         LeaveExamItem(message);
                         break;
                     case CmdTypeEnum.SendExamStudentInfo:
-                       //BtnClickAfter(btnSendExam);
+                         BtnClickAfter(btnSendExam);
                         SendExamStudentInfo(message);
                         break;
                     case CmdTypeEnum.SendCarSensor:
@@ -292,7 +321,7 @@ namespace DXA_HSJX
             dgvDeductRules.DataSource = ruleBindingSource;
             dgvDeductRules.Refresh();
             
-
+            //收到扣分就需要更新分数
             var status = message.IsPreliminaryExam ? "初考" : "补考";
             lblNameStatusScore.Text = string.Format("姓名:{0}   状态:{1}   成绩：{2}分", message.ExamStudent.Name, status, message.Score);
 
@@ -418,7 +447,6 @@ namespace DXA_HSJX
         private void CarExamControl_Load(object sender, EventArgs e)
         {
             Init();
-            //Messenger = Resolve<IMessenger>();
         }
 
         /// <summary>
@@ -435,12 +463,18 @@ namespace DXA_HSJX
                 BtnDisable(btnPrint);
                 btnPrint.Text = "正在打印";
                 var model = examService.GetPrintScoreModel(IDCard);
-                var path= GenerateWordAndImage(model);
+                //
+                //todo:这个是下下测,实在不知道为什么数据库照片会被清空
+                model.IDCardPath = GetIDCardPath();
+                GenerateWordAndPrint(model);
                 //打印图片 
-                //printWord(path);
-                PrintDialog MyPrintDg = new PrintDialog();
-                MyPrintDg.Document = printDocument1;
-                printDocument1.Print();
+                //if (IsPrint)
+                //{
+                    
+                //    //PrintDialog MyPrintDg = new PrintDialog();
+                //    //MyPrintDg.Document = printDocument1;
+                //    //printDocument1.Print();
+                //}
                 BtnEnable(btnPrint);
                 btnPrint.Text = "打印";
             });
@@ -450,7 +484,7 @@ namespace DXA_HSJX
            //第一步获取数据源 第二不进行打印
         }
 
-        public string  GenerateWordAndImage(PrintScoreModel model)
+        public string  GenerateWordAndPrint(PrintScoreModel model)
         {
             WriteIntoWord wiw = null;
             wiw = new WriteIntoWord();
@@ -486,9 +520,13 @@ namespace DXA_HSJX
             path = ReportCardPath + "\\" +model.IDCard+"_"+DateTime.Now.ToString("yyyyMMddHHmmss") + ".doc";
             wiw.Save_CloseDocument(path);
 
-            Image=wiw.WordtoImage(path)[0];
-            ImagePath = ReportCardPath + "\\" + model.IDCard + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".jpg";
-             Image.Save(ImagePath, ImageFormat.Jpeg);
+            if (IsPrint)
+            {
+                wiw.PrintWorld(path);
+            }
+            //Image=wiw.WordtoImage(path)[0];
+            //ImagePath = ReportCardPath + "\\" + model.IDCard + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".jpg";
+            // Image.Save(ImagePath, ImageFormat.Jpeg);
             return path;
         }
         private string ImagePath = string.Empty;
@@ -594,6 +632,10 @@ namespace DXA_HSJX
             SendMessage(CmdTypeEnum.EnterExamItem, ExamItem);
         }
 
-       
+        private void PictureBoxIDCard_DoubleClick(object sender, EventArgs e)
+        {
+            
+            Init();
+        }
     }
 }

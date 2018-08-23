@@ -81,6 +81,8 @@ namespace Model
 
         public const string IDCardImage = "IDCardImage";
         public const string name = "name";
+        public const string ProofCode = "ProofCode";
+        public const string CarType = "CarType";
         public const string businessType = "businessType";
         public const string examAddress = "examAddress";
         public const string examDate = "examDate";

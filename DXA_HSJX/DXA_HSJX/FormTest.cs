@@ -164,6 +164,7 @@ namespace DXA_HSJX
              var Image=wiw.WordtoImage(path)[0];
             Image.Save("Image.jpg",ImageFormat.Jpeg);
 
+            wiw.PrintWorld(path);
 
             //调用Com组建的word转图片
             //Document doc = new Document();
@@ -179,6 +180,24 @@ namespace DXA_HSJX
 
             //然后 开始 打印
 
+        }
+
+        /// <summary>
+        /// 测试打印图片
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button3_Click(object sender, EventArgs e)
+        {
+            PrintDialog MyPrintDg = new PrintDialog();
+            MyPrintDg.Document = printDocument1;
+            printDocument1.Print();
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            var Image = pictureBox1.Image;
+            e.Graphics.DrawImage(Image, Image.Width, Image.Height);
         }
 
 
