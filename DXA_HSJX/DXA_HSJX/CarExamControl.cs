@@ -133,6 +133,7 @@ namespace DXA_HSJX
 
             var msg=  JsonConvert.SerializeObject(message);
             //消息以Upd的行驶发出去
+            //todo:可以考虑是用框架 看看性能各方面如何
             udpServer.Send(msg, CurrentExamCar.Ip, CurrentExamCar.Port);
         }
 
