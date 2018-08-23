@@ -9,6 +9,7 @@ using Common.Logging;
 using System.Data.Entity;
 using Model;
 using Service;
+using Signal;
 
 namespace DXA_HSJX
 {
@@ -40,7 +41,9 @@ namespace DXA_HSJX
                 .RegisterType<IEFRepository<ExamCapture>, EFRepositoryBase<ExamCapture>>(LifetimeScope.Singleton)
                 .RegisterType<IEFRepository<DeductionRule>, EFRepositoryBase<DeductionRule>>(LifetimeScope.Singleton)
                 .RegisterType<HSJXEntities, HSJXEntities>(LifetimeScope.Singleton)
-                .RegisterType<IExamService, ExamService>(LifetimeScope.Singleton);
+                .RegisterType<IExamService, ExamService>(LifetimeScope.Singleton)
+                .RegisterType<UdpCarSignalSeedV4,UdpCarSignalSeedV4>(LifetimeScope.Singleton)
+                ;
 
 
         }

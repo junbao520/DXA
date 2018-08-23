@@ -217,6 +217,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UdpServerNew.cs" />
     <Compile Include="UdpServer.cs" />
     <Compile Include="WriteIntoWord.cs" />
     <EmbeddedResource Include="CarExamControl.resx">
@@ -296,8 +297,15 @@
       <Project>{a96ecb23-eb8a-4829-a3b4-0bcfdd728636}</Project>
       <Name>Service</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Signal\Signal.csproj">
+      <Project>{30b75dcd-f37b-4526-9903-74522c296c7c}</Project>
+      <Name>Signal</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSkin.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="order.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

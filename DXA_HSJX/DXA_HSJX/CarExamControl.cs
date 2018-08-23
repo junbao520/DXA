@@ -16,6 +16,7 @@ using DevExpress.XtraEditors;
 using Service;
 using System.Configuration;
 using System.Drawing.Imaging;
+using Signal;
 
 namespace DXA_HSJX
 {
@@ -42,7 +43,7 @@ namespace DXA_HSJX
         Color EnterExamColor = Color.Green;
         Color LeaveExamColor = Color.Red;
 
-        private UdpServer udpServer;
+        private UdpCarSignalSeedV4 udpCarSignalSeedV4;
 
 
         private List<DeductionRule> _deductionRules = new List<DeductionRule>();
@@ -53,10 +54,10 @@ namespace DXA_HSJX
             dgvDeductRules.AutoGenerateColumns = false;
             ReportCardPath = ConfigurationManager.AppSettings["ReportCardPath"];
         }
-        public void InitInstance(IMessenger messager,UdpServer server,IExamService examService)
+        public void InitInstance(IMessenger messager, UdpCarSignalSeedV4 server,IExamService examService)
         {
             this.Messenger = messager;
-            this.udpServer = server;
+            this.udpCarSignalSeedV4 = server;
             this.examService = examService;
         }
         public Image BytesToImage(byte[] buffer)
@@ -133,8 +134,12 @@ namespace DXA_HSJX
 
             var msg=  JsonConvert.SerializeObject(message);
             //消息以Upd的行驶发出去
+            //
+            //todo:我终于也用上了GitHub了
+            //todo:这个还是需要考虑进行优化的
             //todo:可以考虑是用框架 看看性能各方面如何
-            udpServer.Send(msg, CurrentExamCar.Ip, CurrentExamCar.Port);
+            this.udpCarSignalSeedV4.SocketSend(msg, Position);
+          //  udpServer.Send(msg, CurrentExamCar.Ip, CurrentExamCar.Port);
         }
 
         //按钮点击
@@ -432,7 +437,7 @@ namespace DXA_HSJX
                 var model = examService.GetPrintScoreModel(IDCard);
                 var path= GenerateWordAndImage(model);
                 //打印图片 
-                printWord(path);
+                //printWord(path);
                 PrintDialog MyPrintDg = new PrintDialog();
                 MyPrintDg.Document = printDocument1;
                 printDocument1.Print();
@@ -455,9 +460,9 @@ namespace DXA_HSJX
 
             wiw.WriteIntoDocument(TemplateBookMarkName.name, model.Name);
             wiw.WriteIntoDocument(TemplateBookMarkName.IdCard, model.IDCard);
-            wiw.WriteIntoDocument(TemplateBookMarkName.businessType, model.BusinessType);
+           // wiw.WriteIntoDocument(TemplateBookMarkName.businessType, model.BusinessType);
             wiw.WriteIntoDocument(TemplateBookMarkName.examDate, model.ExamDate);
-            wiw.WriteIntoDocument(TemplateBookMarkName.examAddress, "华山驾校十区一号线");
+           // wiw.WriteIntoDocument(TemplateBookMarkName.examAddress, "华山驾校十区一号线");
             wiw.WriteIntoDocument(TemplateBookMarkName.firstExamTime, model.FirstExam.ExamTime);
             wiw.WriteIntoDocument(TemplateBookMarkName.firstExamBreakeRule, model.FirstExam.DedictionRules);
             wiw.WriteIntoDocument(TemplateBookMarkName.firstExamScore, model.FirstExam.Score.ToString());
@@ -481,21 +486,19 @@ namespace DXA_HSJX
             path = ReportCardPath + "\\" +model.IDCard+"_"+DateTime.Now.ToString("yyyyMMddHHmmss") + ".doc";
             wiw.Save_CloseDocument(path);
 
-            //word直接转换图片
-            //wiw = new WriteIntoWord();
-
-            //var bitmp=wiw.WordtoImage(path)[0];
-            //ImagePath = ReportCardPath + "\\" + model.IDCard + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".jpg";
-            //bitmp.Save(ImagePath, ImageFormat.Jpeg);
+            Image=wiw.WordtoImage(path)[0];
+            ImagePath = ReportCardPath + "\\" + model.IDCard + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".jpg";
+             Image.Save(ImagePath, ImageFormat.Jpeg);
             return path;
         }
         private string ImagePath = string.Empty;
+        private Bitmap Image = null;
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             //从指定路劲读取图片
-            var bytes = File.ReadAllBytes(ImagePath);
-            var image = BytesToImage(bytes);
-            e.Graphics.DrawImage(image, image.Width, image.Height);
+            //var bytes = File.ReadAllBytes(ImagePath);
+            //var image = BytesToImage(bytes);
+            e.Graphics.DrawImage(Image, Image.Width, Image.Height);
         }
         public void printWord(string path)
         {

@@ -5,6 +5,7 @@ using Microsoft.Practices.ServiceLocation;
 using Model;
 using Newtonsoft.Json;
 using Service;
+using Signal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,7 @@ namespace DXA_HSJX
         ILog Logger;
         IMessenger Messenger;
         ILoginService LoginService;
+   
 
         public FormLogin()
         {
@@ -43,15 +45,26 @@ namespace DXA_HSJX
             Logger = LogManager.GetLogger(GetType());
 
             LoginService = ServiceLocator.Current.GetInstance<LoginService>();
-
+            
             var msg = new ExamMessage();
             var result = JsonConvert.SerializeObject(msg);
-            new UdpServer().Send(result, "192.168.1.6", 60000);
+          
+
+          //  carSignal.CreateSendSocket("192.168.1.6",30000,0);
+            //while (true)
+            //{
+            //    carSignal.SocketSend("234", 0);
+            //}
+           // new UdpServer().StartReceiveMsg();
+            //开始接收信息
+         
+          // new UdpServer().Send(result, "192.168.1.6", 60000);
         }
 
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+      
             string UserName = txtUserName.Text.Trim();
             string Pwd = txtPwd.Text.Trim();
             if (LoginService.userLogin(UserName,Pwd))

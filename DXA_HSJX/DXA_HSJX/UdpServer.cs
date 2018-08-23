@@ -31,6 +31,9 @@ namespace DXA_HSJX
         private ILog Logger { get; set; }
 
         private UdpClient udpcRecv;
+
+     
+
         System.Threading.Timer timer;
          public UdpServer()
         {

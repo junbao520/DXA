@@ -35,8 +35,6 @@ namespace DXA_HSJX
                 #region 应用程序入口
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-
-
                 BonusSkins.Register();
                 SkinManager.EnableFormSkins();
                 UserLookAndFeel.Default.SetSkinStyle("DevExpress Style");

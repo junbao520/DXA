@@ -31,7 +31,6 @@ namespace Service
             IEFRepository<ExamItem> IExamItemRepository,
             IEFRepository<ProjectThrough> IProjectThroughRepository,
             IEFRepository<ExamStudent> IExamStudentRepository
-
             )
         {
             examCarRepository = IExamCarRepository;
@@ -175,7 +174,7 @@ namespace Service
             var breakeRules = examBreakeRuleRecordRepository.LoadEntities(s => s.ExamRecordId == record.Id);
 
             var breakeRulesStr = string.Join(",", breakeRules.Select(s => s.DeductedReason));
-
+            Exam.Score = record.Score;
             Exam.DedictionRules = breakeRulesStr;
             var Captures = examCaptureRepository.LoadEntities(s => s.ExamRecordId == record.Id);
             for (int i = 0; i < Captures.Count() && i < 3; i++)

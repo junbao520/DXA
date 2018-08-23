@@ -11,18 +11,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Signal;
 
 namespace DXA_HSJX
 {
     public partial class FormMain : DevExpress.XtraEditors.XtraForm
     {
         IMessenger Messenger;
-        UdpServer udpServer;
+        //UdpServer udpServer;
         IExamService examService;
         IEFRepository<ExamCar> examCarReposiatory;
         List<KeyValuePair<int,string>> lstPosition = new List<KeyValuePair<int, string>>();
+        UdpCarSignalSeedV4 carSignal;
         
-
         public FormMain()
         {
             InitializeComponent();
@@ -51,12 +52,17 @@ namespace DXA_HSJX
             Messenger = ServiceLocator.Current.GetInstance<IMessenger>();
             examCarReposiatory = ServiceLocator.Current.GetInstance<IEFRepository<ExamCar>>();
             examService= ServiceLocator.Current.GetInstance<IExamService>();
-            udpServer = new UdpServer();
-            udpServer.StartReceiveMsg();
+            carSignal = ServiceLocator.Current.GetInstance<UdpCarSignalSeedV4>();
+            //udpServer = new UdpServer();
+            //udpServer.StartReceiveMsg();
             RegisterMessage(Messenger);
             InitCarControl();
             //初始化根据数据库的结果绑定考生
             InitCarExamStudent();
+
+            //初始化 开始接收客户端发回消息
+            carSignal.Init();
+            carSignal.StartAsync();
             // this.carExamControl1.Position = 1;
         }
         public void InitCarExamStudent()
@@ -77,10 +83,10 @@ namespace DXA_HSJX
         }
         public void InitCarControl()
         {
-            this.carExamControl1.InitInstance(this.Messenger, this.udpServer,this.examService);
-            this.carExamControl2.InitInstance(this.Messenger, this.udpServer,this.examService);
-            this.carExamControl3.InitInstance(this.Messenger, this.udpServer,this.examService);
-            this.carExamControl4.InitInstance(this.Messenger, this.udpServer,this.examService);
+            this.carExamControl1.InitInstance(this.Messenger, this.carSignal,this.examService);
+            this.carExamControl2.InitInstance(this.Messenger, this.carSignal, this.examService);
+            this.carExamControl3.InitInstance(this.Messenger, this.carSignal, this.examService);
+            this.carExamControl4.InitInstance(this.Messenger, this.carSignal, this.examService);
         }
 
         public void RegisterMessage(IMessenger message)
@@ -137,24 +143,17 @@ namespace DXA_HSJX
             var examCar = message.ExamCar;
             var control = GetCarExamControl(examCar.Position);
             control.Position= examCar.Position;
+            control.LicensePlate = examCar.LicensePlate;
             control.IDCard = examCar.ExamStudent.IdCard;
             //把这个车辆位置信息更新到内存中
-
             if (lstPosition.Where(s=>s.Key==examCar.Position).Count()>=0)
             {
                 var Item = lstPosition.Where(s => s.Key == examCar.Position).FirstOrDefault();
                 lstPosition.Remove(Item);
-                var newItem = new KeyValuePair<int, string>(examCar.Position, examCar.ExamStudent.IdCard);
-                lstPosition.Add(newItem);
             }
-            else
-            {
-                var newItem = new KeyValuePair<int, string>(examCar.Position, examCar.ExamStudent.IdCard);
-                lstPosition.Add(newItem);
-            }
-           
-
-           
+             var newItem = new KeyValuePair<int, string>(examCar.Position, examCar.ExamStudent.IdCard);
+            lstPosition.Add(newItem);
+            carSignal.CreateSendSocket(examCar.Ip, examCar.Port, examCar.Position);
             control.updateExamCarInfo(message);
         }
 

@@ -161,15 +161,20 @@ namespace DXA_HSJX
             path = System.IO.Directory.GetCurrentDirectory() + "\\" +"print"+ ".doc";
             wiw.Save_CloseDocument(path);
 
-            Document doc = new Document();
-            doc.LoadFromFile(path);
-            //convert to image
-            //doc.BuiltinDocumentProperties.PageCount  word的页数，这个属性找了好久才找到啊，官方的demo没看到使用过这个属性。
-            for (int i = 0; i < doc.BuiltinDocumentProperties.PageCount; i++)
-            {
-                System.Drawing.Image image = doc.SaveToImages(i, Spire.Doc.Documents.ImageType.Metafile);
-                image.Save(i.ToString() + ".jpg", ImageFormat.Jpeg);
-            }
+             var Image=wiw.WordtoImage(path)[0];
+            Image.Save("Image.jpg",ImageFormat.Jpeg);
+
+
+            //调用Com组建的word转图片
+            //Document doc = new Document();
+            //doc.LoadFromFile(path);
+            ////convert to image
+            ////doc.BuiltinDocumentProperties.PageCount  word的页数，这个属性找了好久才找到啊，官方的demo没看到使用过这个属性。
+            //for (int i = 0; i < doc.BuiltinDocumentProperties.PageCount; i++)
+            //{
+            //    System.Drawing.Image image = doc.SaveToImages(i, Spire.Doc.Documents.ImageType.Metafile);
+            //    image.Save(i.ToString() + ".jpg", ImageFormat.Jpeg);
+            //}
             MessageBox.Show("成功");
 
             //然后 开始 打印

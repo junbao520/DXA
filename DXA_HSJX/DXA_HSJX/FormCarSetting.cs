@@ -34,6 +34,7 @@ namespace DXA_HSJX
                 return cp;
             }
         }
+        //IP 地址201 620A
         private void btnSave_Click(object sender, EventArgs e)
         {
 
@@ -92,7 +93,7 @@ namespace DXA_HSJX
             // var result = examCarRepository.LoadEntitiy(s=>s.Id==1);
 
            BindExamCar();
-          cmbExamStudent.Properties.Items.Clear();
+           cmbExamStudent.Properties.Items.Clear();
             //学员默认不重复就行
             var students= examStudentRepository.LoadEntities();
             ComboBoxItemCollection coll = cmbExamStudent.Properties.Items;
